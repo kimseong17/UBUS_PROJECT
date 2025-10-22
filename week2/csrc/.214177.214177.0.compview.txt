@@ -1,0 +1,5 @@
+{"vcs1":{"timestamp_begin":1761011934.798188263, "rt":0.09, "ut":0.04, "st":0.02}}
+{"SNPS_VCS_INTERNAL_ROOT_START_TIME": 1761011934.538530168}
+{"VCS_COMP_START_TIME": 1761011934.538530168}
+{"VCS_COMP_END_TIME": 1761011934.915357401}
+{"VCS_USER_OPTIONS": "-full64 -sverilog -lca -debug_access+all+reverse -kdb -l comp.log -ntb_opts uvm-1.2 my3_testbench_top.sv"}
