@@ -29,13 +29,13 @@ class my3_vip_test extends uvm_test;
 	    	env.tr.randomize();
             	env.tr.print(); 
 					
-		`uvm_info("UBUS_TRANS", $sformatf("addr=%0h read=%0b write=%0b size=%0d data=%0h wait=%p error=%0b",
+		`uvm_info("UBUS_TRANS", $sformatf("addr=%0h read=%0b write=%0b size=%0d data=%p wait=%p error=%0b",
             	env.tr.addr, env.tr.read, env.tr.write,
             	env.tr.size, env.tr.data, env.tr.wait_state, env.tr.error), UVM_HIGH);		
 	    end
 	end else begin
 		`uvm_error("NULL", "env.tr is null! Check build_phase")
-	end   
+	end    
 	
        //dynamic array test에서 설정 - error
        /*if (env != null && env.tr != null) begin
