@@ -1,7 +1,7 @@
 Command: /DATA/home/edu010/3team/week2/./simv +UVM_TESTNAME=my3_vip_test -l simv.log +UVM_VERBOSITY=UVM_HIGH
 Chronologic VCS simulator copyright 1991-2023
 Contains Synopsys proprietary information.
-Compiler version V-2023.12-SP2-8_Full64; Runtime version V-2023.12-SP2-8_Full64;  Oct 21 16:17 2025
+Compiler version V-2023.12-SP2-8_Full64; Runtime version V-2023.12-SP2-8_Full64;  Oct 23 11:10 2025
 UVM_INFO /tools/synopsys/vcs/V-2023.12-SP2-8/etc/uvm-1.2/base/uvm_root.svh(402) @ 0: reporter [UVM/RELNOTES] 
 ----------------------------------------------------------------
 UVM-1.2.Synopsys
@@ -61,10 +61,17 @@ tr            packet        -     @359
   size        integral      2     'h1   
   data        integral      8     'h65  
   error       integral      1     'h1   
-  wait_state  da(integral)  1     -     
-    [0]       integral      1     'h0   
+  wait_state  da(integral)  8     -     
+    [0]       integral      1     'h1   
+    [1]       integral      1     'h1   
+    [2]       integral      1     'h1   
+    [3]       integral      1     'h0   
+    [4]       integral      1     'h0   
+    [5]       integral      1     'h0   
+    [6]       integral      1     'h1   
+    [7]       integral      1     'h1   
 ----------------------------------------
-UVM_INFO my3_vip_test.sv(32) @ 0: uvm_test_top [UBUS_TRANS] my3_testbench_top.\my3_vip_test::start_of_simulation_phase .unnamed$$_0 addr=1f83 read=1 write=1 size=1 data=65 wait='{'h0}  error=1
+UVM_INFO my3_vip_test.sv(32) @ 0: uvm_test_top [UBUS_TRANS] addr=1f83 read=1 write=1 size=1 data=65 wait='{'h1, 'h1, 'h1, 'h0, 'h0, 'h0, 'h1, 'h1}  error=1
 ----------------------------------------
 Name          Type          Size  Value 
 ----------------------------------------
@@ -74,11 +81,12 @@ tr            packet        -     @359
   write       integral      1     'h1   
   size        integral      2     'h1   
   data        integral      8     'h75  
-  error       integral      1     'h1   
-  wait_state  da(integral)  1     -     
-    [0]       integral      1     'h0   
+  error       integral      1     'h0   
+  wait_state  da(integral)  2     -     
+    [0]       integral      1     'h1   
+    [1]       integral      1     'h1   
 ----------------------------------------
-UVM_INFO my3_vip_test.sv(32) @ 0: uvm_test_top [UBUS_TRANS] my3_testbench_top.\my3_vip_test::start_of_simulation_phase .unnamed$$_0 addr=a128 read=1 write=1 size=1 data=75 wait='{'h0}  error=1
+UVM_INFO my3_vip_test.sv(32) @ 0: uvm_test_top [UBUS_TRANS] addr=a128 read=1 write=1 size=1 data=75 wait='{'h1, 'h1}  error=0
 ----------------------------------------
 Name          Type          Size  Value 
 ----------------------------------------
@@ -88,11 +96,12 @@ tr            packet        -     @359
   write       integral      1     'h0   
   size        integral      2     'h1   
   data        integral      8     'hf8  
-  error       integral      1     'h0   
-  wait_state  da(integral)  1     -     
+  error       integral      1     'h1   
+  wait_state  da(integral)  2     -     
     [0]       integral      1     'h0   
+    [1]       integral      1     'h0   
 ----------------------------------------
-UVM_INFO my3_vip_test.sv(32) @ 0: uvm_test_top [UBUS_TRANS] my3_testbench_top.\my3_vip_test::start_of_simulation_phase .unnamed$$_0 addr=a550 read=1 write=0 size=1 data=f8 wait='{'h0}  error=0
+UVM_INFO my3_vip_test.sv(32) @ 0: uvm_test_top [UBUS_TRANS] addr=a550 read=1 write=0 size=1 data=f8 wait='{'h0, 'h0}  error=1
 ----------------------------------------
 Name          Type          Size  Value 
 ----------------------------------------
@@ -102,13 +111,16 @@ tr            packet        -     @359
   write       integral      1     'h1   
   size        integral      2     'h3   
   data        integral      8     'h5e  
-  error       integral      1     'h0   
-  wait_state  da(integral)  3     -     
+  error       integral      1     'h1   
+  wait_state  da(integral)  6     -     
     [0]       integral      1     'h0   
     [1]       integral      1     'h0   
     [2]       integral      1     'h0   
+    [3]       integral      1     'h0   
+    [4]       integral      1     'h1   
+    [5]       integral      1     'h0   
 ----------------------------------------
-UVM_INFO my3_vip_test.sv(32) @ 0: uvm_test_top [UBUS_TRANS] my3_testbench_top.\my3_vip_test::start_of_simulation_phase .unnamed$$_0 addr=e095 read=0 write=1 size=3 data=5e wait='{'h0, 'h0, 'h0}  error=0
+UVM_INFO my3_vip_test.sv(32) @ 0: uvm_test_top [UBUS_TRANS] addr=e095 read=0 write=1 size=3 data=5e wait='{'h0, 'h0, 'h0, 'h0, 'h1, 'h0}  error=1
 UVM_INFO /tools/synopsys/vcs/V-2023.12-SP2-8/etc/uvm-1.2/base/uvm_report_catcher.svh(705) @ 0: reporter [UVM/REPORT/CATCHER] 
 --- UVM Report catcher Summary ---
 
@@ -141,4 +153,4 @@ $finish at simulation time                    0
            V C S   S i m u l a t i o n   R e p o r t 
 Time: 0
 CPU Time:      0.190 seconds;       Data structure size:   0.5Mb
-Tue Oct 21 16:17:45 2025
+Thu Oct 23 11:10:43 2025

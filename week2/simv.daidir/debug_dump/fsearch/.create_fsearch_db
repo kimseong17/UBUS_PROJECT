@@ -5,5 +5,5 @@ PYTHONPATH=/tools/synopsys/vcs/V-2023.12-SP2-8/linux64/lib/pylib27
 export PYTHONPATH
 LD_LIBRARY_PATH=/tools/synopsys/vcs/V-2023.12-SP2-8/linux64/lib:/tools/synopsys/vcs/V-2023.12-SP2-8/linux64/lib/pylib27
 export LD_LIBRARY_PATH
-/tools/synopsys/vcs/V-2023.12-SP2-8/linux64/bin/vcsfind_create_index.exe  -z  "/DATA/home/edu010/3team/week2/simv.daidir/debug_dump/fsearch/./idents_wpt5Jh.xml.gz" "/DATA/home/edu010/3team/week2/simv.daidir/debug_dump/fsearch/./idents_tapi.xml.gz" -o "/DATA/home/edu010/3team/week2/simv.daidir/debug_dump/fsearch/fsearch.db_tmp"
+/tools/synopsys/vcs/V-2023.12-SP2-8/linux64/bin/vcsfind_create_index.exe  -z  "/DATA/home/edu010/3team/week2/simv.daidir/debug_dump/fsearch/./idents_IBb7WZ.xml.gz" "/DATA/home/edu010/3team/week2/simv.daidir/debug_dump/fsearch/./idents_tapi.xml.gz" -o "/DATA/home/edu010/3team/week2/simv.daidir/debug_dump/fsearch/fsearch.db_tmp"
 \mv "/DATA/home/edu010/3team/week2/simv.daidir/debug_dump/fsearch/fsearch.db_tmp" "/DATA/home/edu010/3team/week2/simv.daidir/debug_dump/fsearch/fsearch.db"
