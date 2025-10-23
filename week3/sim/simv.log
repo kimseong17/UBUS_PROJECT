@@ -1,0 +1,466 @@
+Command: /DATA/home/edu010/3team/week3/sim/./simv +UVM_TESTNAME=my3_vip_master_test -l simv.log +UVM_VERBOSITY=UVM_HIGH
+Chronologic VCS simulator copyright 1991-2023
+Contains Synopsys proprietary information.
+Compiler version V-2023.12-SP2-8_Full64; Runtime version V-2023.12-SP2-8_Full64;  Oct 22 16:36 2025
+UVM_INFO /tools/synopsys/vcs/V-2023.12-SP2-8/etc/uvm-ieee-2020/base/uvm_root.svh(441) @ 0: reporter [UVM/RELNOTES] 
+  ***********       IMPORTANT RELEASE NOTES         ************
+
+  This implementation of the UVM Library deviates from the 1800.2-2020
+  standard.  See the DEVIATIONS.md file contained in the release
+  for more details.
+
+----------------------------------------------------------------
+Accellera:1800.2-2020:UVM:1.1.Synopsys
+
+All copyright owners for this kit are listed in NOTICE.txt
+All Rights Reserved Worldwide
+----------------------------------------------------------------
+
+      (Specify +UVM_NO_RELNOTES to turn off this notice)
+
+UVM_INFO @ 0: reporter [RNTST] Running test my3_vip_master_test...
+UVM_INFO /tools/synopsys/vcs/V-2023.12-SP2-8/etc/uvm-ieee-2020/base/uvm_root.svh(634) @ 0: reporter [UVMTOP] UVM testbench topology:
+--------------------------------------------------------------------
+Name                         Type                        Size  Value
+--------------------------------------------------------------------
+<unnamed>                    uvm_root                    -     @62  
+  uvm_test_top               my3_vip_master_test         -     @118 
+    env                      my3_vip_master_environment  -     @166 
+      m_agent                master_agent                -     @183 
+        driver               master_driver               -     @332 
+          rsp_port           uvm_analysis_port           -     @351 
+          seq_item_port      uvm_seq_item_pull_port      -     @341 
+        monitor              master_monitor              -     @361 
+        sequencer            master_sequencer            -     @195 
+          rsp_export         uvm_analysis_export         -     @204 
+          seq_item_export    uvm_seq_item_pull_imp       -     @322 
+          arbitration_queue  array                       0     -    
+          lock_queue         array                       0     -    
+          num_last_reqs      integral                    32    'd1  
+          num_last_rsps      integral                    32    'd1  
+--------------------------------------------------------------------
+UVM_INFO /tools/synopsys/vcs/V-2023.12-SP2-8/etc/uvm-ieee-2020/base/uvm_factory.svh(1875) @ 0: reporter [UVM/FACTORY/PRINT] 
+#### Factory Configuration (*)
+
+  No instance or type overrides are registered with this factory
+
+All types registered with the factory: 137 total
+  Type Name
+  ---------
+  master_agent
+  master_driver
+  master_monitor
+  master_sequence
+  master_sequencer
+  my3_vip_master_environment
+  my3_vip_master_test
+  packet
+  snps_uvm_reg_bank_group
+  snps_uvm_reg_map
+(*) Types with no associated type name will be printed as <unknown>
+
+####
+
+
+UVM_INFO ../master_vip/master_sequence.sv(15) @ 0: uvm_test_top.env.m_agent.sequencer@@seq [SEQ] Randomized tr: -------------------------------------------------------------------------------------
+Name                           Type      Size  Value                                 
+-------------------------------------------------------------------------------------
+tr                             packet    -     @426                                  
+  addr                         integral  16    'h401b                                
+  read                         integral  1     'h1                                   
+  write                        integral  1     'h1                                   
+  size                         integral  2     'h0                                   
+  data                         integral  8     'h59                                  
+  error                        integral  1     'h1                                   
+  wait_state                   integral  1     'h1                                   
+  begin_time                   time      64    0                                     
+  depth                        int       32    'd2                                   
+  parent sequence (name)       string    3     seq                                   
+  parent sequence (full name)  string    38    uvm_test_top.env.m_agent.sequencer.seq
+  sequencer                    string    34    uvm_test_top.env.m_agent.sequencer    
+-------------------------------------------------------------------------------------
+
+UVM_INFO ../master_vip/master_driver.sv(26) @ 5: uvm_test_top.env.m_agent.driver [DRIVER] Driving new transaction : -------------------------------------------------------------------------------------
+Name                           Type      Size  Value                                 
+-------------------------------------------------------------------------------------
+tr                             packet    -     @426                                  
+  addr                         integral  16    'h401b                                
+  read                         integral  1     'h1                                   
+  write                        integral  1     'h1                                   
+  size                         integral  2     'h0                                   
+  data                         integral  8     'h59                                  
+  error                        integral  1     'h1                                   
+  wait_state                   integral  1     'h1                                   
+  begin_time                   time      64    0                                     
+  depth                        int       32    'd2                                   
+  parent sequence (name)       string    3     seq                                   
+  parent sequence (full name)  string    38    uvm_test_top.env.m_agent.sequencer.seq
+  sequencer                    string    34    uvm_test_top.env.m_agent.sequencer    
+-------------------------------------------------------------------------------------
+
+UVM_INFO ../master_vip/master_sequence.sv(15) @ 5: uvm_test_top.env.m_agent.sequencer@@seq [SEQ] Randomized tr: -------------------------------------------------------------------------------------
+Name                           Type      Size  Value                                 
+-------------------------------------------------------------------------------------
+tr                             packet    -     @532                                  
+  addr                         integral  16    'ha6b5                                
+  read                         integral  1     'h1                                   
+  write                        integral  1     'h1                                   
+  size                         integral  2     'h0                                   
+  data                         integral  8     'h15                                  
+  error                        integral  1     'h0                                   
+  wait_state                   integral  1     'h1                                   
+  begin_time                   time      64    5                                     
+  depth                        int       32    'd2                                   
+  parent sequence (name)       string    3     seq                                   
+  parent sequence (full name)  string    38    uvm_test_top.env.m_agent.sequencer.seq
+  sequencer                    string    34    uvm_test_top.env.m_agent.sequencer    
+-------------------------------------------------------------------------------------
+
+UVM_INFO ../master_vip/master_monitor.sv(26) @ 10: uvm_test_top.env.m_agent.monitor [MONITOR] BUS ACTIVITY DETECTED: ADDR=401b, WRITE=1, READ=1, DATA=1
+UVM_INFO ../master_vip/master_driver.sv(26) @ 15: uvm_test_top.env.m_agent.driver [DRIVER] Driving new transaction : -------------------------------------------------------------------------------------
+Name                           Type      Size  Value                                 
+-------------------------------------------------------------------------------------
+tr                             packet    -     @532                                  
+  addr                         integral  16    'ha6b5                                
+  read                         integral  1     'h1                                   
+  write                        integral  1     'h1                                   
+  size                         integral  2     'h0                                   
+  data                         integral  8     'h15                                  
+  error                        integral  1     'h0                                   
+  wait_state                   integral  1     'h1                                   
+  begin_time                   time      64    5                                     
+  depth                        int       32    'd2                                   
+  parent sequence (name)       string    3     seq                                   
+  parent sequence (full name)  string    38    uvm_test_top.env.m_agent.sequencer.seq
+  sequencer                    string    34    uvm_test_top.env.m_agent.sequencer    
+-------------------------------------------------------------------------------------
+
+UVM_INFO ../master_vip/master_sequence.sv(15) @ 15: uvm_test_top.env.m_agent.sequencer@@seq [SEQ] Randomized tr: -------------------------------------------------------------------------------------
+Name                           Type      Size  Value                                 
+-------------------------------------------------------------------------------------
+tr                             packet    -     @542                                  
+  addr                         integral  16    'hf113                                
+  read                         integral  1     'h0                                   
+  write                        integral  1     'h0                                   
+  size                         integral  2     'h0                                   
+  data                         integral  8     'h8d                                  
+  error                        integral  1     'h1                                   
+  wait_state                   integral  1     'h1                                   
+  begin_time                   time      64    15                                    
+  depth                        int       32    'd2                                   
+  parent sequence (name)       string    3     seq                                   
+  parent sequence (full name)  string    38    uvm_test_top.env.m_agent.sequencer.seq
+  sequencer                    string    34    uvm_test_top.env.m_agent.sequencer    
+-------------------------------------------------------------------------------------
+
+UVM_INFO ../master_vip/master_monitor.sv(26) @ 20: uvm_test_top.env.m_agent.monitor [MONITOR] BUS ACTIVITY DETECTED: ADDR=a6b5, WRITE=1, READ=1, DATA=1
+UVM_INFO ../master_vip/master_driver.sv(26) @ 25: uvm_test_top.env.m_agent.driver [DRIVER] Driving new transaction : -------------------------------------------------------------------------------------
+Name                           Type      Size  Value                                 
+-------------------------------------------------------------------------------------
+tr                             packet    -     @542                                  
+  addr                         integral  16    'hf113                                
+  read                         integral  1     'h0                                   
+  write                        integral  1     'h0                                   
+  size                         integral  2     'h0                                   
+  data                         integral  8     'h8d                                  
+  error                        integral  1     'h1                                   
+  wait_state                   integral  1     'h1                                   
+  begin_time                   time      64    15                                    
+  depth                        int       32    'd2                                   
+  parent sequence (name)       string    3     seq                                   
+  parent sequence (full name)  string    38    uvm_test_top.env.m_agent.sequencer.seq
+  sequencer                    string    34    uvm_test_top.env.m_agent.sequencer    
+-------------------------------------------------------------------------------------
+
+UVM_INFO ../master_vip/master_sequence.sv(15) @ 25: uvm_test_top.env.m_agent.sequencer@@seq [SEQ] Randomized tr: -------------------------------------------------------------------------------------
+Name                           Type      Size  Value                                 
+-------------------------------------------------------------------------------------
+tr                             packet    -     @552                                  
+  addr                         integral  16    'hd04d                                
+  read                         integral  1     'h0                                   
+  write                        integral  1     'h1                                   
+  size                         integral  2     'h0                                   
+  data                         integral  8     'h4a                                  
+  error                        integral  1     'h0                                   
+  wait_state                   integral  1     'h1                                   
+  begin_time                   time      64    25                                    
+  depth                        int       32    'd2                                   
+  parent sequence (name)       string    3     seq                                   
+  parent sequence (full name)  string    38    uvm_test_top.env.m_agent.sequencer.seq
+  sequencer                    string    34    uvm_test_top.env.m_agent.sequencer    
+-------------------------------------------------------------------------------------
+
+UVM_INFO ../master_vip/master_driver.sv(26) @ 35: uvm_test_top.env.m_agent.driver [DRIVER] Driving new transaction : -------------------------------------------------------------------------------------
+Name                           Type      Size  Value                                 
+-------------------------------------------------------------------------------------
+tr                             packet    -     @552                                  
+  addr                         integral  16    'hd04d                                
+  read                         integral  1     'h0                                   
+  write                        integral  1     'h1                                   
+  size                         integral  2     'h0                                   
+  data                         integral  8     'h4a                                  
+  error                        integral  1     'h0                                   
+  wait_state                   integral  1     'h1                                   
+  begin_time                   time      64    25                                    
+  depth                        int       32    'd2                                   
+  parent sequence (name)       string    3     seq                                   
+  parent sequence (full name)  string    38    uvm_test_top.env.m_agent.sequencer.seq
+  sequencer                    string    34    uvm_test_top.env.m_agent.sequencer    
+-------------------------------------------------------------------------------------
+
+UVM_INFO ../master_vip/master_sequence.sv(15) @ 35: uvm_test_top.env.m_agent.sequencer@@seq [SEQ] Randomized tr: -------------------------------------------------------------------------------------
+Name                           Type      Size  Value                                 
+-------------------------------------------------------------------------------------
+tr                             packet    -     @560                                  
+  addr                         integral  16    'hbbcb                                
+  read                         integral  1     'h0                                   
+  write                        integral  1     'h1                                   
+  size                         integral  2     'h1                                   
+  data                         integral  8     'hba                                  
+  error                        integral  1     'h0                                   
+  wait_state                   integral  1     'h0                                   
+  begin_time                   time      64    35                                    
+  depth                        int       32    'd2                                   
+  parent sequence (name)       string    3     seq                                   
+  parent sequence (full name)  string    38    uvm_test_top.env.m_agent.sequencer.seq
+  sequencer                    string    34    uvm_test_top.env.m_agent.sequencer    
+-------------------------------------------------------------------------------------
+
+UVM_INFO ../master_vip/master_monitor.sv(26) @ 40: uvm_test_top.env.m_agent.monitor [MONITOR] BUS ACTIVITY DETECTED: ADDR=d04d, WRITE=1, READ=0, DATA=0
+UVM_INFO ../master_vip/master_driver.sv(26) @ 45: uvm_test_top.env.m_agent.driver [DRIVER] Driving new transaction : -------------------------------------------------------------------------------------
+Name                           Type      Size  Value                                 
+-------------------------------------------------------------------------------------
+tr                             packet    -     @560                                  
+  addr                         integral  16    'hbbcb                                
+  read                         integral  1     'h0                                   
+  write                        integral  1     'h1                                   
+  size                         integral  2     'h1                                   
+  data                         integral  8     'hba                                  
+  error                        integral  1     'h0                                   
+  wait_state                   integral  1     'h0                                   
+  begin_time                   time      64    35                                    
+  depth                        int       32    'd2                                   
+  parent sequence (name)       string    3     seq                                   
+  parent sequence (full name)  string    38    uvm_test_top.env.m_agent.sequencer.seq
+  sequencer                    string    34    uvm_test_top.env.m_agent.sequencer    
+-------------------------------------------------------------------------------------
+
+UVM_INFO ../master_vip/master_sequence.sv(15) @ 45: uvm_test_top.env.m_agent.sequencer@@seq [SEQ] Randomized tr: -------------------------------------------------------------------------------------
+Name                           Type      Size  Value                                 
+-------------------------------------------------------------------------------------
+tr                             packet    -     @570                                  
+  addr                         integral  16    'h738                                 
+  read                         integral  1     'h0                                   
+  write                        integral  1     'h1                                   
+  size                         integral  2     'h2                                   
+  data                         integral  8     'hf0                                  
+  error                        integral  1     'h1                                   
+  wait_state                   integral  1     'h0                                   
+  begin_time                   time      64    45                                    
+  depth                        int       32    'd2                                   
+  parent sequence (name)       string    3     seq                                   
+  parent sequence (full name)  string    38    uvm_test_top.env.m_agent.sequencer.seq
+  sequencer                    string    34    uvm_test_top.env.m_agent.sequencer    
+-------------------------------------------------------------------------------------
+
+UVM_INFO ../master_vip/master_monitor.sv(26) @ 50: uvm_test_top.env.m_agent.monitor [MONITOR] BUS ACTIVITY DETECTED: ADDR=bbcb, WRITE=1, READ=0, DATA=0
+UVM_INFO ../master_vip/master_driver.sv(26) @ 55: uvm_test_top.env.m_agent.driver [DRIVER] Driving new transaction : -------------------------------------------------------------------------------------
+Name                           Type      Size  Value                                 
+-------------------------------------------------------------------------------------
+tr                             packet    -     @570                                  
+  addr                         integral  16    'h738                                 
+  read                         integral  1     'h0                                   
+  write                        integral  1     'h1                                   
+  size                         integral  2     'h2                                   
+  data                         integral  8     'hf0                                  
+  error                        integral  1     'h1                                   
+  wait_state                   integral  1     'h0                                   
+  begin_time                   time      64    45                                    
+  depth                        int       32    'd2                                   
+  parent sequence (name)       string    3     seq                                   
+  parent sequence (full name)  string    38    uvm_test_top.env.m_agent.sequencer.seq
+  sequencer                    string    34    uvm_test_top.env.m_agent.sequencer    
+-------------------------------------------------------------------------------------
+
+UVM_INFO ../master_vip/master_sequence.sv(15) @ 55: uvm_test_top.env.m_agent.sequencer@@seq [SEQ] Randomized tr: -------------------------------------------------------------------------------------
+Name                           Type      Size  Value                                 
+-------------------------------------------------------------------------------------
+tr                             packet    -     @580                                  
+  addr                         integral  16    'h84ae                                
+  read                         integral  1     'h0                                   
+  write                        integral  1     'h1                                   
+  size                         integral  2     'h2                                   
+  data                         integral  8     'hb1                                  
+  error                        integral  1     'h0                                   
+  wait_state                   integral  1     'h1                                   
+  begin_time                   time      64    55                                    
+  depth                        int       32    'd2                                   
+  parent sequence (name)       string    3     seq                                   
+  parent sequence (full name)  string    38    uvm_test_top.env.m_agent.sequencer.seq
+  sequencer                    string    34    uvm_test_top.env.m_agent.sequencer    
+-------------------------------------------------------------------------------------
+
+UVM_INFO ../master_vip/master_monitor.sv(26) @ 60: uvm_test_top.env.m_agent.monitor [MONITOR] BUS ACTIVITY DETECTED: ADDR=738, WRITE=1, READ=0, DATA=0
+UVM_INFO ../master_vip/master_driver.sv(26) @ 65: uvm_test_top.env.m_agent.driver [DRIVER] Driving new transaction : -------------------------------------------------------------------------------------
+Name                           Type      Size  Value                                 
+-------------------------------------------------------------------------------------
+tr                             packet    -     @580                                  
+  addr                         integral  16    'h84ae                                
+  read                         integral  1     'h0                                   
+  write                        integral  1     'h1                                   
+  size                         integral  2     'h2                                   
+  data                         integral  8     'hb1                                  
+  error                        integral  1     'h0                                   
+  wait_state                   integral  1     'h1                                   
+  begin_time                   time      64    55                                    
+  depth                        int       32    'd2                                   
+  parent sequence (name)       string    3     seq                                   
+  parent sequence (full name)  string    38    uvm_test_top.env.m_agent.sequencer.seq
+  sequencer                    string    34    uvm_test_top.env.m_agent.sequencer    
+-------------------------------------------------------------------------------------
+
+UVM_INFO ../master_vip/master_sequence.sv(15) @ 65: uvm_test_top.env.m_agent.sequencer@@seq [SEQ] Randomized tr: -------------------------------------------------------------------------------------
+Name                           Type      Size  Value                                 
+-------------------------------------------------------------------------------------
+tr                             packet    -     @590                                  
+  addr                         integral  16    'h3b41                                
+  read                         integral  1     'h0                                   
+  write                        integral  1     'h0                                   
+  size                         integral  2     'h1                                   
+  data                         integral  8     'hc4                                  
+  error                        integral  1     'h1                                   
+  wait_state                   integral  1     'h0                                   
+  begin_time                   time      64    65                                    
+  depth                        int       32    'd2                                   
+  parent sequence (name)       string    3     seq                                   
+  parent sequence (full name)  string    38    uvm_test_top.env.m_agent.sequencer.seq
+  sequencer                    string    34    uvm_test_top.env.m_agent.sequencer    
+-------------------------------------------------------------------------------------
+
+UVM_INFO ../master_vip/master_monitor.sv(26) @ 70: uvm_test_top.env.m_agent.monitor [MONITOR] BUS ACTIVITY DETECTED: ADDR=84ae, WRITE=1, READ=0, DATA=1
+UVM_INFO ../master_vip/master_driver.sv(26) @ 75: uvm_test_top.env.m_agent.driver [DRIVER] Driving new transaction : -------------------------------------------------------------------------------------
+Name                           Type      Size  Value                                 
+-------------------------------------------------------------------------------------
+tr                             packet    -     @590                                  
+  addr                         integral  16    'h3b41                                
+  read                         integral  1     'h0                                   
+  write                        integral  1     'h0                                   
+  size                         integral  2     'h1                                   
+  data                         integral  8     'hc4                                  
+  error                        integral  1     'h1                                   
+  wait_state                   integral  1     'h0                                   
+  begin_time                   time      64    65                                    
+  depth                        int       32    'd2                                   
+  parent sequence (name)       string    3     seq                                   
+  parent sequence (full name)  string    38    uvm_test_top.env.m_agent.sequencer.seq
+  sequencer                    string    34    uvm_test_top.env.m_agent.sequencer    
+-------------------------------------------------------------------------------------
+
+UVM_INFO ../master_vip/master_sequence.sv(15) @ 75: uvm_test_top.env.m_agent.sequencer@@seq [SEQ] Randomized tr: -------------------------------------------------------------------------------------
+Name                           Type      Size  Value                                 
+-------------------------------------------------------------------------------------
+tr                             packet    -     @600                                  
+  addr                         integral  16    'h735f                                
+  read                         integral  1     'h1                                   
+  write                        integral  1     'h0                                   
+  size                         integral  2     'h3                                   
+  data                         integral  8     'hd4                                  
+  error                        integral  1     'h1                                   
+  wait_state                   integral  1     'h1                                   
+  begin_time                   time      64    75                                    
+  depth                        int       32    'd2                                   
+  parent sequence (name)       string    3     seq                                   
+  parent sequence (full name)  string    38    uvm_test_top.env.m_agent.sequencer.seq
+  sequencer                    string    34    uvm_test_top.env.m_agent.sequencer    
+-------------------------------------------------------------------------------------
+
+UVM_INFO ../master_vip/master_driver.sv(26) @ 85: uvm_test_top.env.m_agent.driver [DRIVER] Driving new transaction : -------------------------------------------------------------------------------------
+Name                           Type      Size  Value                                 
+-------------------------------------------------------------------------------------
+tr                             packet    -     @600                                  
+  addr                         integral  16    'h735f                                
+  read                         integral  1     'h1                                   
+  write                        integral  1     'h0                                   
+  size                         integral  2     'h3                                   
+  data                         integral  8     'hd4                                  
+  error                        integral  1     'h1                                   
+  wait_state                   integral  1     'h1                                   
+  begin_time                   time      64    75                                    
+  depth                        int       32    'd2                                   
+  parent sequence (name)       string    3     seq                                   
+  parent sequence (full name)  string    38    uvm_test_top.env.m_agent.sequencer.seq
+  sequencer                    string    34    uvm_test_top.env.m_agent.sequencer    
+-------------------------------------------------------------------------------------
+
+UVM_INFO ../master_vip/master_sequence.sv(15) @ 85: uvm_test_top.env.m_agent.sequencer@@seq [SEQ] Randomized tr: -------------------------------------------------------------------------------------
+Name                           Type      Size  Value                                 
+-------------------------------------------------------------------------------------
+tr                             packet    -     @608                                  
+  addr                         integral  16    'h2d45                                
+  read                         integral  1     'h0                                   
+  write                        integral  1     'h0                                   
+  size                         integral  2     'h1                                   
+  data                         integral  8     'h65                                  
+  error                        integral  1     'h1                                   
+  wait_state                   integral  1     'h0                                   
+  begin_time                   time      64    85                                    
+  depth                        int       32    'd2                                   
+  parent sequence (name)       string    3     seq                                   
+  parent sequence (full name)  string    38    uvm_test_top.env.m_agent.sequencer.seq
+  sequencer                    string    34    uvm_test_top.env.m_agent.sequencer    
+-------------------------------------------------------------------------------------
+
+UVM_INFO ../master_vip/master_monitor.sv(26) @ 90: uvm_test_top.env.m_agent.monitor [MONITOR] BUS ACTIVITY DETECTED: ADDR=735f, WRITE=0, READ=1, DATA=0
+UVM_INFO ../master_vip/master_driver.sv(26) @ 95: uvm_test_top.env.m_agent.driver [DRIVER] Driving new transaction : -------------------------------------------------------------------------------------
+Name                           Type      Size  Value                                 
+-------------------------------------------------------------------------------------
+tr                             packet    -     @608                                  
+  addr                         integral  16    'h2d45                                
+  read                         integral  1     'h0                                   
+  write                        integral  1     'h0                                   
+  size                         integral  2     'h1                                   
+  data                         integral  8     'h65                                  
+  error                        integral  1     'h1                                   
+  wait_state                   integral  1     'h0                                   
+  begin_time                   time      64    85                                    
+  depth                        int       32    'd2                                   
+  parent sequence (name)       string    3     seq                                   
+  parent sequence (full name)  string    38    uvm_test_top.env.m_agent.sequencer.seq
+  sequencer                    string    34    uvm_test_top.env.m_agent.sequencer    
+-------------------------------------------------------------------------------------
+
+UVM_INFO /tools/synopsys/vcs/V-2023.12-SP2-8/etc/uvm-ieee-2020/base/uvm_report_catcher.svh(658) @ 95: reporter [UVM/REPORT/CATCHER] 
+--- UVM Report catcher Summary ---
+
+
+Number of demoted UVM_FATAL reports  :    0
+Number of demoted UVM_ERROR reports  :    0
+Number of demoted UVM_WARNING reports:    0
+Number of caught UVM_FATAL reports   :    0
+Number of caught UVM_ERROR reports   :    0
+Number of caught UVM_WARNING reports :    0
+
+UVM_INFO /tools/synopsys/vcs/V-2023.12-SP2-8/etc/uvm-ieee-2020/base/uvm_report_server.svh(904) @ 95: reporter [UVM/REPORT/SERVER] 
+--- UVM Report Summary ---
+
+** Report counts by severity
+UVM_INFO :   32
+UVM_WARNING :    0
+UVM_ERROR :    0
+UVM_FATAL :    0
+** Report counts by id
+[DRIVER]    10
+[MONITOR]     7
+[RNTST]     1
+[SEQ]    10
+[UVM/FACTORY/PRINT]     1
+[UVM/RELNOTES]     1
+[UVM/REPORT/CATCHER]     1
+[UVMTOP]     1
+
+$finish called from file "/tools/synopsys/vcs/V-2023.12-SP2-8/etc/uvm-ieee-2020/base/uvm_root.svh", line 579.
+$finish at simulation time                   95
+           V C S   S i m u l a t i o n   R e p o r t 
+Time: 95
+CPU Time:      0.190 seconds;       Data structure size:   0.6Mb
+Wed Oct 22 16:36:41 2025
