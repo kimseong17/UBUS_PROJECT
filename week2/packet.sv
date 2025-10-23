@@ -14,13 +14,17 @@ class packet extends uvm_sequence_item;
       //  `uvm_info("TRACE",$sformatf("%m"), UVM_HIGH);  // 계층정보
     endfunction: new
 
-    function void post_randomize();
+    /*function void post_randomize();
     // size가 랜덤으로 결정된 이후 자동으로 호출됨
                  wait_state = new[size];
                  foreach (wait_state[i]) begin
-                          wait_state[i] = $urandom_range(0,1);
+                          wait_state[i] = $urandom_range(0,8);
                  end
-    endfunction
+    endfunction */
+    constraint c_wait_state { wait_state.size() inside{[0:8]};}
+
+
+
 
     // 메크로 세트 , UVM 클래스 등록 + 자동화
     `uvm_object_utils_begin(packet)  // UVM Factory에 class 등록 + 필드 자동화 (동적)

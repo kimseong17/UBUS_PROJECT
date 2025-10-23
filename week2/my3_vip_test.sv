@@ -35,7 +35,7 @@ class my3_vip_test extends uvm_test;
 	    end
 	end else begin
 		`uvm_error("NULL", "env.tr is null! Check build_phase")
-	end   
+	end    
 	
        //dynamic array test에서 설정 - error
        /*if (env != null && env.tr != null) begin
