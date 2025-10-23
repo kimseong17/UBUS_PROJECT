@@ -4,7 +4,7 @@ class packet extends uvm_sequence_item;
     rand bit read;
     rand bit write;
     rand bit [1:0] size;
-    rand bit [7:0] data;
+    rand bit [7:0] data[];
     rand bit wait_state[];
     //rand bit wait_state;
     rand bit error;
@@ -21,8 +21,8 @@ class packet extends uvm_sequence_item;
                           wait_state[i] = $urandom_range(0,8);
                  end
     endfunction */
-    constraint c_wait_state { wait_state.size() inside{[0:8]};}
-
+    constraint c_wait_state { wait_state.size() inside{[0:1]};}
+    constraint data_c { data.size() inside {[0:1]};}
 
 
 
@@ -32,7 +32,7 @@ class packet extends uvm_sequence_item;
         `uvm_field_int(read, UVM_DEFAULT)
         `uvm_field_int(write, UVM_DEFAULT)
         `uvm_field_int(size, UVM_DEFAULT)
-        `uvm_field_int(data, UVM_DEFAULT)
+        `uvm_field_array_int(data, UVM_DEFAULT)
         `uvm_field_int(error, UVM_DEFAULT)
         `uvm_field_array_int(wait_state, UVM_DEFAULT)
         //`uvm_field_int(wait_state, UVM_DEFAULT)
