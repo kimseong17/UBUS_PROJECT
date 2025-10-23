@@ -20,4 +20,6 @@ tr_db.log
 ucli.key
 vc_hdrs.h
 *.swp
+*.swn
+*.swo
 *.tmp
