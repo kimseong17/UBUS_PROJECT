@@ -1,9 +1,0 @@
-{"vcs1":{"timestamp_begin":1761114642.231829607, "rt":3.76, "ut":3.97, "st":0.25}}
-{"vcselab":{"timestamp_begin":1761114646.044224345, "rt":0.16, "ut":0.12, "st":0.04}}
-{"link":{"timestamp_begin":1761114646.245541215, "rt":0.26, "ut":0.17, "st":0.09}}
-{"SNPS_VCS_INTERNAL_ROOT_START_TIME": 1761114641.914643096}
-{"VCS_COMP_START_TIME": 1761114641.914643096}
-{"VCS_COMP_END_TIME": 1761114646.588653483}
-{"VCS_USER_OPTIONS": "-full64 -sverilog -lca -debug_access+all+reverse -kdb -l comp.log -ntb_opts uvm-ieee-2020 /DATA/home/edu010/3team/week3/master_vip/ubus_if.sv /DATA/home/edu010/3team/week3/vip/my3_master_testbench_top.sv +UVM_VERBOSITY=UVM_HIGH  "}
-{"vcs1": {"peak_mem": 555464}}
-{"vcselab": {"peak_mem": 239024}}

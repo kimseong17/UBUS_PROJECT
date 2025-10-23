@@ -1,7 +1,0 @@
-Command exited with non-zero status 255
-{"vcs1":{"timestamp_begin":1761114407.503622137, "rt":0.52, "ut":0.59, "st":0.09}}
-{"SNPS_VCS_INTERNAL_ROOT_START_TIME": 1761114407.176610469}
-{"VCS_COMP_START_TIME": 1761114407.176610469}
-{"VCS_COMP_END_TIME": 1761114408.063149826}
-{"VCS_USER_OPTIONS": "-full64 -sverilog -lca -debug_access+all+reverse -kdb -l comp.log -ntb_opts uvm-ieee-2020 /DATA/home/edu010/3team/week3/master_vip/ubus_if.sv /DATA/home/edu010/3team/week3/vip/my3_master_testbench_top.sv +UVM_VERBOSITY=UVM_HIGH  "}
-{"vcs1": {"peak_mem": 553500}}
