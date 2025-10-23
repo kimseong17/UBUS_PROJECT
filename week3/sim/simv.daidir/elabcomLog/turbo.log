@@ -1,3 +1,0 @@
-Command Line: /tools/synopsys/vcs/V-2023.12-SP2-8/linux64/bin/elabcom -logdir simv.daidir/elabcomLog -simvdaidir simv.daidir -lib simv.daidir/work -saveLevel -elab simv.daidir/kdb -simflow -simdir simv.daidir/kdb_libs -topfile simv.daidir/.elabcomTopFile -ssv -ssy -Lf work +disable_message+C00380+C00381 +disable_message+C00388+C00389
-uname(Linux SGP1 4.18.0-553.69.1.el8_10.x86_64 #1 SMP Thu Aug 7 18:10:00 EDT 2025 x86_64)
-au time 0.179681 0.164397 0.011228 delta 102748160 102748160 total 354562048 354562048
