@@ -2,8 +2,8 @@
 #../vip/my3_master_testbench_top.sv +UVM_VERBOSITY=UVM_HIGH \ 
 
 
-vcs -full64 -sverilog -lca -debug_access+all+reverse -kdb -l comp.log -ntb_opts uvm-ieee-2020 /DATA/home/edu010/3team/week3/master_vip/ubus_if.sv \
-/DATA/home/edu010/3team/week3/vip/my3_master_testbench_top.sv +UVM_VERBOSITY=UVM_HIGH \ 
+vcs -full64 -sverilog -lca -debug_access+all+reverse -kdb -l comp.log -ntb_opts uvm-ieee-2020 /DATA/home/edu028/3team/smc_week3/master_vip/ubus_if.sv \
+/DATA/home/edu028/3team/smc_week3/vip/my3_master_testbench_top.sv +UVM_VERBOSITY=UVM_HIGH \ 
 
 
 
