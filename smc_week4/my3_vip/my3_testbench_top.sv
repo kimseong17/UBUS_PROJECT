@@ -1,27 +1,27 @@
 module my3_testbench_top;
     //`include "uvm_macros.svh" 
     import uvm_pkg::*;
-    `include "../common_vip/packet.sv"
-    `include "../common_vip/ubus_scoreboard.sv"
-   
+    `include "packet.sv"
+    `include "my3_vip_environment.sv"
+    `include "ubus_scoreboard.sv"
+
     `include "../master_vip/master_monitor.sv"
     `include "../master_vip/master_driver.sv"
     `include "../master_vip/master_sequencer.sv"
     `include "../master_vip/master_agent.sv"
-   
-  
+
     `include "../slave_vip/slave_monitor.sv"
     `include "../slave_vip/slave_driver.sv"
     `include "../slave_vip/slave_sequencer.sv"
-    `include "../slave_vip/slave_agent.sv"
-    
-    `include "../common_vip/master_sequence.sv"
-    `include "../common_vip/slave_sequence.sv"
-    `include "../common_vip/ubus_master_write_word_seq.sv"
-    `include "../common_vip/ubus_master_read_word_seq.sv"
-    `include "../common_vip/my3_vip_environment.sv"
+    `include "../slave_vip/slave_agent.sv" 
 
-    `include "../common_vip/ubus_write_test.sv"
+
+    `include "../master_vip/master_sequence.sv"
+    `include "../slave_vip/slave_sequence.sv"
+    
+    `include "ubus_master_write_word_seq.sv"
+    `include "ubus_master_read_word_seq.sv"
+    `include "ubus_write_test.sv"
 
     // Interface Instance
     ubus_if vif();
