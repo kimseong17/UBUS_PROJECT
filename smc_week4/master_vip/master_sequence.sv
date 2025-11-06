@@ -13,11 +13,8 @@ class master_sequence extends uvm_sequence #(packet);
 			assert(tr.randomize());
 			start_item(tr);  // ready to transfer
 			`uvm_info("SEQ", $sformatf("Randomized tr: %s", tr.sprint()), UVM_LOW)
-
 			finish_item(tr);
-                        //`uvm_info("SEQ", $sformatf("Randomized tr: %s", tr.sprint()), UVM_LOW)
-
-
+                        //`uvm_info("SEQ", $sformatf("Randomized tr: %s", tr.sprint()), UVM_LOW)	
 		end
 		//`uvm_info("SEQ", $sformatf("Randomized tr: %s", tr.sprint()), UVM_LOW)
 	endtask	

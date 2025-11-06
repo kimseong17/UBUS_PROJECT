@@ -22,9 +22,6 @@ class slave_agent extends uvm_agent;
 	function void connect_phase(uvm_phase phase);
 		super.connect_phase(phase);
 		driver.seq_item_port.connect(sequencer.seq_item_export); // component connection
-		`uvm_info("DEBUG","Connecting driver.seq_item_port to sequencer.seq_item_export", UVM_LOW)
-		monitor.item_collected_port.connect(sequencer.request_fifo.analysis_export);		
-
 	endfunction
 
 endclass
