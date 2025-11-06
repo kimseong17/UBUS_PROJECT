@@ -17,13 +17,13 @@ class ubus_master_write_word_seq extends uvm_sequence #(packet);
 	//`uvm_do_with(req, { req.addr == start_addr; req.size ==4; req.write ==1; req.read ==0; req.data.size() ==4; req.data[0] == data0; req.data[1] == data1; req.data[2] == data2; req.data[3] == data3; req.error ==0;})
 	//`uvm_do(req)
 		//packet req;
-		repeat(4) begin
+		for (int i=0;i<4;i++) begin
 			//req = packet::type_id::create("req");
 			//assert(req.randomize());
 			//start_item(req);  // ready to transfer
 			//`uvm_info("SEQ", $sformatf("Randomized tr: %s", tr.sprint()), UVM_LOW)
 			
-		 	`uvm_do_with(req, {req.addr == 0; req.read==0; req.write==1; req.size==4; req.data.size() ==4;})	
+		 	`uvm_do_with(req, {req.addr==i; req.read==0; req.write==1; req.size==4; req.data.size() ==4;})	
 			`uvm_info("MSTR_SEQ", $sformatf("WRITE : addr = 0x%0h , size = %0d, data = %0p" , req.addr, req.size, req.data), UVM_LOW)
 			//`uvm_info("MSTR_SEQ", $sformatf("Randomized req: %s", req.sprint()), UVM_LOW)
 			//finish_item(req);

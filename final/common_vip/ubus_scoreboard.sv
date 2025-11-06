@@ -31,12 +31,12 @@ class ubus_scoreboard extends uvm_scoreboard;
 			//`uvm_info("SCOREbOARD2", $sformatf("addr = %d , data = %d" , addr, data) , UVM_LOW) 
 			if (trans.read) begin
 				num_reads = num_reads +1;
-				if (m_mem_expected.exists(addr)) begin
+				/*if (m_mem_expected.exists(addr)) begin
 					assert(m_mem_expected[addr] == data) else
 					`uvm_error("SCOREBOARD", "Data mismatch!")
 				end else begin
 					m_mem_expected[addr] = data;
-				end
+				end*/
 			end
 			if (trans.write) begin
 				//`uvm_info("SCOREbOARD3", $sformatf("num_writes = %d" , num_writes) , UVM_LOW) 

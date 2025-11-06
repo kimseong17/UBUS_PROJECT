@@ -33,6 +33,7 @@ class slave_sequence extends uvm_sequence #(packet);
 			rsp.read = req.read;
 			rsp.write = req.write;
 			rsp.data = new[req.size];
+			rsp.data = req.data;
 			rsp.error = 0;
 			rsp.wait_state= new[req.size];
 		

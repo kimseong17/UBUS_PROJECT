@@ -32,26 +32,41 @@ class master_monitor extends uvm_monitor;
 		@(posedge vif.ubus_clock); 
 			//req = packet::type_id::create("req");
 			//if ((vif.ubus_read || vif.ubus_write) && vif.ubus_wait==0 && vif.ubus_data !== 'z && vif.ubus_data !== 'x ) begin
-			@(negedge vif.ubus_wait);
+			if (vif.ubus_read || vif.ubus_write) begin
 				//req = packet::type_id::create("req");
 				
 				//do @(posedge vif.ubus_clock); while(vif.ubus_wait==1'bx ||vif.ubus_wait ==1);	
+				packet aaa;
+				aaa = packet::type_id::create("aaa");
 				req = packet::type_id::create("req");
-				
-				
 				req.addr = vif.ubus_addr;
-				req.size = 1;
-				/*case (vif.ubus_size)
+				case (vif.ubus_size)
 					2'b00: req.size =1;
 					2'b01: req.size =2;
 					2'b10: req.size=4;
 					2'b11: req.size =8;
-				endcase*/
-				//`uvm_info("MONITOR", $sformatf("req.size = %d, vif.ubus_size = %b" , req.size, vif.ubus_size) , UVM_LOW)
-				req.read = vif.ubus_read;
+				endcase
+
+				
 				req.write = vif.ubus_write;
-				req.data = new[1];
-				req.data[0] = vif.ubus_data;
+				req.read =vif.ubus_write;
+				aaa.data = new[req.size];
+				for (int i=0; i<req.size; i++) begin
+				@(posedge vif.ubus_clock);
+										
+				aaa.addr = req.addr;
+				aaa.size = req.size;
+				case (vif.ubus_size)
+					2'b00: req.size =1;
+					2'b01: req.size =2;
+					2'b10: req.size=4;
+					2'b11: req.size =8;
+				endcase
+				//`uvm_info("MONITOR", $sformatf("req.size = %d, vif.ubus_size = %b" , req.size, vif.ubus_size) , UVM_LOW)
+				aaa.read = req.read;
+				aaa.write = req.write;
+				aaa.data[i]= vif.ubus_data;
+				
 				//req.data = new[req.size];
 				
 				/*for (int i=0; i<req.size; i++) begin
@@ -61,10 +76,11 @@ class master_monitor extends uvm_monitor;
 					req.addr=vif.ubus_addr;
 					@(posedge vif.ubus_clock); */
 					//`uvm_info("MONITOR", $sformatf("MONITOR: %s", req.sprint()), UVM_LOW)
-				`uvm_info("MONITOR",$sformatf("data=%0h,addr=%h, read=%0b, write=%0b, size=%0d",req.data[0], req.addr, req.read, req.write , req.size),UVM_LOW)		
+				`uvm_info("MONITOR",$sformatf("data=%0h,addr=%h, read=%0b, write=%0b, size=%0d",aaa.data[i], aaa.addr, aaa.read, aaa.write , aaa.size),UVM_LOW)		
 				
-				item_collected_port.write(req);
-				//end
+				item_collected_port.write(aaa);
+				end
+			end
 			//`uvm_info("MONITOR", $sformatf("MONITOR: addr=0x%0h read=%0b write=%0b size=%0d data=%p",req.addr, req.read, req.write, req.size, req.data), UVM_LOW)
 				
 			//item_collected_port.write(req);
