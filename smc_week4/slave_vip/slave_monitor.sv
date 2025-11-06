@@ -17,13 +17,11 @@ class slave_monitor extends uvm_monitor;
 		super.new(name, parent);
 		request_aport = new("request_aport", this);
 		item_collected_port = new("item_collected_port", this); 
-
 	endfunction
 
 
 	function void build_phase(uvm_phase phase);
 		super.build_phase(phase);
-		
 		if(!uvm_config_db#(virtual ubus_if.SLAVE)::get(this,"*","vif",vif)) begin
 			`uvm_fatal("NOVIF", "No virtual interface specified for this monitor instance");
 		end
@@ -33,9 +31,7 @@ class slave_monitor extends uvm_monitor;
 		forever begin
 		@(posedge vif.ubus_clock);
 			if (vif.ubus_read || vif.ubus_write ) begin
-			
-			//if ((vif.ubus_read || vif.ubus_write & (vif.ubus_data !=='z & vif.ubus_data != 'x)) ||(vif.ubus_read || vif.ubus_write )) begin 
-				req = packet::type_id::create("req");
+			//	req = packet::type_id::create("req");
 				req.addr = vif.ubus_addr;
 				
 				case (vif.ubus_size)
@@ -44,6 +40,7 @@ class slave_monitor extends uvm_monitor;
 					2'b10: req.size=4;
 					2'b11: req.size =8;
 				endcase
+			
 				req.read = vif.ubus_read;
 				req.write = vif.ubus_write;
 				req.data = new[req.size];
@@ -54,7 +51,7 @@ class slave_monitor extends uvm_monitor;
 				end else if (req.write) begin
 					collect_write_data_immediately(req);
 				end
-				//item_collected_port.write(req);
+				item_collected_port.write(req);
 			end						
 		end
 	endtask     

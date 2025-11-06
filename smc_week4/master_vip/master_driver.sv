@@ -5,7 +5,6 @@ class master_driver extends uvm_driver #(packet);
 	virtual ubus_if.MASTER vif;
 
 	function new(string name = "master_driver", uvm_component parent=null);
-		
 		super.new(name,parent);
 	endfunction
 
@@ -19,22 +18,18 @@ class master_driver extends uvm_driver #(packet);
 
 	task run_phase(uvm_phase phase);
 		packet tr;
-
 		forever begin
 			seq_item_port.get_next_item(tr);
 			drive_transfer(tr);
-			//`uvm_info("DRIVER",$sformatf("Driving new transaction : %s" , tr.sprint()) , UVM_LOW)
-			//`uvm_info("DRIVER", $sformatf("addr=%-1h read=%0b write=%0b size=%0d data=%0p wait=%p error=%0b", tr.addr, tr.read, tr.write, tr.size, tr.data, tr.wait_state, tr.error), UVM_LOW);
-
+			`uvm_info("DRIVER",$sformatf("Driving new transaction : %s" , tr.sprint()) , UVM_LOW)
+			`uvm_info("DRIVER", $sformatf("addr=%-1h read=%0b write=%0b size=%0d data=%0p wait=%p error=%0b", tr.addr, tr.read, tr.write, tr.size, tr.data, tr.wait_state, tr.error), UVM_LOW);
 			seq_item_port.item_done(tr);
 		end
 	endtask
 
 	task drive_transfer(packet tr);
-
 		@(posedge vif.ubus_clock);
-			//vif.ubus_addr <= tr.addr;
-	
+			vif.ubus_addr <= tr.addr;
 			vif.ubus_write <= tr.write;
 			vif.ubus_read <= tr.read;
 			vif.ubus_size <= (tr.size ==1) ? 2'b00:
@@ -47,8 +42,6 @@ class master_driver extends uvm_driver #(packet);
 			if(tr.write) begin
 				//vif.ubus_write <= tr.write;
 				for (int i =0; i<tr.size; i++) begin
-					//do @(posedge vif.ubus_clock); while(vif.ubus_wait==1'bx ||vif.ubus_wait ==1);
-					//vif.ubus_bip <= 1;
 					@(posedge vif.ubus_clock);	
 					vif.ubus_data <= tr.data[i];
 					if (i==0) begin
@@ -82,20 +75,6 @@ class master_driver extends uvm_driver #(packet);
 			vif.ubus_write <= 0;
 			vif.ubus_read <= 0;
 			vif.ubus_bip <= 0;
-
-		/*if(tr.write) begin
-			for (int i =0; i<tr.size; i++) begin
-				vif.ubus_data <= tr.data[i];
-				@(posedge vif.ubus_clock);	
-				`uvm_info("DRIVER_write",$sformatf("data=%0h ",vif.ubus_data),UVM_LOW)			
-			end
-		end else if (tr.read) begin
-			for (int i =0; i<tr.size; i++) begin
-				@(posedge vif.ubus_clock);
-				tr.data[i] = vif.ubus_data;
-				`uvm_info("DRIVER_read","",UVM_LOW)
-			end
-		end*/
 	endtask
 
 			//vif.ubus_wait <= tr.wait_state[0];

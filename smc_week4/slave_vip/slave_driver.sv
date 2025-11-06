@@ -9,7 +9,6 @@ class slave_driver extends uvm_driver #(packet);
 
 	function new(string name = "slave_driver", uvm_component parent);		
 		super.new(name,parent);
-			
 	endfunction
 
 
@@ -22,7 +21,6 @@ class slave_driver extends uvm_driver #(packet);
 
 	task run_phase(uvm_phase phase);
 		packet tr;
-
 		forever begin
 			//vif.ubus_wait=1;
 			 //@(posedge vif.ubus_clock);	
