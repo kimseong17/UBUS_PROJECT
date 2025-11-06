@@ -20,10 +20,10 @@ class ubus_master_write_word_seq extends uvm_sequence #(packet);
 			req.write == 1;
 			req.read == 0;
 			req.data.size() == 4;
-			req.data[0] == data0;
-			req.data[1] == data1;
-			req.data[2] == data2;
-			req.data[3] == data3;
+			req.data[0] == data[0];
+			req.data[1] == data[1];
+			req.data[2] == data[2];
+			req.data[3] == data[3];
 			req.error ==0;
 		})
 		`uvm_info("MSTR_SEQ", $sformatf("WRITE : addr = 0x%0h , size = %0d, data = %0p" , req.addr, req.size, req.data), UVM_LOW)
