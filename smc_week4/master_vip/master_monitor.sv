@@ -29,53 +29,26 @@ class master_monitor extends uvm_monitor;
 	task run_phase(uvm_phase phase);
 		
 		forever begin
-		@(posedge vif.ubus_clock); 
-			//req = packet::type_id::create("req");
-			//if ((vif.ubus_read || vif.ubus_write) && vif.ubus_wait==0 && vif.ubus_data !== 'z && vif.ubus_data !== 'x ) begin
-			@(negedge vif.ubus_wait);
-				//req = packet::type_id::create("req");
-				
-				//do @(posedge vif.ubus_clock); while(vif.ubus_wait==1'bx ||vif.ubus_wait ==1);	
+			@(posedge vif.ubus_clock); 
+			if (vif.ubus_read || vif.ubus_write) begin
 				req = packet::type_id::create("req");
-				
-				
 				req.addr = vif.ubus_addr;
-				req.size = 1;
-				/*case (vif.ubus_size)
+				case (vif.ubus_size)
 					2'b00: req.size =1;
 					2'b01: req.size =2;
 					2'b10: req.size=4;
 					2'b11: req.size =8;
-				endcase*/
+				endcase
 				//`uvm_info("MONITOR", $sformatf("req.size = %d, vif.ubus_size = %b" , req.size, vif.ubus_size) , UVM_LOW)
 				req.read = vif.ubus_read;
 				req.write = vif.ubus_write;
-				req.data = new[1];
-				req.data[0] = vif.ubus_data;
-				//req.data = new[req.size];
-				
-				/*for (int i=0; i<req.size; i++) begin
-
-
+				req.data = new[req.size];
+				for (int i = 0; i < req.size; i++) begin
+					while (vif.ubus_wait != 0) @(posedge vif.ubus_clock);
 					req.data[i] = vif.ubus_data;
-					req.addr=vif.ubus_addr;
-					@(posedge vif.ubus_clock); */
-					//`uvm_info("MONITOR", $sformatf("MONITOR: %s", req.sprint()), UVM_LOW)
-				`uvm_info("MONITOR",$sformatf("data=%0h,addr=%h, read=%0b, write=%0b, size=%0d",req.data[0], req.addr, req.read, req.write , req.size),UVM_LOW)		
-				
+				end
 				item_collected_port.write(req);
-				//end
-			//`uvm_info("MONITOR", $sformatf("MONITOR: addr=0x%0h read=%0b write=%0b size=%0d data=%p",req.addr, req.read, req.write, req.size, req.data), UVM_LOW)
-				
-			//item_collected_port.write(req);
 			end
-		//end
-	endtask          		
-
-            		// 🚨 버스에서 포착한 신호를 로그로 출력 🚨
-            		//`uvm_info("MONITOR", $sformatf("BUS ACTIVITY DETECTED: ADDR=%0h, WRITE=%0b, READ=%0b, DATA=%0h", vif.ubus_addr, vif.ubus_write, vif.ubus_read, vif.ubus_data), UVM_MEDIUM)
-            
-            // 실제 검증 환경에서는 여기서 packet 객체를 생성하여 데이터 수집 및 분석(Analysis Port)을 진행합니다.
-      
-
+		end
+	endtask
 endclass
