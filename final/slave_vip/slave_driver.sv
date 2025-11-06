@@ -60,20 +60,29 @@ class slave_driver extends uvm_driver #(packet);
 			count=0;			
 			end*/
 			
-			if (count == tr.size+1) count=0;
-
-
-			if (count < tr.size )  begin			
+			
+						
 				
 			vif.ubus_wait<=1;
 
 			
-			//`uvm_info("SLAVE_DRIVER",$sformatf("data=%0h,addr=%h, read=%0b, write=%0b, size=%0d, wait=%h",vif.ubus_data, vif.ubus_addr, vif.ubus_read, vif.ubus_write , vif.ubus_size, vif.ubus_wait),UVM_LOW)
+			`uvm_info("SLAVE_DRIVER",$sformatf("data=%p,addr=%h, read=%0b, write=%0b, size=%0d",tr.data, tr.addr, tr.read, tr.write , tr.size),UVM_LOW)
+
+			@(posedge vif.ubus_clock);
+			@(posedge vif.ubus_clock);
+
 				
-		//for (int i=0; i<tr.size; i++) begin
-			@(posedge vif.ubus_clock);	
-			vif.ubus_wait <= 0;
-			vif.ubus_error <= tr.error;
+				
+			vif.ubus_wait<=0;
+
+			for (int i=0; i<tr.size; i++) begin
+			@(posedge vif.ubus_clock);
+			end
+	
+			
+	
+			//vif.ubus_wait <= 0;
+			//vif.ubus_error <= tr.error;
 			//`uvm_info("SLAVE_DRIVER",$sformatf("data=%0h,addr=%h, read=%0b, write=%0b, size=%0d, wait=%h",vif.ubus_data, vif.ubus_addr, vif.ubus_read, vif.ubus_write , vif.ubus_size, vif.ubus_wait),UVM_LOW)
 			/*if(count < tr.size) begin  
 			`uvm_info("SLAVE_DRIVER",$sformatf("data=%0h,addr=%h, read=%0b, write=%0b, size=%0d, wait=%h",vif.ubus_data, vif.ubus_addr, vif.ubus_read, vif.ubus_write , vif.ubus_size, vif.ubus_wait),UVM_LOW)
@@ -87,8 +96,7 @@ class slave_driver extends uvm_driver #(packet);
 			`uvm_info("SLAVE_DRIVER",$sformatf("data=%0h,addr=%h, read=%0b, write=%0b, size=%0d, wait=%h",vif.ubus_data, vif.ubus_addr, vif.ubus_read, vif.ubus_write , vif.ubus_size, vif.ubus_wait),UVM_LOW)
 			end*/
 			//vif.ubus_error <= 0;
-			`uvm_info("SLAVE_DRIVER",$sformatf("data=%0h,addr=%h, read=%0b, write=%0b, size=%0d",vif.ubus_data, vif.ubus_addr, vif.ubus_read, vif.ubus_write , vif.ubus_size),UVM_LOW)
-			@(posedge vif.ubus_clock);
+			//`uvm_info("SLAVE_DRIVER",$sformatf("data=%0h,addr=%h, read=%0b, write=%0b, size=%0d",vif.ubus_data, vif.ubus_addr, vif.ubus_read, vif.ubus_write , vif.ubus_size),UVM_LOW)
 			/*if(count!=0) begin 
 			`uvm_info("SLAVE_DRIVER",$sformatf("data=%0h,addr=%h, read=%0b, write=%0b, size=%0d, wait=%h",vif.ubus_data, vif.ubus_addr, vif.ubus_read, vif.ubus_write , vif.ubus_size, vif.ubus_wait),UVM_LOW)
 			end
@@ -101,15 +109,8 @@ class slave_driver extends uvm_driver #(packet);
 			//@(posedge vif.ubus_clock);
 			count=0;
 			end*/
-			end
-			
-			if(count == tr.size) begin
-			vif.ubus_wait<=1;
-			@(posedge vif.ubus_clock);
-			@(posedge vif.ubus_clock);			
-			end
+					
 
-			count=count+1;
 			
 
 								
