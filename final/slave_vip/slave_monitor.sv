@@ -47,6 +47,7 @@ class slave_monitor extends uvm_monitor;
 				req.read = vif.ubus_read;
 				req.write = vif.ubus_write;
 				req.data = new[req.size];
+
 				
 				request_aport.write(req);
 				if (req.read) begin
@@ -84,45 +85,50 @@ class slave_monitor extends uvm_monitor;
 		//req=packet::type_id::create("req");
     		packet single_req;
 		//@(posedge vif.ubus_clock);
-		if (data_beat_count < 4) begin
-    		for (int i = 0; i < 2*req.size+2; i++) begin
+		//if (data_beat_count < 4) begin
+		single_req = packet::type_id::create($sformatf("single_req"));
+		single_req.data  = new[req.size];
+    		for (int i = 0; i < req.size; i++) begin
+		@(posedge vif.ubus_clock);
+
         	// 한 beat 대기
 		//if (data_beat_count < req.size) begin
         	//do @(posedge vif.ubus_clock); while(vif.ubus_wait==1);
 	       	// 개별 트랜잭션 생성
-	       	if ( i==0 || i==1 || i==3 || i==5 || i==7) begin
-	        //@(posedge vif.ubus_clock);
-        	single_req = packet::type_id::create($sformatf("single_req_%0d", i));
+	       	//@(posedge vif.ubus_clock);
+        	//single_req = packet::type_id::create($sformatf("single_req_%0d", i));
 		        	// 각 beat에 맞는 필드 채워넣기
         	single_req.addr  = req.addr;
         	single_req.read  = req.read;
         	single_req.write = req.write;
-       	 	single_req.size  = 1;  // 한 beat당 1개
-        	single_req.data  = new[1];
-        	single_req.data[0] = vif.ubus_data;
+       	 	single_req.size  = req.size;  // 한 beat당 1개
+        	//single_req.data  = new[req.size];
+        	single_req.data[i] = vif.ubus_data;
         	// analysis 포트로 전송
-        	item_collected_port.write(req);
+		`uvm_info("SLV_MON", $sformatf("data=%0h, addr=%h, read=%0b, write=%0b, size=%0d", single_req.data[i], single_req.addr, single_req.read, single_req.write, single_req.size),UVM_LOW)
 		//@(posedge vif.ubus_clock);
-		if (i != 0) begin
+
+        	//item_collected_port.write(single_req);
+				
 		//`uvm_info("SLV_MON", $sformatf("data=%0h, addr=%h, read=%0b, write=%0b, size=%0d", single_req.data[0], req.addr, req.read, req.write, req.size),UVM_LOW)
-		@(posedge vif.ubus_clock);
-		end
-		if (i!=0) begin
-		`uvm_info("SLV_MON", $sformatf("data=%0h, addr=%h, read=%0b, write=%0b, size=%0d", single_req.data[0], req.addr, req.read, req.write, req.size),UVM_LOW)
+		
+	
+		
+		//`uvm_info("SLV_MON", $sformatf("data=%0h, addr=%h, read=%0b, write=%0b, size=%0d", single_req.data[0], req.addr, req.read, req.write, req.size),UVM_LOW)
 		end
 		//item_collected_port.write(req);
-		@(posedge vif.ubus_clock);
-
+		
 		/*else begin
 		`uvm_info("SLV_MON", $sformatf("data=%0h, addr=%h, read=%0b, write=%0b, size=%0d", single_req.data[0], req.addr, req.read, req.write, req.size),UVM_LOW)
 
 		end*/
 		//@(posedge vif.ubus_clock);
-		end
-		end
-		data_beat_count = data_beat_count + 1;
-	
-		end
+		`uvm_info("SLV_MON2", $sformatf("data=%0p, addr=%h, read=%0b, write=%0b, size=%0d", single_req.data, single_req.addr, single_req.read, single_req.write, single_req.size),UVM_LOW)
+		item_collected_port.write(single_req);	
+		//data_beat_count = data_beat_count + 1;
+		
+
+		
 		//data_beat_count = data_beat_count + 1;
 
 
