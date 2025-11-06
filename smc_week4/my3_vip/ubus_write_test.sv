@@ -13,10 +13,10 @@ class ubus_write_test extends uvm_test;
 		super.build_phase(phase);
 		env = my3_vip_environment::type_id::create("env",this);
 		//uvm_config_db#(uvm_active_passive_enum)::set(this, "env.m_agent", "is_active", UVM_PASSIVE);
-		uvm_config_db#(uvm_object_wrapper)::set(this, "env.m_agent.sequencer.main_phase", "default_sequence", ubus_master_write_word_seq::type_id::get()); //Factory가 관리하는 클래스 타입에 대한 정보(메타데이터)를 제공하는 핸들
+		uvm_config_db#(uvm_object_wrapper)::set(this, "env.m_agent.sequencer.run_phase", "default_sequence", ubus_master_write_word_seq::type_id::get()); //Factory가 관리하는 클래스 타입에 대한 정보(메타데이터)를 제공하는 핸들
 		//uvm_config_db#(uvm_active_passive_enum)::set(this,"env.s_agent","is_active", UVM_ACTIVE );
 
-		uvm_config_db#(uvm_object_wrapper)::set(this,"env.s_agent.sequencer.main_phase","default_sequence", slave_sequence::type_id::get());
+		uvm_config_db#(uvm_object_wrapper)::set(this,"env.s_agent.sequencer.run_phase","default_sequence", slave_sequence::type_id::get());
 	endfunction
 //end_of_elaboration_phase
 	/*function void start_of_simulation_phase(uvm_phase phase);

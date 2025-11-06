@@ -1,4 +1,3 @@
-`include "../master_vip/master_agent.sv"
 class my3_vip_environment extends uvm_env;
 
 	`uvm_component_utils(my3_vip_environment)
