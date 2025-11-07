@@ -7,9 +7,9 @@
 ### 컴파일 및 시뮬레이션 실행 방법
 아래 명령어를 통해 프로젝트를 컴파일하고 시뮬레이션을 실행할 수 있습니다.
 
-* 컴파일 & 시뮬레이션 실행 방법
-./run.sh ubus_write_test <= burst write test
-./run.sh ubus_read_test <= burst read test
+* 컴파일 & 시뮬레이션 실행 방법  
+./run.sh ubus_write_test <= burst write test  
+./run.sh ubus_read_test <= burst read test  
 
 * 클린 방법
 ./clean.sh
