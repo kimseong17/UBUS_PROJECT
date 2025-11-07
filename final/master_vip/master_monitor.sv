@@ -11,6 +11,7 @@ class master_monitor extends uvm_monitor;
 	int data_beat_count = 0;
 	
 	
+	
 
 	function new(string name = "master_monitor", uvm_component parent = null);
 		super.new(name, parent);
@@ -32,7 +33,28 @@ class master_monitor extends uvm_monitor;
 		@(posedge vif.ubus_clock); 
 			//req = packet::type_id::create("req");
 			//if ((vif.ubus_read || vif.ubus_write) && vif.ubus_wait==0 && vif.ubus_data !== 'z && vif.ubus_data !== 'x ) begin
-			if (vif.ubus_read || vif.ubus_write) begin
+			if (vif.ubus_read) begin
+				req = packet::type_id::create("req");
+				case (vif.ubus_size)
+					2'b00: req.size =1;
+					2'b01: req.size =2;
+					2'b10: req.size=4;
+					2'b11: req.size =8;
+				endcase
+							
+				@(posedge vif.ubus_clock);
+				@(posedge vif.ubus_clock);
+					if(vif.ubus_bip == 1) begin					
+						for(int i=0; i<req.size; i++) begin
+							`uvm_info("Master_MONITOR", $sformatf("data_bit_count= %0d, ubus_data = %h, ubus_bip = %b" , data_beat_count, vif.ubus_data,vif.ubus_bip) , UVM_LOW)
+
+							@(posedge vif.ubus_clock);
+							data_beat_count++;
+						end
+					end
+			end
+					
+			if (vif.ubus_write) begin
 				//req = packet::type_id::create("req");
 				
 				//do @(posedge vif.ubus_clock); while(vif.ubus_wait==1'bx ||vif.ubus_wait ==1);	

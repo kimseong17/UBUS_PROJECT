@@ -1,3 +1,4 @@
+verdiSetActWin -dock widgetDock_<Message>
 simSetSimulator "-vcssv" -exec "/DATA/home/edu010/3team/final/common_sim/simv" \
            -args \
            "+UVM_TESTNAME=ubus_write_test +UVM_TR_RECORD +UVM_LOG_RECORD +UVM_VERDI_TRACE"
@@ -5,8 +6,8 @@ debImport "-simv" "simv" "-dbdir" \
           "/DATA/home/edu010/3team/final/common_sim/simv.daidir"
 debLoadSimResult /DATA/home/edu010/3team/final/common_sim/wave.fsdb
 wvCreateWindow
+verdiWindowResize -win $_Verdi_1 "510" "190" "900" "700"
 verdiSetActWin -dock widgetDock_MTB_SOURCE_TAB_1
-verdiWindowResize -win $_Verdi_1 "8" "31" "928" "174"
 wvGetSignalOpen -win $_nWave2
 wvGetSignalSetScope -win $_nWave2 "/my3_testbench_top"
 verdiSetActWin -win $_nWave2
@@ -52,8 +53,13 @@ wvSetPosition -win $_nWave2 {("G1" 10)}
 wvGetSignalClose -win $_nWave2
 wvZoomIn -win $_nWave2
 wvZoomIn -win $_nWave2
-wvSetCursor -win $_nWave2 27.487946 -snap {("G1" 9)}
-wvSetCursor -win $_nWave2 35.518132 -snap {("G1" 9)}
-wvSetCursor -win $_nWave2 68.256584 -snap {("G1" 3)}
-wvSetCursor -win $_nWave2 57.446718 -snap {("G1" 4)}
+wvSetCursor -win $_nWave2 68.005668 -snap {("G1" 8)}
+wvSetCursor -win $_nWave2 76.345985 -snap {("G1" 8)}
+wvSetCursor -win $_nWave2 120.613826 -snap {("G1" 7)}
+wvSetCursor -win $_nWave2 128.633362 -snap {("G1" 7)}
+wvSetCursor -win $_nWave2 187.015586 -snap {("G1" 8)}
+wvSetCursor -win $_nWave2 197.601374 -snap {("G1" 8)}
+wvSetCursor -win $_nWave2 238.661399 -snap {("G1" 9)}
+wvSetCursor -win $_nWave2 261.757664 -snap {("G1" 10)}
+wvSetCursor -win $_nWave2 253.738128 -snap {("G1" 9)}
 debExit
