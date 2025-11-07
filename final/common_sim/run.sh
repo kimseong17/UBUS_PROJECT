@@ -1,7 +1,7 @@
 #vcs -full64 -sverilog -lca -debug_access+all+reverse -kdb -l comp.log -ntb_opts uvm-ieee-2020 ../master_vip/ubus_if.sv \
 #../vip/my3_master_testbench_top.sv +UVM_VERBOSITY=UVM_HIGH \ 
 
-TEST_NAME=${1:-ubus_write_test}
+TEST_NAME=${1:-ubus_read_test}
 
 vcs -full64 -sverilog -lca -debug_access+all+reverse -kdb -l comp.log -ntb_opts uvm-1.2 /DATA/home/edu010/3team/ksy_common_vip/week4/common_vip/ubus_if.sv \
 /DATA/home/edu010/3team/ksy_common_vip/week4/common_vip/my3_testbench_top.sv  \

@@ -51,10 +51,10 @@ class slave_sequence extends uvm_sequence #(packet);
 			//req.print();
 			start_item(rsp);  // ready to transfer
 			//`uvm_info("SEQ", $sformatf("Randomized tr: %s", tr.sprint()), UVM_LOW)
-			`uvm_info("SLV_SEQ",$sformatf("data=%p,addr=%h, read=%0b, write=%0b, size=%0d",rsp.data, req.addr, req.read, req.write , req.size),UVM_LOW)
+			`uvm_info("SLV_SEQ",$sformatf("data=%p,addr=%h, read=%0b, write=%0b, size=%0d",rsp.data, rsp.addr, rsp.read, rsp.write , rsp.size),UVM_LOW)
 
 			finish_item(rsp);
-                        //`uvm_info("SEQ", $sformatf("Randomized tr: %s", tr.sprint()), UVM_LOW)
+                        //`uvm_info("SEQFF", "Randomized tr:", UVM_LOW)
 
 
 		end

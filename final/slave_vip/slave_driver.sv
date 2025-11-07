@@ -27,7 +27,7 @@ class slave_driver extends uvm_driver #(packet);
 			//vif.ubus_wait=1;
 			 //@(posedge vif.ubus_clock);	
            		seq_item_port.get_next_item(tr);
-			//`uvm_info("SLAVE_DRIVER",$sformatf("data=%0h,addr=%h, read=%0b, write=%0b, size=%0d",vif.ubus_data, vif.ubus_addr, vif.ubus_read, vif.ubus_write , vif.ubus_size),UVM_LOW)				 
+			//`uvm_info("SLAVE_DRIVER",$sformatf("data=%0p,addr=%h, read=%0b, write=%0b, size=%0d",tr.data, tr.addr, tr.read, tr.write , tr.size),UVM_LOW)				 			
 			if(tr.read) begin
 				drive_read_response(tr); end
 			else if(tr.write) begin
@@ -35,17 +35,28 @@ class slave_driver extends uvm_driver #(packet);
 			//drive_transfer(tr);
 			//`uvm_info("DRIVER",$sformatf("Driving new transaction : %s" , tr.sprint()) , UVM_LOW)
 			seq_item_port.item_done();
+
 			end
 	endtask
 
 	virtual protected task drive_read_response(packet tr);
 		
 		`uvm_info("SLV_DRV", "Processing READ transaction", UVM_LOW)
-			
-			vif.ubus_wait <= 0;
-			//vif.ubus_data <= tr.data[i];
-			//vif.ubus_bip <= (i == tr.size - 1 ) ? 0 : 1;
+			for (int i =0; i< tr.size; i++) begin
 			@(posedge vif.ubus_clock);
+			//`uvm_info("SLAVE_DRIVER",$sformatf("data=%h,addr=%h, read=%0b, write=%0b, size=%0d",vif.ubus_data, vif.ubus_addr, vif.ubus_read, vif.ubus_write , vif.ubus_size),UVM_LOW)
+			vif.ubus_wait <= 0;
+			vif.ubus_data <= tr.data[i];
+			vif.ubus_bip <= (i == tr.size - 1 ) ? 0 : 1;
+			`uvm_info("SLAVE_DRIVER",$sformatf("data=%h",tr.data[i]),UVM_LOW)
+			
+
+			end
+			@(posedge vif.ubus_clock);
+			vif.ubus_wait <= '1;
+			vif.ubus_data <= 'z;
+			vif.ubus_bip <= '0;
+	
 		
 	endtask
 
