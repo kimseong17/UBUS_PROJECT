@@ -7,12 +7,6 @@
 ### 컴파일 및 시뮬레이션 실행 방법
 아래 명령어를 통해 프로젝트를 컴파일하고 시뮬레이션을 실행할 수 있습니다.
 
-### hierarchy
-final -> common_sim ; simulation
-      -> master_vip ; driver , monitor , sequencer
-      -> slave_vip ; driver, monitor, sequencer 
-      -> common_vip ; sequence, test , environmnet, interface , packet
-
 * 컴파일 & 시뮬레이션 실행 방법
 ./run.sh ubus_write_test <= burst write test
 ./run.sh ubus_read_test <= burst read test
