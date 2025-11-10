@@ -58,7 +58,7 @@ class master_driver extends uvm_driver #(packet);
 				end
 			end else if (tr.read) begin
 				if (tr.data.size() != tr.size) tr.data = new[tr.size];
-				for ( int i = 0; i < tr.size: i++) begin
+				for ( int i = 0; i < tr.size; i++) begin
 					@(posedge vif.ubus_clock);
 						vif.ubus_write <= 0;
 						vif.ubus_read <= 0;
