@@ -41,10 +41,10 @@ class master_driver extends uvm_driver #(packet);
 			vif.ubus_addr <= tr.addr;
 			vif.ubus_write <= tr.write;
 			vif.ubus_read <= tr.read;
-			vif.ubus_size <= (tr.size ==1) ? 2'b00:
-					(tr.size ==2) ? 2'b01:
-					(tr.size ==4) ? 2'b10:
-					(tr.size ==8) ? 2'b11:2'b00;
+			vif.ubus_size <= (tr.size == 1) ? 2'b00:
+					(tr.size == 2) ? 2'b01:
+					(tr.size == 4) ? 2'b10:
+					(tr.size == 8) ? 2'b11:2'b00;
 		// Data Phase //
 			if(tr.write) begin
 				for (int i =0; i<tr.size; i++) begin

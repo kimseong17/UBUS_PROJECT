@@ -1,4 +1,6 @@
 class packet extends uvm_sequence_item;
+
+    // Key Fields //
     rand bit [15:0] addr;
     rand bit read;
     rand bit write;
@@ -7,17 +9,18 @@ class packet extends uvm_sequence_item;
     rand bit wait_state[];
     rand bit error;
 
+    // Constructor //
     function new(string name = "packet");
         super.new(name);
-        `uvm_info("TRACE",$sformatf("%m"), UVM_HIGH);  // 계층정보
-    endfunction: new
+    endfunction
 
+    // Constraint //
     constraint c_wait_state { wait_state.size() inside{[0:2]};}
-    constraint c_size { size inside{1,2,4,8};}
+    constraint c_size       { size inside{1,2,4,8};}
 
-    // 메크로 세트 , UVM 클래스 등록 + 자동화
-    `uvm_object_utils_begin(packet)  // UVM Factory에 class 등록 + 필드 자동화 (동적)
-        `uvm_field_int(addr, UVM_DEFAULT) // 맴버를 UVM 시스템에 등록 => 자동화 , copy compare print etc 가능하게 해줌
+    // UVM Macro Registration
+    `uvm_object_utils_begin(packet)
+        `uvm_field_int(addr, UVM_DEFAULT)
         `uvm_field_int(read, UVM_DEFAULT)
         `uvm_field_int(write, UVM_DEFAULT)
         `uvm_field_int(size, UVM_DEFAULT)
