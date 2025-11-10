@@ -1,17 +1,19 @@
 
 class master_agent extends uvm_agent;
-
+	// UVM Factory //
 	`uvm_component_utils(master_agent)
 
+	// Create Environment //
 	master_sequencer sequencer;
 	master_driver driver;
 	master_monitor monitor;
 
-
+	// Constructor //
 	function new(string name = "master_agent", uvm_component parent);
 		super.new(name,parent);
 	endfunction
 
+	// Build Phase //
 	function void build_phase(uvm_phase phase);
 		super.build_phase(phase);
 		sequencer = master_sequencer::type_id::create("sequencer",this);
@@ -19,10 +21,10 @@ class master_agent extends uvm_agent;
 		monitor = master_monitor::type_id::create("monitor",this);
 	endfunction
 
-
+	// Connect Phase //
 	function void connect_phase(uvm_phase phase);
 		super.connect_phase(phase);
-		driver.seq_item_port.connect(sequencer.seq_item_export); // component connection
+		driver.seq_item_port.connect(sequencer.seq_item_export);
 	endfunction
 
 endclass

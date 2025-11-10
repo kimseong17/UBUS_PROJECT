@@ -92,3 +92,5 @@ wvScrollUp -win $_nWave2 1
 srcHBSelect "uvm_custom_install_recording" -win $_nTrace1
 srcSetScope "my3_testbench_top.vif.SLAVE" -delim "." -win $_nTrace1
 verdiSetActWin -dock widgetDock_<Inst._Tree>
+verdiSetActWin -dock widgetDock_MTB_SOURCE_TAB_1
+debExit

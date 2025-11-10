@@ -29,7 +29,7 @@ module my3_testbench_top;
     // Interface Instance
     ubus_if vif();
     // Clock Generation
-    initial vif.ubus_clock = 0;
+    initial vif.ubus_clock = 0 ;
     always #5 vif.ubus_clock = ~vif.ubus_clock;
 
     //uvm_config_db#(virtual ubus_if)::set(null,"*","vif",vif);
