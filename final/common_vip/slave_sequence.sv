@@ -7,7 +7,10 @@ class slave_sequence extends uvm_sequence #(packet);
 
 	packet req;
 	packet rsp;
+
 	
+	//event all_done;
+
 	function new(string name = "slave_sequence");
 		super.new(name);
 		req = packet::type_id::create("req");
@@ -15,7 +18,13 @@ class slave_sequence extends uvm_sequence #(packet);
 		
 	endfunction
 
-
+	/*virtual task pre_body(); // body 태스크 실행 직전에 호출
+        // 현재 시퀀스가 시작된 phase를 가져와 objection을 올립니다.
+        	uvm_phase starting_phase = get_starting_phase();
+        	if (starting_phase != null) begin
+           	 starting_phase.raise_objection(this);
+       	 	end
+    	endtask*/
 
 
 
@@ -23,6 +32,8 @@ class slave_sequence extends uvm_sequence #(packet);
 		
 		//packet req,rsp;
 		forever begin
+			//if (!p_sequencer.request_fifo.try_get(req)) break;
+			//phase.raise_objection(this);
 			p_sequencer.request_fifo.get(req);
 			//`uvm_info("SLV_SEQ",$sformatf("data=%p,addr=%h, read=%0b, write=%0b, size=%0d",req.data, req.addr, req.read, req.write , req.size),UVM_LOW)
 
@@ -54,20 +65,22 @@ class slave_sequence extends uvm_sequence #(packet);
 			`uvm_info("SLV_SEQ",$sformatf("data=%p,addr=%h, read=%0b, write=%0b, size=%0d",rsp.data, rsp.addr, rsp.read, rsp.write , rsp.size),UVM_LOW)
 
 			finish_item(rsp);
+
                         //`uvm_info("SEQFF", "Randomized tr:", UVM_LOW)
+                        //`uvm_info("SLV_SEQ",$sformatf("data=%p,addr=%h, read=%0b, write=%0b, size=%0d",rsp.data, rsp.addr, rsp.read, rsp.write , rsp.size),UVM_LOW)
 
-
+			//phase.drop_objection(this);
 		end
 		//`uvm_info("SEQ", $sformatf("Randomized tr: %s", tr.sprint()), UVM_LOW)
 	endtask	
 		
-	/*virtual task post_body(); // body 태스크 실행 직후에 호출
+	virtual task post_body(); // body 태스크 실행 직후에 호출
         // body가 완료되면 objection을 내려 시뮬레이션이 종료될 수 있도록 합니다.
         	uvm_phase starting_phase = get_starting_phase();
        		if (starting_phase != null) begin
             		starting_phase.drop_objection(this);
         	end
-   	 endtask*/
+   	 endtask
 
 
 

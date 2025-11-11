@@ -58,10 +58,4 @@ wvZoomOut -win $_nWave2
 wvZoomOut -win $_nWave2
 wvZoomOut -win $_nWave2
 wvZoomOut -win $_nWave2
-wvSetCursor -win $_nWave2 204.911790 -snap {("G1" 4)}
-wvSetCursor -win $_nWave2 210.242828 -snap {("G1" 3)}
-wvSetCursor -win $_nWave2 234.565691 -snap {("G1" 3)}
-wvSetCursor -win $_nWave2 139.606569 -snap {("G1" 9)}
-wvSetCursor -win $_nWave2 218.572576 -snap {("G1" 8)}
-wvSetCursor -win $_nWave2 435.479203 -snap {("G1" 7)}
 debExit

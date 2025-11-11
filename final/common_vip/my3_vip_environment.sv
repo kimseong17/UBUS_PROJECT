@@ -1,7 +1,7 @@
 class my3_vip_environment extends uvm_env;
 
 	`uvm_component_utils(my3_vip_environment)
-
+		
 	master_agent m_agent;
 	slave_agent s_agent;
 	ubus_scoreboard scoreboard;	
@@ -17,6 +17,8 @@ class my3_vip_environment extends uvm_env;
 		m_agent = master_agent::type_id::create("m_agent",this);
 		s_agent = slave_agent::type_id::create("s_agent",this);
 		scoreboard =ubus_scoreboard::type_id::create("scoreboard",this);
+		
+
 	endfunction
 
 	function void connect_phase(uvm_phase phase);
