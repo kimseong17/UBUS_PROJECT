@@ -1,17 +1,17 @@
 class slave_driver extends uvm_driver #(packet);
-
+	// UVM Factory //
 	`uvm_component_utils(slave_driver)
 
+	// Create Environment //
 	virtual ubus_if.SLAVE vif;
+	packet rsp;
 
-	int count = 0;
-
-
+	// Constructor //
 	function new(string name = "slave_driver", uvm_component parent);		
 		super.new(name,parent);
 	endfunction
 
-
+	// Build Phase //
 	function void build_phase(uvm_phase phase);
 		super.build_phase(phase);
 		if (!uvm_config_db#(virtual ubus_if.SLAVE)::get(this,"*","vif",vif)) begin
@@ -19,101 +19,38 @@ class slave_driver extends uvm_driver #(packet);
 		end
 	endfunction
 
+	// Simulation Execution //
 	task run_phase(uvm_phase phase);
-		packet tr;
 		forever begin
-			//vif.ubus_wait=1;
-			 //@(posedge vif.ubus_clock);	
-           		seq_item_port.get_next_item(tr);
-			//`uvm_info("SLAVE_DRIVER",$sformatf("data=%0h,addr=%h, read=%0b, write=%0b, size=%0d",vif.ubus_data, vif.ubus_addr, vif.ubus_read, vif.ubus_write , vif.ubus_size),UVM_LOW)				 
-			if(tr.read) begin
-				drive_read_response(tr); end
-			else if(tr.write) begin
-				drive_write_response(tr); end
-			//drive_transfer(tr);
-			//`uvm_info("DRIVER",$sformatf("Driving new transaction : %s" , tr.sprint()) , UVM_LOW)
+           	seq_item_port.get_next_item(rsp);
+			if 		(rsp.read) 	drive_read_response(rsp);
+			else if	(rsp.write)	drive_write_response(tr);
 			seq_item_port.item_done();
-			end
+		end
+		`uvm_info("SLV_DRV", "DRIVER - Package Drive Check", UVM_MEDIUM)
 	endtask
 
-	virtual protected task drive_read_response(packet tr);
-		
-		`uvm_info("SLV_DRV", "Processing READ transaction", UVM_LOW)
-			
-			vif.ubus_wait <= 0;
-			//vif.ubus_data <= tr.data[i];
-			//vif.ubus_bip <= (i == tr.size - 1 ) ? 0 : 1;
+	// Drive Read Response //
+	virtual protected task drive_read_response(packet rsp);
+		`uvm_info("SLV_DRV", "Processing READ transaction", UVM_MEDIUM)	
+		rsp.print();
+		for (int i=0; i < rsp.size; i++) begin
+			vif.ubus_wait	<= 0; 			// Ready
+			vif.ubus_data	<= rsp.data[i];	// Data 구동
+			vif.ubus_bip	<= (i == rsp.size - 1)? 0 : 1;
+			vif.ubus_error	<= rsp.error;
+			`uvm_info("SLV_DRV", "Drive DATA to INTERFACE", UVM_MEDIUM)
 			@(posedge vif.ubus_clock);
-		
+			vif.ubus_error <= 'z;
+		end
 	endtask
 
-	virtual protected task drive_write_response(packet tr);
-		//`uvm_info("SLV_DRV", "Processing WRITE transaction", UVM_LOW)
-			//@(posedge vif.ubus_clock);
-			//`uvm_info("SLV_DRV", "Processing WRITE transaction", UVM_LOW)
-			/*if(count == tr.size) begin
-			vif.ubus_wait<=1;
-			@(posedge vif.ubus_clock);
-			@(posedge vif.ubus_clock);
-			count=0;			
-			end*/
-			
-			if (count == tr.size+1) count=0;
-
-
-			if (count < tr.size )  begin			
-				
-			vif.ubus_wait<=1;
-
-			
-			//`uvm_info("SLAVE_DRIVER",$sformatf("data=%0h,addr=%h, read=%0b, write=%0b, size=%0d, wait=%h",vif.ubus_data, vif.ubus_addr, vif.ubus_read, vif.ubus_write , vif.ubus_size, vif.ubus_wait),UVM_LOW)
-				
-		//for (int i=0; i<tr.size; i++) begin
-			@(posedge vif.ubus_clock);	
-			vif.ubus_wait <= 0;
-			vif.ubus_error <= tr.error;
-			//`uvm_info("SLAVE_DRIVER",$sformatf("data=%0h,addr=%h, read=%0b, write=%0b, size=%0d, wait=%h",vif.ubus_data, vif.ubus_addr, vif.ubus_read, vif.ubus_write , vif.ubus_size, vif.ubus_wait),UVM_LOW)
-			/*if(count < tr.size) begin  
-			`uvm_info("SLAVE_DRIVER",$sformatf("data=%0h,addr=%h, read=%0b, write=%0b, size=%0d, wait=%h",vif.ubus_data, vif.ubus_addr, vif.ubus_read, vif.ubus_write , vif.ubus_size, vif.ubus_wait),UVM_LOW)
-			count=count+1;
-			end else begin
-			//@(posedge vif.ubus_clock); vif.ubus_wait <= 1;
-			//@(posedge vif.ubus_clock);
-			count=0;
-			end*/
-			/*if(count==0) begin
-			`uvm_info("SLAVE_DRIVER",$sformatf("data=%0h,addr=%h, read=%0b, write=%0b, size=%0d, wait=%h",vif.ubus_data, vif.ubus_addr, vif.ubus_read, vif.ubus_write , vif.ubus_size, vif.ubus_wait),UVM_LOW)
-			end*/
-			//vif.ubus_error <= 0;
-			`uvm_info("SLAVE_DRIVER",$sformatf("data=%0h,addr=%h, read=%0b, write=%0b, size=%0d",vif.ubus_data, vif.ubus_addr, vif.ubus_read, vif.ubus_write , vif.ubus_size),UVM_LOW)
-			@(posedge vif.ubus_clock);
-			/*if(count!=0) begin 
-			`uvm_info("SLAVE_DRIVER",$sformatf("data=%0h,addr=%h, read=%0b, write=%0b, size=%0d, wait=%h",vif.ubus_data, vif.ubus_addr, vif.ubus_read, vif.ubus_write , vif.ubus_size, vif.ubus_wait),UVM_LOW)
-			end
-			count=count+1;*/
-			/*if(count < tr.size) begin  
-			`uvm_info("SLAVE_DRIVER",$sformatf("data=%0h,addr=%h, read=%0b, write=%0b, size=%0d, wait=%h",vif.ubus_data, vif.ubus_addr, vif.ubus_read, vif.ubus_write , vif.ubus_size, vif.ubus_wait),UVM_LOW)
-			count=count+1;
-			end else begin
-			//@(posedge vif.ubus_clock); vif.ubus_wait <= 1;
-			//@(posedge vif.ubus_clock);
-			count=0;
-			end*/
-			end
-			
-			if(count == tr.size) begin
-			vif.ubus_wait<=1;
-			@(posedge vif.ubus_clock);
-			@(posedge vif.ubus_clock);			
-			end
-
-			count=count+1;
-			
-
-								
-			
+	// Drive Write Response //
+	virtual protected task drive_write_response(packet rsp);
+		`uvm_info("SLV_DRV", "Processing WRITE transaction", UVM_MEDIUM)
+		vif.ubus_wait	<= 0;
+		vif.ubus_error 	<= rsp.error;
+		@(posedge vif.ubus_clock);
+		vif.ubus_error 	<= 'z;
  	endtask
-	
-
-
 endclass
