@@ -64,15 +64,13 @@ class slave_monitor extends uvm_monitor;
     // 여러 클록 동안 데이터를 기다릴 수 있음
 		item_collected_port.write(req);
 		@(posedge vif.ubus_clock);
-   		repeat(req.size) begin
+   		for(int i=0; i<req.size; i++) begin
         		@(posedge vif.ubus_clock);			
-			req.data[data_beat_count] = vif.ubus_data;
+			req.data[i] = vif.ubus_data;
 			
-			`uvm_info("Slave_MONITOR", $sformatf("data_bit_count= %0d, ubus_data = %h, ubus_bip = %b" , data_beat_count, req.data[data_beat_count],vif.ubus_bip) , UVM_LOW)
+			`uvm_info("Slave_MONITOR", $sformatf("data_bit_count= %0d, ubus_data = %h, ubus_bip = %b" , data_beat_count, req.data[i],vif.ubus_bip) , UVM_LOW)
         		
-			data_beat_count++;
-			
-			
+			data_beat_count++;						
    		end
 	endtask
 

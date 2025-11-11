@@ -4,7 +4,7 @@ class ubus_read_test extends uvm_test;
 	
 	my3_vip_environment env;
 
-	function new(string name, uvm_component parent = "null");
+	function new(string name, uvm_component parent);
 		super.new(name, parent);
 	endfunction
 

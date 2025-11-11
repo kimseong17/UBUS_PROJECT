@@ -1,1 +1,0 @@
-rm -rf *.log *.daidir *_file *fsdb* *.key *.h *csrc *.rc *.conf simv* verdiLog
