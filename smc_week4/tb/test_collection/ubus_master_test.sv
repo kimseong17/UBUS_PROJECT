@@ -30,9 +30,9 @@ endclass
 //////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////
 
-class my3_vip_master_test extends uvm_test;
+class ubus_master_test extends uvm_test;
 	// UVM Factory //
-    `uvm_component_utils(my3_vip_master_test)
+    `uvm_component_utils(ubus_master_test)
     master_environment env;
     master_sequence seq;
 
