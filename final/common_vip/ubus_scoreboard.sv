@@ -1,5 +1,4 @@
 class ubus_scoreboard extends uvm_scoreboard;
-
 	`uvm_component_utils_begin(ubus_scoreboard)
 	`uvm_field_int(num_writes, UVM_DEFAULT|UVM_DEC)
 	`uvm_field_int(num_reads, UVM_DEFAULT|UVM_DEC)
