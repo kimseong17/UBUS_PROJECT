@@ -1,6 +1,6 @@
 # Makefile for UVM
 
-test = ubus_slave_test
+test = ubus_write_test
 program_path = ../tb/my3_vip
 PROGRAM_TOP = ${program_path}/my3_testbench_top.sv
 package_path = ../tb/my3_packages
@@ -26,7 +26,7 @@ runtime_switches = -l ${log} +UVM_TESTNAME=${test} +UVM_VERBOSITY=${verbosity} +
 
 all: clean simv run
 
-simv compile: ../tb/*.sv ${TEST_TOP} ${DUT}
+simv compile: ../tb/test_collection/*.sv ${TEST_TOP} ${DUT}
 ifeq ($(CES64),TRUE)
 	vcs -full64 ${compile_switches} 
 	@echo "Compiled in 64-bit mode"
@@ -42,7 +42,7 @@ random: simv
 	./simv +ntb_random_seed_automatic ${runtime_switches}
 
 verdi:
-	verdi -ssf test.fsdb &
+	verdi -ssf wave.fsdb &
 
 original: copy
 

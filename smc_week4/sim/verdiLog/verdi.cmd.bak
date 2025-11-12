@@ -1,0 +1,6 @@
+verdiSetActWin -dock widgetDock_<Decl._Tree>
+wvCreateWindow
+wvOpenFile -win $_nWave2 {/DATA/home/edu028/3team/smc_week4/sim/test.fsdb}
+verdiWindowResize -win $_Verdi_1 "510" "190" "900" "700"
+verdiSetActWin -dock widgetDock_MTB_SOURCE_TAB_1
+debExit
