@@ -3,9 +3,9 @@ class my3_vip_environment extends uvm_env;
 	`uvm_component_utils(my3_vip_environment)
 
 	// Create System //
-	master_agent m_agent;
-	slave_agent s_agent;
-	ubus_scoreboard scoreboard;	
+	master_env master_env;
+	slave_env slave_env;
+	//ubus_scoreboard scoreboard;	
 
 	// Constructor //
 	function new(string name , uvm_component parent) ;
@@ -15,8 +15,8 @@ class my3_vip_environment extends uvm_env;
 	// Build Phase //
 	function void build_phase(uvm_phase phase);
 		super.build_phase(phase);
-		m_agent = master_agent::type_id::create("m_agent",this);
-		s_agent = slave_agent::type_id::create("s_agent",this);
+		master_env	= master_env::type_id::create("master_env",this);
+		slave_env	= slave_env::type_id::create("slave_env",this);
 		//scoreboard =ubus_scoreboard::type_id::create("scoreboard",this);
 	endfunction
 

@@ -1,11 +1,10 @@
 # Makefile for UVM
 
 test = ubus_slave_test
-program_path = ../tb
-PROGRAM_TOP = ${program_path}/ubus_tb_top.sv
-#package_path = ./packages
-package_path = ../tb
-PACKAGES = ${package_path}/ubus_agent_pkg.sv ${package_path}/ubus_env_pkg.sv ${package_path}/ubus_test_pkg.sv 
+program_path = ../tb/my3_vip
+PROGRAM_TOP = ${program_path}/my3_testbench_top.sv
+package_path = ../tb/my3_packages
+PACKAGES = ${package_path}/pkg_agent.sv ${package_path}/pkg_env.sv ${package_path}/pkg_test.sv 
 TEST_TOP = ${PACKAGES} ${PROGRAM_TOP}
 log = simv.log
 verbosity = UVM_HIGH
@@ -16,7 +15,7 @@ uvm_defines = UVM_NO_DEPRECATED+UVM_OBJECT_MUST_HAVE_CONSTRUCTOR
 plus = 
 option = UVM_TR_RECORD +UVM_LOG_RECORD
 trace =
-rtl_path = ../tb
+rtl_path = ../tb/my3_vip
 DUT = $(rtl_path)/ubus_if.sv
 # Set default 64bit!
 CES64 = TRUE
@@ -42,28 +41,13 @@ run:
 random: simv
 	./simv +ntb_random_seed_automatic ${runtime_switches}
 
-environment:
-	cp ../../solutions/lab1/packet.sv .
-	cp ../../solutions/lab1/router_env.sv .
-	cp ../../solutions/lab1/input_agent.sv .
-	cp ../../solutions/lab1/driver.sv .
-
 verdi:
 	verdi -ssf test.fsdb &
 
-
-solution: nuke
-	cp ../../solutions/lab1/*.sv .
-
 original: copy
-
-copy: nuke
 
 clean:
 	rm -rf simv* csrc* *.tmp *.vpd *.key log *.h temp *.log .vcs* *.txt DVE* *.hvp urg* .inter.vpd.uvm .restart* .synopsys* novas.* *.dat *.fsdb verdi*
-
-nuke: clean
-	rm -rf *.sv
 
 help:
 	@echo =======================================================================
