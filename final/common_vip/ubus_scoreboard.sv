@@ -23,22 +23,22 @@ class ubus_scoreboard extends uvm_scoreboard;
 	endfunction
 
 	protected function void memory_verify(input packet trans);
-		//`uvm_info("SCOREbOARD1", $sformatf("tran.size=%b" , trans.size) , UVM_LOW) 
+		//`uvm_info("SCOREbOARD1", $sformatf("trans.size=%b" , trans.size) , UVM_LOW) 
 		for (int i =0; i < trans.size; i++ ) begin
 			int unsigned addr = trans.addr + i;
 			int unsigned data = trans.data[i];
 			//`uvm_info("SCOREbOARD2", $sformatf("addr = %d , data = %d" , addr, data) , UVM_LOW) 
 			if (trans.read) begin
 				num_reads = num_reads +1;
-				/*if (m_mem_expected.exists(addr)) begin
+				if (m_mem_expected.exists(addr)) begin
 					assert(m_mem_expected[addr] == data) else
 					`uvm_error("SCOREBOARD", "Data mismatch!")
 				end else begin
 					m_mem_expected[addr] = data;
-				end*/
+				end
 			end
 			if (trans.write) begin
-				//`uvm_info("SCOREbOARD3", $sformatf("num_writes = %d" , num_writes) , UVM_LOW) 
+				`uvm_info("SCOREbOARD3", $sformatf("num_writes = %d" , num_writes) , UVM_LOW) 
 				num_writes = num_writes +1;
 				m_mem_expected[addr] = data;
 			end

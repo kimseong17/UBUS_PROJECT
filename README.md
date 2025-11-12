@@ -7,14 +7,16 @@
 ### 컴파일 및 시뮬레이션 실행 방법
 아래 명령어를 통해 프로젝트를 컴파일하고 시뮬레이션을 실행할 수 있습니다.
 
-* 컴파일
-`make compile`
+* 컴파일 & 시뮬레이션 실행 방법  
+make random TEST= N_REPEAT= SEED=?
+ex) make random TEST=UBUS_WRITE_TEST N_REPEAT=6
+(기본설정은 UBUS_READ_TEST , N_REPEAT= 4, SEED=자동)
 
-* 시뮬레이션 실행
-`make sim`
+* 클린 방법
+make clean
 
-* 컴파일 및 시뮬레이션 실행
-`make all`
+* 파형 디버깅
+make verdi
 
 ### UVM 클래스 구조
 아래 이미지는 프로젝트에서 사용되는 UVM 클래스 구조의 다이어그램입니다.

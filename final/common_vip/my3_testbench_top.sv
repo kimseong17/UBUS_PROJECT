@@ -20,7 +20,8 @@ module my3_testbench_top;
     `include "../common_vip/ubus_master_write_word_seq.sv"
     `include "../common_vip/ubus_master_read_word_seq.sv"
     `include "../common_vip/my3_vip_environment.sv"
-
+    
+    `include "../common_vip/ubus_read_test.sv"
     `include "../common_vip/ubus_write_test.sv"
 
     // Interface Instance

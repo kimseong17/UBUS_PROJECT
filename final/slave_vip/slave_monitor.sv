@@ -33,8 +33,7 @@ class slave_monitor extends uvm_monitor;
 		forever begin
 		@(posedge vif.ubus_clock);
 			if (vif.ubus_read || vif.ubus_write ) begin
-			
-			//if ((vif.ubus_read || vif.ubus_write & (vif.ubus_data !=='z & vif.ubus_data != 'x)) ||(vif.ubus_read || vif.ubus_write )) begin 
+
 				req = packet::type_id::create("req");
 				req.addr = vif.ubus_addr;
 				
@@ -56,16 +55,22 @@ class slave_monitor extends uvm_monitor;
 					collect_write_data_immediately(req);
 				end
 				//item_collected_port.write(req);
-			end						
+				
+			end					
 		end
 	endtask     
 			
 	task collect_delayed_read_data(packet req);
     // 여러 클록 동안 데이터를 기다릴 수 있음
-   		repeat(req.size) begin
-        		@(posedge vif.ubus_clock);
-        		req.data[data_beat_count] = vif.ubus_data;
-        		data_beat_count++;
+		item_collected_port.write(req);
+		@(posedge vif.ubus_clock);
+   		for(int i=0; i<req.size; i++) begin
+        		@(posedge vif.ubus_clock);			
+			req.data[i] = vif.ubus_data;
+			
+			`uvm_info("Slave_MONITOR", $sformatf("data_bit_count= %0d, ubus_data = %h, ubus_bip = %b" , data_beat_count, req.data[i],vif.ubus_bip) , UVM_LOW)
+        		
+			data_beat_count++;						
    		end
 	endtask
 
@@ -125,11 +130,7 @@ class slave_monitor extends uvm_monitor;
 		//@(posedge vif.ubus_clock);
 		`uvm_info("SLV_MON2", $sformatf("data=%0p, addr=%h, read=%0b, write=%0b, size=%0d", single_req.data, single_req.addr, single_req.read, single_req.write, single_req.size),UVM_LOW)
 		item_collected_port.write(single_req);	
-		//data_beat_count = data_beat_count + 1;
-		
-
-		
-		//data_beat_count = data_beat_count + 1;
+	
 
 
        	 	//`uvm_info("SLV_MON", $sformatf("data=%0h, addr=%h, read=%0b, write=%0b, size=%0d", single_req.data[0], req.addr, req.read, req.write, req.size),UVM_LOW)

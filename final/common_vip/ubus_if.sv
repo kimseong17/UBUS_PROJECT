@@ -15,28 +15,28 @@ interface ubus_if;
 
     // master_driver용 포트
     modport MASTER (
-        output ubus_addr,
-        output ubus_size,
-        output ubus_read,
-        output ubus_write,
-        output ubus_data,
-	input ubus_clock,
-        input  ubus_wait,
-        output  ubus_bip,
-        input  ubus_error
+         ubus_addr,
+         ubus_size,
+         ubus_read,
+         ubus_write,
+         ubus_data,
+	 ubus_clock,
+          ubus_wait,
+          ubus_bip,
+          ubus_error
     );
 
     // slave_driver용 포트
     modport SLAVE (
-	input ubus_clock,
-        input  ubus_addr,
-        input  ubus_size,
-        input  ubus_read,
-        input  ubus_write,	
-        output  ubus_data,
-        output ubus_wait,
-        input ubus_bip,
-        output ubus_error
+	 ubus_clock,
+          ubus_addr,
+          ubus_size,
+         output ubus_read,
+          ubus_write,	
+          ubus_data,
+         ubus_wait,
+        output ubus_bip,
+         ubus_error
     );
 
 
