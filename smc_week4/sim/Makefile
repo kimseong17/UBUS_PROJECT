@@ -1,6 +1,6 @@
 # Makefile for UVM
 
-test = ubus_write_test
+test = ubus_read_test
 program_path = ../tb/my3_vip
 PROGRAM_TOP = ${program_path}/my3_testbench_top.sv
 package_path = ../tb/my3_packages
@@ -22,7 +22,7 @@ CES64 = TRUE
 COUNT ?= 10
 
 compile_switches = -sverilog -q -lca -debug_access+all+reverse -kdb +vcs+vcdpluson -timescale="1ns/100ps" -l comp.log -ntb_opts ${uvm_ver} ${DUT} ${TEST_TOP} +define+${uvm_defines}+${defines}
-runtime_switches = -l ${log} +UVM_TESTNAME=${test} +UVM_VERBOSITY=${verbosity} +${plus} +${trace} +${option} +COUNT=${COUNT}
+runtime_switches = -l ${log} +UVM_TESTNAME=${test} +UVM_VERBOSITY=${verbosity} +${plus} +${trace} +${option} +COUNT=${COUNT} 
 
 all: clean simv run
 
