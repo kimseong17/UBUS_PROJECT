@@ -31,7 +31,7 @@ class master_driver extends uvm_driver #(packet);
 			rsp.copy(req); // req의 기본적인 field(addr, read/write 등)를 rsp에 복사. 이를 통해 sequencer는 rsp가 어떤 req에 대한 것인지 알 수 있음.
 			rsp.set_id_info(req);
 			seq_item_port.item_done(); // sequencer에 DUT에 대한 구동 완료되었음을 알림.
-			seq_item_port.put_response(rsp); // 응답 transaction (rsp)를 sequencer에 전달.
+			//seq_item_port.put_response(rsp); // 응답 transaction (rsp)를 sequencer에 전달.
 		end
 	endtask
 
