@@ -5,7 +5,7 @@ class my3_vip_environment extends uvm_env;
 	// Create System //
 	master_env master_env;
 	slave_env slave_env;
-	//ubus_scoreboard scoreboard;	
+	ubus_scoreboard scoreboard;	
 
 	// Constructor //
 	function new(string name , uvm_component parent) ;
@@ -17,13 +17,15 @@ class my3_vip_environment extends uvm_env;
 		super.build_phase(phase);
 		master_env	= pkg_env::master_env::type_id::create("master_env",this);
 		slave_env	= pkg_env::slave_env::type_id::create("slave_env",this);
-		//scoreboard =ubus_scoreboard::type_id::create("scoreboard",this);
+		scoreboard =ubus_scoreboard::type_id::create("scoreboard",this);
 	endfunction
 
 	// Scoreboard Connection //
-	// function void connect_phase(uvm_phase phase);
-	// 	m_agent.monitor.item_collected_port.connect(scoreboard.item_collected_export);
-	// endfunction
+	function void connect_phase(uvm_phase phase);
+		super.connect_phase(phase);
+		master_env.master_agent.monitor.item_collected_port.connect(scoreboard.master_export);
+		slave_env.slave_agent.monitor.item_collected_port.connect(scoreboard.slave_export);
+	endfunction
 	
 	// Topology //
 	function void start_of_simulation_phase(uvm_phase phase);

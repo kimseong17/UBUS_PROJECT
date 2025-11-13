@@ -1,6 +1,6 @@
 # Makefile for UVM
 
-test = ubus_read_test
+test = ubus_write_test
 program_path = ../tb/my3_vip
 PROGRAM_TOP = ${program_path}/my3_testbench_top.sv
 package_path = ../tb/my3_packages

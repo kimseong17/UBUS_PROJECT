@@ -34,7 +34,7 @@ class slave_sequence extends uvm_sequence #(packet);
 				rsp.wait_state[i] = 1;
 				if (req.write) begin
 					`uvm_info("SLV_SEQ", "Sequence WRITE DATA Bring", UVM_MEDIUM)
-					m_mem[req.addr+i] = req.data[i];
+					m_mem[req.addr + i] = req.data[i];
 				end
 				if (req.read) begin
 					`uvm_info("SLV_SEQ", "Sequnece READ DATA Bring", UVM_MEDIUM)
