@@ -23,8 +23,8 @@ class my3_vip_environment extends uvm_env;
 	// Scoreboard Connection //
 	function void connect_phase(uvm_phase phase);
 		super.connect_phase(phase);
-		master_env.master_agent.monitor.item_collected_port.connect(scoreboard.master_export);
-		slave_env.slave_agent.monitor.item_collected_port.connect(scoreboard.slave_export);
+		master_env.master_agent.monitor.item_collected_port.connect(scoreboard.master_imp);
+		slave_env.slave_agent.monitor.item_collected_port.connect(scoreboard.slave_imp);
 	endfunction
 	
 	// Topology //

@@ -10,8 +10,8 @@ class ubus_scoreboard extends uvm_scoreboard;
 	packet_cmp comparator;
 	
 	// UVM Analysis Port //
-	uvm_analysis_export #(packet) master_export;
-	uvm_analysis_export #(packet) slave_export;
+	uvm_analysis_imp #(packet) master_imp;
+	uvm_analysis_imp #(packet) slave_imp;
 
 	// Variable Declaration //
 	protected int num_writes	= 0;
@@ -26,16 +26,16 @@ class ubus_scoreboard extends uvm_scoreboard;
 	// Component Creation & Configuration //
 	function void build_phase(uvm_phase phase);
 		super.build_phase(phase);
-		master_export	= new("master_export" , this);
-		slave_export	= new("slave_export", this);
-		comparator		= packet_cmp::type_id::create("comparator", this);
+		master_imp	= new("master_imp" , this);
+		slave_imp	= new("slave_imp", this);
+		comparator	= packet_cmp::type_id::create("comparator", this);
 	endfunction
 
 	// Connect Phase //
 	virtual function void connect_phase(uvm_phase phase);
 		super.connect_phase(phase);
-		this.master_export.connect(comparator.before_export);
-		this.slave_export.connect(comparator.after_export);
+		this.master_imp.connect(comparator.before_export);
+		this.slave_imp.connect(comparator.after_export);
 	endfunction
 
 	
@@ -79,6 +79,7 @@ class ubus_scoreboard extends uvm_scoreboard;
 	virtual function void report_phase(uvm_phase phase);
 		`uvm_info("SCOREBOARD", $sformatf("Final Report: %0d writes, %0d reads" , num_writes, num_reads), UVM_LOW)
 		`uvm_info("SCOREBOARD", $sformatf("Comparator Matches = %0d, Mismatches = %0d", comparator.m_matches, comparator.m_mismatches), UVM_LOW)
+	
 	endfunction
 
 endclass
