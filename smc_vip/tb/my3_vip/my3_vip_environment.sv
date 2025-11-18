@@ -1,17 +1,10 @@
 class my3_vip_environment extends uvm_env;
 	// UVM Factory //
 	`uvm_component_utils(my3_vip_environment)
-<<<<<<<< HEAD:ksy_common_vip/week5/common_vip/my3_vip_environment.sv
-		
-	master_agent m_agent;
-	slave_agent s_agent;
-	ubus_virtual_sequencer virtual_sequencer;
-========
 
 	// Create System //
 	master_env master_env;
 	slave_env slave_env;
->>>>>>>> 293b6570e7392a26abc1c61ba7e8868fd0be2cfc:smc_vip/tb/my3_vip/my3_vip_environment.sv
 	ubus_scoreboard scoreboard;	
 
 	// Constructor //
