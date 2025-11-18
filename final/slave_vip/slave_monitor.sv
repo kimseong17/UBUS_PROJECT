@@ -2,7 +2,7 @@ class slave_monitor extends uvm_monitor;
 
 	`uvm_component_utils(slave_monitor)
 
-	virtual ubus_if.SLAVE vif; // database에서 값을 받아와 저장할 변수
+	virtual ubus_s_if vif; // database에서 값을 받아와 저장할 변수
 	packet req;
 	
 	uvm_analysis_port #(packet) request_aport; //	monitor 안에 내장된 포트
@@ -24,7 +24,7 @@ class slave_monitor extends uvm_monitor;
 	function void build_phase(uvm_phase phase);
 		super.build_phase(phase);
 		
-		if(!uvm_config_db#(virtual ubus_if.SLAVE)::get(this,"*","vif",vif)) begin
+		if(!uvm_config_db#(virtual ubus_s_if)::get(this,"uvm_test_top.env.s_agent*","vif",vif)) begin
 			`uvm_fatal("NOVIF", "No virtual interface specified for this monitor instance");
 		end
 	endfunction
@@ -32,7 +32,7 @@ class slave_monitor extends uvm_monitor;
 	task run_phase(uvm_phase phase);
 		forever begin
 		@(posedge vif.ubus_clock);
-			if (vif.ubus_read || vif.ubus_write ) begin
+			if (vif.ubus_read || vif.ubus_write) begin
 
 				req = packet::type_id::create("req");
 				req.addr = vif.ubus_addr;
@@ -46,9 +46,12 @@ class slave_monitor extends uvm_monitor;
 				req.read = vif.ubus_read;
 				req.write = vif.ubus_write;
 				req.data = new[req.size];
-
 				
-				request_aport.write(req);
+
+
+
+				//request_aport.write(req);
+
 				if (req.read) begin
 					collect_delayed_read_data(req);
 				end else if (req.write) begin
@@ -62,79 +65,55 @@ class slave_monitor extends uvm_monitor;
 			
 	task collect_delayed_read_data(packet req);
     // 여러 클록 동안 데이터를 기다릴 수 있음
+		request_aport.write(req);
+
+		wait(vif.ubus_wait==0);
+			for(int i =0; i<req.size; i++) begin
+				@(posedge vif.ubus_clock);
+				req.data[i] = vif.ubus_data;
+				data_beat_count ++;
+			end
+		
+		`uvm_info("SLV_MON", $sformatf("data_beat_count=%0h, data=%0p, addr=0x%0h, read=%0b, write=%0b, size=%0d", data_beat_count, req.data, req.addr, req.read, req.write, req.size),UVM_LOW)
+
+
 		item_collected_port.write(req);
-		@(posedge vif.ubus_clock);
-   		for(int i=0; i<req.size; i++) begin
-        		@(posedge vif.ubus_clock);			
-			req.data[i] = vif.ubus_data;
-			
-			`uvm_info("Slave_MONITOR", $sformatf("data_bit_count= %0d, ubus_data = %h, ubus_bip = %b" , data_beat_count, req.data[i],vif.ubus_bip) , UVM_LOW)
-        		
-			data_beat_count++;						
-   		end
+		
+		data_beat_count = 0;
+
+
+
+
+
+
 	endtask
 
-	/*task collect_write_data_immediately(packet req);
-    // write 데이터 즉시 수집
-    		for (int i=0; i<req.size; i++) begin
-					
-        		req.data[i] = vif.ubus_data; // single beat assumed
-			@(posedge vif.ubus_clock);
-			item_collected_port.write(req.data[i]);	
-			`uvm_info("SLV_MON",$sformatf("data=%0h,addr=%h, read=%0b, write=%0b, size=%0d",req.data[i], req.addr, req.read, req.write , req.size),UVM_LOW)
-    		end
-	endtask*/
+
 
 	task collect_write_data_immediately(packet req);
-		//@(posedge vif.ubus_clock);
-		//req=packet::type_id::create("req");
-    		packet single_req;
-		//@(posedge vif.ubus_clock);
-		//if (data_beat_count < 4) begin
-		single_req = packet::type_id::create($sformatf("single_req"));
-		single_req.data  = new[req.size];
+		request_aport.write(req);
     		for (int i = 0; i < req.size; i++) begin
 		@(posedge vif.ubus_clock);
 
-        	// 한 beat 대기
-		//if (data_beat_count < req.size) begin
-        	//do @(posedge vif.ubus_clock); while(vif.ubus_wait==1);
-	       	// 개별 트랜잭션 생성
-	       	//@(posedge vif.ubus_clock);
-        	//single_req = packet::type_id::create($sformatf("single_req_%0d", i));
-		        	// 각 beat에 맞는 필드 채워넣기
-        	single_req.addr  = req.addr;
-        	single_req.read  = req.read;
-        	single_req.write = req.write;
-       	 	single_req.size  = req.size;  // 한 beat당 1개
-        	//single_req.data  = new[req.size];
-        	single_req.data[i] = vif.ubus_data;
+        	req.data[i] = vif.ubus_data;
         	// analysis 포트로 전송
-		`uvm_info("SLV_MON", $sformatf("data=%0h, addr=%h, read=%0b, write=%0b, size=%0d", single_req.data[i], single_req.addr, single_req.read, single_req.write, single_req.size),UVM_LOW)
-		//@(posedge vif.ubus_clock);
+		//`uvm_info("SLV_MON", $sformatf("data=%0h, addr=%h, read=%0b, write=%0b, size=%0d", req.data[i], req.addr, req.read, req.write, req.size),UVM_LOW)
 
-        	//item_collected_port.write(single_req);
-				
-		//`uvm_info("SLV_MON", $sformatf("data=%0h, addr=%h, read=%0b, write=%0b, size=%0d", single_req.data[0], req.addr, req.read, req.write, req.size),UVM_LOW)
-		
-	
-		
-		//`uvm_info("SLV_MON", $sformatf("data=%0h, addr=%h, read=%0b, write=%0b, size=%0d", single_req.data[0], req.addr, req.read, req.write, req.size),UVM_LOW)
 		end
-		//item_collected_port.write(req);
-		
-		/*else begin
-		`uvm_info("SLV_MON", $sformatf("data=%0h, addr=%h, read=%0b, write=%0b, size=%0d", single_req.data[0], req.addr, req.read, req.write, req.size),UVM_LOW)
 
-		end*/
-		//@(posedge vif.ubus_clock);
-		`uvm_info("SLV_MON2", $sformatf("data=%0p, addr=%h, read=%0b, write=%0b, size=%0d", single_req.data, single_req.addr, single_req.read, single_req.write, single_req.size),UVM_LOW)
-		item_collected_port.write(single_req);	
+		`uvm_info("SLV_MON", $sformatf("data=%0p, addr=%h, read=%0b, write=%0b, size=%0d", req.data, req.addr, req.read, req.write, req.size),UVM_LOW)
+		
+		request_aport.write(req);
+		item_collected_port.write(req);
+
+
+
+		//if (vif.ubus_wait == 0)
+		//item_collected_port.write(req);	
 	
 
 
-       	 	//`uvm_info("SLV_MON", $sformatf("data=%0h, addr=%h, read=%0b, write=%0b, size=%0d", single_req.data[0], req.addr, req.read, req.write, req.size),UVM_LOW)
-		//@(posedge vif.ubus_clock);
+
 		
     		
 	endtask	

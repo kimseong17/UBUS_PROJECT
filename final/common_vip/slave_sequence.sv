@@ -7,6 +7,7 @@ class slave_sequence extends uvm_sequence #(packet);
 
 	packet req;
 	packet rsp;
+	int count=0;
 
 	
 	//event all_done;
@@ -32,11 +33,8 @@ class slave_sequence extends uvm_sequence #(packet);
 		
 		//packet req,rsp;
 		forever begin
-			//if (!p_sequencer.request_fifo.try_get(req)) break;
-			//phase.raise_objection(this);
-			p_sequencer.request_fifo.get(req);
-			//`uvm_info("SLV_SEQ",$sformatf("data=%p,addr=%h, read=%0b, write=%0b, size=%0d",req.data, req.addr, req.read, req.write , req.size),UVM_LOW)
 
+			p_sequencer.request_fifo.get(req);
 
 			rsp = packet::type_id::create("rsp");
 			rsp.addr = req.addr;
@@ -49,29 +47,34 @@ class slave_sequence extends uvm_sequence #(packet);
 			rsp.wait_state= new[req.size];
 		
 			for (int i=0 ; i< req.size; i++) begin
+
 				rsp.wait_state[i] =1;
 				if (req.write) begin
 					m_mem[req.addr+i] = req.data[i];
+					//`uvm_info("SLV_SEQ_MEM", $sformatf("WRITE: Addr='h%h, Data='h%h (from req.data[%0d]", req.addr+i, m_mem[req.addr+i], i), UVM_LOW)
 				end
 				if (req.read) begin
-					if(!m_mem.exists(req.addr + i))
+					if(!m_mem.exists(req.addr + i)) begin
 						m_mem[req.addr +i] = $urandom_range(8'h10,8'hFF);
+					end
 					rsp.data[i] = m_mem[req.addr + i];
 				end
 			end
-			//req.print();
+
 			start_item(rsp);  // ready to transfer
-			//`uvm_info("SEQ", $sformatf("Randomized tr: %s", tr.sprint()), UVM_LOW)
+
+			if(rsp.write==1 && count==1) begin
 			`uvm_info("SLV_SEQ",$sformatf("data=%p,addr=%h, read=%0b, write=%0b, size=%0d",rsp.data, rsp.addr, rsp.read, rsp.write , rsp.size),UVM_LOW)
+			count=0;
+			end else if (rsp.read==1) `uvm_info("SLV_SEQ",$sformatf("data=%p,addr=%h, read=%0b, write=%0b, size=%0d",rsp.data, rsp.addr, rsp.read, rsp.write , rsp.size),UVM_LOW)
+			
+			
 
 			finish_item(rsp);
 
-                        //`uvm_info("SEQFF", "Randomized tr:", UVM_LOW)
-                        //`uvm_info("SLV_SEQ",$sformatf("data=%p,addr=%h, read=%0b, write=%0b, size=%0d",rsp.data, rsp.addr, rsp.read, rsp.write , rsp.size),UVM_LOW)
 
-			//phase.drop_objection(this);
 		end
-		//`uvm_info("SEQ", $sformatf("Randomized tr: %s", tr.sprint()), UVM_LOW)
+
 	endtask	
 		
 	virtual task post_body(); // body 태스크 실행 직후에 호출

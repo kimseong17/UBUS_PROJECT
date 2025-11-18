@@ -14,14 +14,21 @@ module my3_testbench_top;
     `include "../slave_vip/slave_driver.sv"
     `include "../slave_vip/slave_sequencer.sv"
     `include "../slave_vip/slave_agent.sv"
+
+    `include "../common_vip/ubus_virtual_sequencer.sv"
+
     
     `include "../common_vip/master_sequence.sv"
     `include "../common_vip/slave_sequence.sv"
     `include "../common_vip/ubus_master_write_word_seq.sv"
     `include "../common_vip/ubus_master_read_word_seq.sv"
-    `include "../common_vip/my3_vip_environment.sv"
+    `include "../common_vip/ubus_virtual_sequence.sv"
 
+    `include "../common_vip/my3_vip_environment.sv"
+    
+    `include "../common_vip/ubus_read_test.sv"
     `include "../common_vip/ubus_write_test.sv"
+    `include "../common_vip/ubus_virtual_sequence_test.sv"
 
     // Interface Instance
     ubus_if vif();

@@ -26,4 +26,9 @@ class slave_agent extends uvm_agent;
 		driver.seq_item_port.connect(sequencer.seq_item_export);
 		monitor.item_collected_port.connect(sequencer.request_fifo.analysis_export);		
 	endfunction
+
+	function void write(packet req);
+ 	 `uvm_info("SLV_SEQx", $sformatf("data=%p ,addr=%h, read=%0b, write=%0b, size=%0d",
+             req.data, req.addr, req.read, req.write, req.size), UVM_LOW)
+	endfunction
 endclass
