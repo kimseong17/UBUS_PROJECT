@@ -2,15 +2,17 @@
 # User Configurable Variables
 # ============================
 
-TEST_NAME ?= ubus_read_test
+TEST_NAME ?= ubus_virtual_sequence_test
 N_REPEAT ?= 4
 SEED ?= 
 
 UVM_VER = uvm-1.2
 
-SRC_PATH = /DATA/home/edu010/3team/ksy_common_vip/week4/common_vip
+SRC_PATH = /DATA/home/edu010/3team/ksy_common_vip/week5/common_vip
 TOP      = $(SRC_PATH)/my3_testbench_top.sv
-IF       = $(SRC_PATH)/ubus_if.sv
+IF       = $(SRC_PATH)/ubus_m_if.sv $(SRC_PATH)/ubus_s_if.sv
+
+DUT = $(SRC_PATH)/dummy_dut.sv
 
 LOG = simv.log
 
@@ -32,13 +34,13 @@ all: simv run
 # ============================
 
 simv:
-	vcs $(VCS_FLAGS) $(IF) $(TOP)
+	vcs $(VCS_FLAGS) $(IF) $(TOP) $(DUT) -o simv
 
 # ============================
 # Run Simulation
 # ============================
 
-run:
+run: simv
 	./simv +UVM_TESTNAME=$(TEST_NAME) +N_REPEAT=$(N_REPEAT) \
 	       +UVM_TR_RECORD +UVM_LOG_RECORD +UVM_VERDI_TRACE \
 	       -l $(LOG)
@@ -55,7 +57,7 @@ else
 RANDOM_OPT = +ntb_random_seed=$(SEED)
 endif
 
-random:
+random: simv
 	./simv +UVM_TESTNAME=$(TEST_NAME) +N_REPEAT=$(N_REPEAT) \
 	       $(RANDOM_OPT) +ntb_random_seed_verbose \
 	       +UVM_TR_RECORD +UVM_LOG_RECORD +UVM_VERDI_TRACE \

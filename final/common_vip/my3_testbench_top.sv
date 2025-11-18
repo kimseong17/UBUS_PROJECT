@@ -2,8 +2,10 @@ module my3_testbench_top;
     //`include "uvm_macros.svh" 
     import uvm_pkg::*;
     `include "../common_vip/packet.sv"
-    `include "../common_vip/ubus_scoreboard.sv"
-   
+    `include "../common_vip/ubus_scoreboard.sv"   
+    `include "../common_vip/slave_analysis_imp.sv"
+    `include "../common_vip/master_analysis_imp.sv"
+ 
     `include "../master_vip/master_monitor.sv"
     `include "../master_vip/master_driver.sv"
     `include "../master_vip/master_sequencer.sv"
@@ -14,21 +16,35 @@ module my3_testbench_top;
     `include "../slave_vip/slave_driver.sv"
     `include "../slave_vip/slave_sequencer.sv"
     `include "../slave_vip/slave_agent.sv"
+
+
+    `include "../common_vip/ubus_virtual_sequencer.sv"
+
     
     `include "../common_vip/master_sequence.sv"
     `include "../common_vip/slave_sequence.sv"
     `include "../common_vip/ubus_master_write_word_seq.sv"
     `include "../common_vip/ubus_master_read_word_seq.sv"
+    `include "../common_vip/ubus_virtual_sequence.sv"
+
     `include "../common_vip/my3_vip_environment.sv"
-    
+
     `include "../common_vip/ubus_read_test.sv"
     `include "../common_vip/ubus_write_test.sv"
+    `include "../common_vip/ubus_virtual_sequence_test.sv"
 
     // Interface Instance
-    ubus_if vif();
+    ubus_m_if m_vif();
+    ubus_s_if s_vif();
+
+    dummy_dut dut(
+	.m_vif(m_vif),
+	.s_vif(s_vif)
+	);
+
     // Clock Generation
-    initial vif.ubus_clock = 0;
-    always #5 vif.ubus_clock = ~vif.ubus_clock;
+    initial m_vif.ubus_clock = 0;
+    always #5 m_vif.ubus_clock = ~m_vif.ubus_clock;
 
     //uvm_config_db#(virtual ubus_if)::set(null,"*","vif",vif);
     // 구성요소: context, inst_name , field_name, vif
@@ -40,8 +56,8 @@ module my3_testbench_top;
 	$fsdbDumpfile("wave.fsdb");
 	$fsdbDumpvars(0, my3_testbench_top);
 	
-	uvm_config_db#(virtual ubus_if.MASTER)::set(null,"*","vif",vif.MASTER);
-	uvm_config_db#(virtual ubus_if.SLAVE)::set(null,"*","vif",vif.SLAVE);
+	uvm_config_db#(virtual ubus_m_if)::set(null,"uvm_test_top.env.m_agent*","vif",m_vif);
+	uvm_config_db#(virtual ubus_s_if)::set(null,"uvm_test_top.env.s_agent*","vif",s_vif);
         run_test();
 
         /*forever @(posedge vif.ubus_clock) begin
