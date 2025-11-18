@@ -22,11 +22,9 @@ class packet extends uvm_sequence_item;
                  end
     endfunction */
     constraint c_wait_state { wait_state.size() inside{[0:2]};}
-    //constraint c_data { data.size() inside{[0:8]};}
-    //constraint c_data { data.size() inside{8};}
+    constraint c_dir { (read ^ write) == 1; }
     constraint c_size { size inside{1,2,4,8};}
-    //constraint c_read { read == 0; }
-    //constraint c_write { write == 1; }
+
     // 메크로 세트 , UVM 클래스 등록 + 자동화
     `uvm_object_utils_begin(packet)  // UVM Factory에 class 등록 + 필드 자동화 (동적)
         `uvm_field_int(addr, UVM_DEFAULT) // 맴버를 UVM 시스템에 등록 => 자동화 , copy compare print etc 가능하게 해줌

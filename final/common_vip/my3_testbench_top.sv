@@ -19,6 +19,7 @@ module my3_testbench_top;
 
 
     `include "../common_vip/ubus_virtual_sequencer.sv"
+    `include "../common_vip/ubus_coverage.sv"
 
     
     `include "../common_vip/master_sequence.sv"
