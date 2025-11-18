@@ -8,6 +8,7 @@ class my3_vip_environment extends uvm_env;
 	ubus_virtual_sequencer virtual_sequencer;
 	master_analysis_imp master_imp;
 	slave_analysis_imp slave_imp;
+	ubus_coverage coverage;
 
 
 	// Create System //
@@ -30,6 +31,7 @@ class my3_vip_environment extends uvm_env;
 		master_imp = new("master_imp", scoreboard);
 		slave_imp = new("slave_imp", scoreboard);
 		virtual_sequencer= ubus_virtual_sequencer::type_id::create("virtual_sequencer",this);
+		coverage = ubus_coverage::type_id::create("coverage",this);
 		
 		
 
@@ -39,12 +41,13 @@ class my3_vip_environment extends uvm_env;
 	function void connect_phase(uvm_phase phase);
 		super.connect_phase(phase);
 		m_agent.monitor.item_collected_port.connect(master_imp);
-	        s_agent.monitor.item_collected_port.connect(slave_imp);	
+		m_agent.monitor.item_collected_port.connect(coverage.analysis_export);
+	    s_agent.monitor.item_collected_port.connect(slave_imp);	
+		s_agent.monitor.item_collected_port.connect(coverage.analysis_export);
 		virtual_sequencer.m_sequencer=m_agent.sequencer;
 		virtual_sequencer.s_sequencer=s_agent.sequencer;
 
 
-		//slave_agent.monitor.item_collected_port.connect(scoreboard.slave_export);
 
 	endfunction
 	
