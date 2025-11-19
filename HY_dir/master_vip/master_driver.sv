@@ -41,13 +41,19 @@ class master_driver extends uvm_driver #(ubus_transfer);
 		if (tr.write) begin
 			for (int i=0; i<tr.size; i++) begin
 				vif.data <= tr.data[i];
-				@(posedge vif.clk);
+				vif.bip  <= (i == tr.size-1) ? 0 : 1;
+				do @(posedge vif.clk); while(vif.wait_state != 0);
 			end
+		        vif.data <= 'z;
+			vif.bip  <= 'z;
 		end else if (tr.read) begin
 			for (int i=0; i<tr.size; i++) begin
-				@(posedge vif.clk);
+				vif.bip <= (i == tr.size-1) ? 0 : 1;
+				do @(posedge vif.clk); while (vif.wait_state != 0);
 				tr.data[i] = vif.data;
 			end
+			vif.bip <= 'z;
 		end
+		vif.wait_state <= 0;
 	endtask: drive_transfer
 endclass: master_driver
