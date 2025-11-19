@@ -9,7 +9,7 @@ class ubus_master_write_word_seq extends uvm_sequence #(ubus_transfer);
 	virtual task body();
 		ubus_transfer req;
 		`uvm_do_with(req, {
-			req.size == 2'b11;
+			req.size == 2'b10;
 			req.write == 1;
 			req.read == 0;
 			req.data.size() == 4;

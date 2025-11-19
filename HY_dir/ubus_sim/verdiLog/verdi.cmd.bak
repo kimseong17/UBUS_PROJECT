@@ -1,67 +1,17 @@
-verdiSetActWin -dock widgetDock_<Watch>
-debImport "ubus_test.fsdb"
+verdiSetActWin -dock widgetDock_<Message>
 wvCreateWindow
 wvSetPosition -win $_nWave2 {("G1" 0)}
 wvOpenFile -win $_nWave2 \
-           {/DATA/home/edu014/HY_UVM/HY_dir/ubus_sim/ubus_test.fsdb}
-verdiWindowResize -win $_Verdi_1 "8" "31" "1920" "1009"
+           {/DATA/home/ins007/UVM_PRJ/3team/HY_dir/ubus_sim/ubus_test.fsdb}
 verdiSetActWin -dock widgetDock_MTB_SOURCE_TAB_1
-debLoadSimResult /DATA/home/edu014/HY_UVM/HY_dir/ubus_sim/ubus_test.fsdb
-wvCreateWindow
-wvSetPosition -win $_nWave3 {("G1" 0)}
-wvOpenFile -win $_nWave3 \
-           {/DATA/home/edu014/HY_UVM/HY_dir/ubus_sim/ubus_test.fsdb}
-wvGetSignalOpen -win $_nWave3
-wvGetSignalSetScope -win $_nWave3 "/ubus_tb_top"
-wvSetPosition -win $_nWave3 {("G1" 10)}
-wvSetPosition -win $_nWave3 {("G1" 10)}
-wvAddSignal -win $_nWave3 -clear
-wvAddSignal -win $_nWave3 -group {"G1" \
-{/ubus_tb_top/vif/addr\[15:0\]} \
-{/ubus_tb_top/vif/bip} \
-{/ubus_tb_top/vif/clk} \
-{/ubus_tb_top/vif/data\[7:0\]} \
-{/ubus_tb_top/vif/error} \
-{/ubus_tb_top/vif/read} \
-{/ubus_tb_top/vif/rst} \
-{/ubus_tb_top/vif/size\[1:0\]} \
-{/ubus_tb_top/vif/wait_state} \
-{/ubus_tb_top/vif/write} \
-}
-wvAddSignal -win $_nWave3 -group {"G2" \
-}
-wvSelectSignal -win $_nWave3 {( "G1" 1 2 3 4 5 6 7 8 9 10 )} 
-wvSetPosition -win $_nWave3 {("G1" 10)}
-wvSetPosition -win $_nWave3 {("G1" 10)}
-wvSetPosition -win $_nWave3 {("G1" 10)}
-wvAddSignal -win $_nWave3 -clear
-wvAddSignal -win $_nWave3 -group {"G1" \
-{/ubus_tb_top/vif/addr\[15:0\]} \
-{/ubus_tb_top/vif/bip} \
-{/ubus_tb_top/vif/clk} \
-{/ubus_tb_top/vif/data\[7:0\]} \
-{/ubus_tb_top/vif/error} \
-{/ubus_tb_top/vif/read} \
-{/ubus_tb_top/vif/rst} \
-{/ubus_tb_top/vif/size\[1:0\]} \
-{/ubus_tb_top/vif/wait_state} \
-{/ubus_tb_top/vif/write} \
-}
-wvAddSignal -win $_nWave3 -group {"G2" \
-}
-wvSelectSignal -win $_nWave3 {( "G1" 1 2 3 4 5 6 7 8 9 10 )} 
-wvSetPosition -win $_nWave3 {("G1" 10)}
-wvGetSignalClose -win $_nWave3
-wvZoomAll -win $_nWave3
-wvZoomAll -win $_nWave3
-wvZoomIn -win $_nWave3
-wvZoomIn -win $_nWave3
-wvZoomIn -win $_nWave3
-wvSetCursor -win $_nWave3 19392.917369 -snap {("G1" 4)}
-wvSetCursor -win $_nWave3 35202.360877 -snap {("G1" 4)}
-verdiSetActWin -dock widgetDock_MTB_SOURCE_TAB_1
-verdiSetActWin -dock widgetDock_<Signal_List>
-verdiSetActWin -win $_nWave3
-verdiDockWidgetSetCurTab -dock windowDock_nWave_2
 verdiSetActWin -win $_nWave2
+wvAddAllSignals -win $_nWave2
+wvSelectSignal -win $_nWave2 {( "G1" 9 )} 
+wvSelectSignal -win $_nWave2 {( "G1" 10 )} 
+wvSelectSignal -win $_nWave2 {( "G1" 8 )} 
+wvSelectSignal -win $_nWave2 {( "G1" 4 )} 
+wvSelectSignal -win $_nWave2 {( "G1" 6 )} 
+wvSelectSignal -win $_nWave2 {( "G1" 7 )} 
+wvSelectSignal -win $_nWave2 {( "G1" 8 )} 
+wvSelectSignal -win $_nWave2 {( "G1" 9 )} 
 debExit
