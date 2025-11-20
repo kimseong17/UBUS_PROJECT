@@ -26,6 +26,9 @@ module my3_testbench_top;
     `include "../common_vip/slave_sequence.sv"
     `include "../common_vip/ubus_master_write_word_seq.sv"
     `include "../common_vip/ubus_master_read_word_seq.sv"
+    `include "../common_vip/ubus_master_write_random_size_seq.sv"
+    `include "../common_vip/ubus_master_read_random_size_seq.sv"
+    `include "../common_vip/pkg/sequence_pkg.sv"
     `include "../common_vip/ubus_virtual_sequence.sv"
 
     `include "../common_vip/my3_vip_environment.sv"

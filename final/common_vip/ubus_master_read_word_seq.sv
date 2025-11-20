@@ -1,9 +1,6 @@
 class ubus_master_read_word_seq extends uvm_sequence #(packet);
 	`uvm_object_utils(ubus_master_read_word_seq)
-	//`uvm_declare_p_sequencer(ubus_master_sequencer)
 	int n_repeat;
-	/*int rand_size;	
-	int burst_lookup[4] = {1,2,4,8};*/
 
 	function new(string name = "ubus_master_read_word_seq");
 		super.new(name);
@@ -31,6 +28,7 @@ class ubus_master_read_word_seq extends uvm_sequence #(packet);
 	packet req, rsp;
 	for(int i =0; i<n_repeat; i++) begin
 	req = packet::type_id::create("req");
+	rsp = packet::type_id::create("rsp");
 
 
 	req.addr='0+4*i;
@@ -56,13 +54,13 @@ class ubus_master_read_word_seq extends uvm_sequence #(packet);
 
 	endtask
 
-	virtual task post_body(); // body 태스크 실행 직후에 호출
+	/*virtual task post_body(); // body 태스크 실행 직후에 호출
         // body가 완료되면 objection을 내려 시뮬레이션이 종료될 수 있도록 합니다.
         	uvm_phase starting_phase = get_starting_phase();
        		if (starting_phase != null) begin
             		starting_phase.drop_objection(this);
         	end
-    	endtask
+    	endtask*/
 
 	
 
