@@ -1,26 +1,88 @@
-# UVM Testbench Project using UBUS Protocol
+# UBUS VIP (Verification IP) Project
 
-### 프로젝트 개요
-이 프로젝트는 UBUS 프로토콜을 이용하여 UVM 기반의 테스트벤치를 생성하는 것을 목표로 합니다.
-주요 목적은 다양한 환경에서 DUT (Design Under Test)를 효과적으로 검증하는 것입니다.
+## 1. 프로젝트 개요
+이 프로젝트는 UBUS 프로토콜을 위한 UVM(Universal Verification Methodology) 기반의 검증 IP(VIP)를 구현합니다.
+본 VIP는 UBUS Master 및 Slave Agent를 포함하고 있어, UBUS 프로토콜을 사용하는 다양한 DUT(Design Under Test)를 효과적으로 검증할 수 있는 환경을 제공합니다.
 
-### 컴파일 및 시뮬레이션 실행 방법
-아래 명령어를 통해 프로젝트를 컴파일하고 시뮬레이션을 실행할 수 있습니다.
+## 2. 디렉토리 구조
 
-* 컴파일 & 시뮬레이션 실행 방법  
-make random TEST= N_REPEAT= SEED=?
-ex) make random TEST=UBUS_WRITE_TEST N_REPEAT=6
-(기본설정은 UBUS_READ_TEST , N_REPEAT= 4, SEED=자동)
+```bash
+3TEAM_vip/
+├── common_vip/
+│ ├── my3_testbench_top.sv
+│ ├── my3_vip_environment.sv
+│ ├── packet.sv
+│ ├── ubus_if.sv
+│ ├── ubus_m_if.sv
+│ ├── ubus_s_if.sv
+│ ├── dummy_dut.sv
+│ ├── ubus_scoreboard.sv
+│ ├── ubus_virtual_sequence.sv
+│ ├── ubus_virtual_sequencer.sv
+│ ├── ubus_coverage.sv
+│ ├── ubus_test_collection.sv
+│ ├── ubus_write_test.sv
+│ ├── ubus_read_test.sv
+│ ├── my3_vip_slave_test.sv
+│ ├── ubus_virtual_seqeunce_test.sv
+│ └──
+├── master_vip/
+│ ├── master_agent.sv
+│ ├── master_driver.sv
+│ ├── master_monitor.sv
+│ ├── master_sequence.sv
+│ ├── master_sequencer.sv
+│ ├── master_env.sv (not in the final directory)
+│ └── (master related seqeunces)
+├── slave_vip/
+│ ├── slave_agent.sv
+│ ├── slave_driver.sv
+│ ├── slave_monitor.sv
+│ ├── slave_sequence.sv (in the common_vip)
+│ ├── slave_sequencer.sv
+│ ├── slave_env.sv (not in the final directory)
+│ └── (slave related seqeunces)
+├── common_sim/
+│ ├── Makefile
+│ ├── simv.log
+│ ├── ubus_coverage_report.txt
+│ └── wave.fsdb
+└── README.md
+```
 
-* 클린 방법
-make clean
+  
 
-* 파형 디버깅
-make verdi
+- **`common_vip/`**: UBUS Master/Slave VIP의 UVM 컴포넌트 소스 코드가 위치합니다.
 
-### UVM 클래스 구조
-아래 이미지는 프로젝트에서 사용되는 UVM 클래스 구조의 다이어그램입니다.
+- **`tb/`**: 테스트벤치 실행을 위한 스크립트 및 로그 파일이 위치합니다.
 
-* ![UVM_CLASS_DIAGRAM](http://192.168.0.51:8080/uvm_tb_project/git_test/-/blob/main/README.md?ref_type=heads)
- 
----
+  
+
+## 3. 컴파일 및 시뮬레이션 실행 방법
+`sim` 디렉토리로 이동하여 `make` 명령어를 실행합니다.
+
+```bash
+# 1. tb 디렉토리로 이동
+cd common_sim/
+
+# 2. make 명령어 실행
+make
+```
+
+## 4. 주차별 프로젝트 진행도
+| 주차  | 주제                                                    |
+| --- | ----------------------------------------------------- |
+| 1주차 | UBUS Interface Overview, VIP 구조 설계                    |
+| 2주차 | Test, Environment 작성, Transaction 구현                  |
+| 3주차 | Master agent, Slave agent 구현, Sequence Implementation |
+| 4주차 | System Environment Integration (Master & Slave)       |
+| 5주차 | Driving the System Environment with Virtual Sequence  |
+| 6주차 | Functional Coverage                                   |
+
+## 5. Test Collection
+
+
+## 6. Sequence List
+
+
+## 7. Coverage

@@ -44,11 +44,20 @@ class master_monitor extends uvm_monitor;
 				req.read 	= vif.ubus_read;
 				req.write 	= vif.ubus_write;
 				req.data 	= new[req.size];
+
+				if (req.write) begin
+					for(int i = 0; i < req.size; i++) begin
+						@(posedge vif.ubus_clock);
+						while (vif.ubus_wait != 0) @(posedge vif.ubus_clock);)
+						req.data[i] = vif.ubus_data;
+					end
+				end
 				for (int i = 0; i < req.size; i++) begin
 					while (vif.ubus_wait != 0) @(posedge vif.ubus_clock);
 					req.data[i] = vif.ubus_data;
 				end
 				item_collected_port.write(req);
+				`uvm_info("MST_MON",  $sformatf("WRITE : addr = 0x%0h , size = %0d, data = %0p" , req.addr, req.size, req.data), UVM_MEDIUM)
 			end
 		end
 		`uvm_info("MST_MON", "Run Phase Check", UVM_MEDIUM)
