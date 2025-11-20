@@ -1,0 +1,8 @@
+verdiSetActWin -dock widgetDock_<Message>
+simSetSimulator "-vcssv" -exec "simv" -args
+debImport "-dbdir" "simv.daidir"
+wvCreateWindow
+wvOpenFile -win $_nWave2 \
+           {/DATA/home/edu010/UVM_test/UVM_TB/missions/mission_1/sim/verilog_sim.fsdb}
+verdiSetActWin -dock widgetDock_MTB_SOURCE_TAB_1
+debExit

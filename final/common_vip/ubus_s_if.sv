@@ -3,7 +3,7 @@ interface ubus_s_if;
 	logic ubus_clock;
 	logic ubus_reset;
 	logic [15:0] ubus_addr;
-	logic [1:0] ubus_size;
+	logic [2:0] ubus_size;
 	logic ubus_read;
 	logic ubus_write;
 	logic ubus_bip;
