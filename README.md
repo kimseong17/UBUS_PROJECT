@@ -6,49 +6,51 @@
 
 ## 2. 디렉토리 구조
 
-```bash
+
+<pre>
 3TEAM_vip/
-├── common_vip/
+├── common_vip/</span>
 │ ├── my3_testbench_top.sv
 │ ├── my3_vip_environment.sv
 │ ├── packet.sv
-│ ├── ubus_if.sv
-│ ├── ubus_m_if.sv
-│ ├── ubus_s_if.sv
+│ ├── ananlysis_imp
+│ │ ├── master_analysis_imp.sv
+│ │ └── slave_analysis_imp.sv
+│ ├── covereage_seq
+│ ├── ubus_if/
+│ │ ├── ubus_m_if.sv
+│ │ └── ubus_s_if.sv
 │ ├── dummy_dut.sv
 │ ├── ubus_scoreboard.sv
 │ ├── ubus_virtual_sequence.sv
 │ ├── ubus_virtual_sequencer.sv
 │ ├── ubus_coverage.sv
-│ ├── ubus_test_collection.sv
-│ ├── ubus_write_test.sv
-│ ├── ubus_read_test.sv
-│ ├── my3_vip_slave_test.sv
-│ ├── ubus_virtual_seqeunce_test.sv
-│ └──
+│ └── ubus_virtual_sequence_test.sv
+│
 ├── master_vip/
 │ ├── master_agent.sv
 │ ├── master_driver.sv
 │ ├── master_monitor.sv
-│ ├── master_sequence.sv
 │ ├── master_sequencer.sv
-│ ├── master_env.sv (not in the final directory)
-│ └── (master related seqeunces)
+│ └── master_seq/
+│   ├── ubus_master_write_word_seq.sv
+│   ├── ubus_master_read_word_seq.sv
+│   ├── ubus_master_write_random_size_seq.sv
+│   └── ubus_master_read_random_size_seq.sv
+│ 
 ├── slave_vip/
 │ ├── slave_agent.sv
 │ ├── slave_driver.sv
 │ ├── slave_monitor.sv
-│ ├── slave_sequence.sv (in the common_vip)
-│ ├── slave_sequencer.sv
-│ ├── slave_env.sv (not in the final directory)
-│ └── (slave related seqeunces)
+│ ├── slave_sequencer.sv 
+│ └── slave_sequence.sv
+│
 ├── common_sim/
-│ ├── Makefile
-│ ├── simv.log
-│ ├── ubus_coverage_report.txt
-│ └── wave.fsdb
+│ └── Makefile
+│
 └── README.md
-```
+</pre>
+
 
   
 
