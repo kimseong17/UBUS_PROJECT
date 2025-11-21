@@ -31,8 +31,7 @@ class master_monitor extends uvm_monitor;
 		
 		forever begin
 		@(posedge vif.ubus_clock); 
-			//req = packet::type_id::create("req");
-			//if ((vif.ubus_read || vif.ubus_write) && vif.ubus_wait==0 && vif.ubus_data !== 'z && vif.ubus_data !== 'x ) begin
+
 			if (vif.ubus_read) begin
 				req = packet::type_id::create("req");
 				case (vif.ubus_size)

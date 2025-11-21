@@ -1,0 +1,472 @@
+Group : my3_testbench_top::cov_trans
+
+===============================================================================
+Group : my3_testbench_top::cov_trans
+===============================================================================
+SCORE  INSTANCES WEIGHT GOAL   AT LEAST PER INSTANCE AUTO BIN MAX PRINT MISSING 
+ 66.25  66.25    1      100    1        1            64           64            
+
+
+Source File(s) : 
+
+/DATA/home/edu010/3team/ksy_common_vip/week5/common_sim/../common_vip/ubus_coverage.sv
+
+1 Instances:
+
+SCORE  WEIGHT GOAL   AT LEAST AUTO BIN MAX PRINT MISSING NAME       
+ 66.25 1      100    1        64           64            m_trans_cg 
+
+
+
+
+-------------------------------------------------------------------------------
+
+Summary for Group   my3_testbench_top::cov_trans
+
+
+
+CATEGORY  EXPECTED UNCOVERED COVERED PERCENT 
+Variables 24       9         15      81.25   
+Crosses   128      120       8       6.25    
+
+
+Variables for Group  my3_testbench_top::cov_trans
+
+
+VARIABLE         EXPECTED UNCOVERED COVERED PERCENT GOAL WEIGHT AT LEAST AUTO BIN MAX COMMENT 
+trans_addr       16       8         8       50.00   100  1      1        16                   
+trans_dir        2        0         2       100.00  100  1      1        0                    
+trans_size       4        1         3       75.00   100  1      1        0                    
+trans_wait_state 2        0         2       100.00  100  1      1        0                    
+
+
+Crosses for Group  my3_testbench_top::cov_trans
+
+
+CROSS              EXPECTED UNCOVERED COVERED PERCENT GOAL WEIGHT AT LEAST PRINT MISSING COMMENT 
+trans_addrDirXSize 128      120       8       6.25    100  1      1        0                     
+
+
+-------------------------------------------------------------------------------
+
+Summary for Variable trans_addr
+
+
+CATEGORY                     EXPECTED UNCOVERED COVERED PERCENT 
+Automatically Generated Bins 16       8         8       50.00   
+
+
+Decompressed uncovered bins for trans_addr
+
+NAME              COUNT AT LEAST 
+auto[4096:8191]   0     1        
+auto[8192:12287]  0     1        
+auto[16384:20479] 0     1        
+auto[20480:24575] 0     1        
+auto[32768:36863] 0     1        
+auto[45056:49151] 0     1        
+auto[49152:53247] 0     1        
+auto[53248:57343] 0     1        
+
+
+-------------------------------------------------------------------------------
+
+Summary for Variable trans_dir
+
+
+CATEGORY          EXPECTED UNCOVERED COVERED PERCENT 
+User Defined Bins 2        0         2       100.00  
+
+
+-------------------------------------------------------------------------------
+
+Summary for Variable trans_size
+
+
+CATEGORY          EXPECTED UNCOVERED COVERED PERCENT 
+User Defined Bins 4        1         3       75.00   
+
+
+Decompressed uncovered bins for trans_size
+
+NAME    COUNT AT LEAST 
+sizes_8 0     1        
+
+
+-------------------------------------------------------------------------------
+
+Summary for Variable trans_wait_state
+
+
+CATEGORY          EXPECTED UNCOVERED COVERED PERCENT 
+User Defined Bins 2        0         2       100.00  
+
+
+-------------------------------------------------------------------------------
+
+Summary for Cross trans_addrDirXSize
+
+
+Samples crossed: trans_addr trans_dir trans_size
+CATEGORY                           EXPECTED UNCOVERED COVERED PERCENT MISSING 
+Automatically Generated Cross Bins 128      120       8       6.25    120     
+
+
+Decompressed uncovered bins for trans_addrDirXSize
+
+trans_addr        trans_dir trans_size COUNT AT LEAST 
+auto[0:4095]      WRITE     sizes_1    0     1        
+auto[0:4095]      WRITE     sizes_2    0     1        
+auto[0:4095]      WRITE     sizes_4    0     1        
+auto[0:4095]      WRITE     sizes_8    0     1        
+auto[0:4095]      READ      sizes_1    0     1        
+auto[0:4095]      READ      sizes_2    0     1        
+auto[0:4095]      READ      sizes_8    0     1        
+auto[4096:8191]   WRITE     sizes_1    0     1        
+auto[4096:8191]   WRITE     sizes_2    0     1        
+auto[4096:8191]   WRITE     sizes_4    0     1        
+auto[4096:8191]   WRITE     sizes_8    0     1        
+auto[4096:8191]   READ      sizes_1    0     1        
+auto[4096:8191]   READ      sizes_2    0     1        
+auto[4096:8191]   READ      sizes_4    0     1        
+auto[4096:8191]   READ      sizes_8    0     1        
+auto[8192:12287]  WRITE     sizes_1    0     1        
+auto[8192:12287]  WRITE     sizes_2    0     1        
+auto[8192:12287]  WRITE     sizes_4    0     1        
+auto[8192:12287]  WRITE     sizes_8    0     1        
+auto[8192:12287]  READ      sizes_1    0     1        
+auto[8192:12287]  READ      sizes_2    0     1        
+auto[8192:12287]  READ      sizes_4    0     1        
+auto[8192:12287]  READ      sizes_8    0     1        
+auto[12288:16383] WRITE     sizes_1    0     1        
+auto[12288:16383] WRITE     sizes_2    0     1        
+auto[12288:16383] WRITE     sizes_4    0     1        
+auto[12288:16383] WRITE     sizes_8    0     1        
+auto[12288:16383] READ      sizes_2    0     1        
+auto[12288:16383] READ      sizes_4    0     1        
+auto[12288:16383] READ      sizes_8    0     1        
+auto[16384:20479] WRITE     sizes_1    0     1        
+auto[16384:20479] WRITE     sizes_2    0     1        
+auto[16384:20479] WRITE     sizes_4    0     1        
+auto[16384:20479] WRITE     sizes_8    0     1        
+auto[16384:20479] READ      sizes_1    0     1        
+auto[16384:20479] READ      sizes_2    0     1        
+auto[16384:20479] READ      sizes_4    0     1        
+auto[16384:20479] READ      sizes_8    0     1        
+auto[20480:24575] WRITE     sizes_1    0     1        
+auto[20480:24575] WRITE     sizes_2    0     1        
+auto[20480:24575] WRITE     sizes_4    0     1        
+auto[20480:24575] WRITE     sizes_8    0     1        
+auto[20480:24575] READ      sizes_1    0     1        
+auto[20480:24575] READ      sizes_2    0     1        
+auto[20480:24575] READ      sizes_4    0     1        
+auto[20480:24575] READ      sizes_8    0     1        
+auto[24576:28671] WRITE     sizes_1    0     1        
+auto[24576:28671] WRITE     sizes_2    0     1        
+auto[24576:28671] WRITE     sizes_4    0     1        
+auto[24576:28671] WRITE     sizes_8    0     1        
+auto[24576:28671] READ      sizes_1    0     1        
+auto[24576:28671] READ      sizes_4    0     1        
+auto[24576:28671] READ      sizes_8    0     1        
+auto[28672:32767] WRITE     sizes_1    0     1        
+auto[28672:32767] WRITE     sizes_2    0     1        
+auto[28672:32767] WRITE     sizes_4    0     1        
+auto[28672:32767] WRITE     sizes_8    0     1        
+auto[28672:32767] READ      sizes_2    0     1        
+auto[28672:32767] READ      sizes_4    0     1        
+auto[28672:32767] READ      sizes_8    0     1        
+auto[32768:36863] WRITE     sizes_1    0     1        
+auto[32768:36863] WRITE     sizes_2    0     1        
+auto[32768:36863] WRITE     sizes_4    0     1        
+auto[32768:36863] WRITE     sizes_8    0     1        
+auto[32768:36863] READ      sizes_1    0     1        
+auto[32768:36863] READ      sizes_2    0     1        
+auto[32768:36863] READ      sizes_4    0     1        
+auto[32768:36863] READ      sizes_8    0     1        
+auto[36864:40959] WRITE     sizes_2    0     1        
+auto[36864:40959] WRITE     sizes_4    0     1        
+auto[36864:40959] WRITE     sizes_8    0     1        
+auto[36864:40959] READ      sizes_1    0     1        
+auto[36864:40959] READ      sizes_2    0     1        
+auto[36864:40959] READ      sizes_4    0     1        
+auto[36864:40959] READ      sizes_8    0     1        
+auto[40960:45055] WRITE     sizes_1    0     1        
+auto[40960:45055] WRITE     sizes_2    0     1        
+auto[40960:45055] WRITE     sizes_8    0     1        
+auto[40960:45055] READ      sizes_1    0     1        
+auto[40960:45055] READ      sizes_2    0     1        
+auto[40960:45055] READ      sizes_4    0     1        
+auto[40960:45055] READ      sizes_8    0     1        
+auto[45056:49151] WRITE     sizes_1    0     1        
+auto[45056:49151] WRITE     sizes_2    0     1        
+auto[45056:49151] WRITE     sizes_4    0     1        
+auto[45056:49151] WRITE     sizes_8    0     1        
+auto[45056:49151] READ      sizes_1    0     1        
+auto[45056:49151] READ      sizes_2    0     1        
+auto[45056:49151] READ      sizes_4    0     1        
+auto[45056:49151] READ      sizes_8    0     1        
+auto[49152:53247] WRITE     sizes_1    0     1        
+auto[49152:53247] WRITE     sizes_2    0     1        
+auto[49152:53247] WRITE     sizes_4    0     1        
+auto[49152:53247] WRITE     sizes_8    0     1        
+auto[49152:53247] READ      sizes_1    0     1        
+auto[49152:53247] READ      sizes_2    0     1        
+auto[49152:53247] READ      sizes_4    0     1        
+auto[49152:53247] READ      sizes_8    0     1        
+auto[53248:57343] WRITE     sizes_1    0     1        
+auto[53248:57343] WRITE     sizes_2    0     1        
+auto[53248:57343] WRITE     sizes_4    0     1        
+auto[53248:57343] WRITE     sizes_8    0     1        
+auto[53248:57343] READ      sizes_1    0     1        
+auto[53248:57343] READ      sizes_2    0     1        
+auto[53248:57343] READ      sizes_4    0     1        
+auto[53248:57343] READ      sizes_8    0     1        
+auto[57344:61439] WRITE     sizes_2    0     1        
+auto[57344:61439] WRITE     sizes_4    0     1        
+auto[57344:61439] WRITE     sizes_8    0     1        
+auto[57344:61439] READ      sizes_1    0     1        
+auto[57344:61439] READ      sizes_2    0     1        
+auto[57344:61439] READ      sizes_4    0     1        
+auto[57344:61439] READ      sizes_8    0     1        
+auto[61440:65535] WRITE     sizes_1    0     1        
+auto[61440:65535] WRITE     sizes_2    0     1        
+auto[61440:65535] WRITE     sizes_8    0     1        
+auto[61440:65535] READ      sizes_1    0     1        
+auto[61440:65535] READ      sizes_2    0     1        
+auto[61440:65535] READ      sizes_4    0     1        
+auto[61440:65535] READ      sizes_8    0     1        
+
+
+-------------------------------------------------------------------------------
+===============================================================================
+Group Instance : m_trans_cg
+===============================================================================
+SCORE  WEIGHT GOAL   AT LEAST AUTO BIN MAX PRINT MISSING 
+ 66.25 1      100    1        64           64            
+
+
+Group:
+
+SCORE  INSTANCES WEIGHT GOAL   AT LEAST PER INSTANCE AUTO BIN MAX PRINT MISSING COMMENT NAME                         
+ 66.25  66.25    1      100    1        1            64           64                    my3_testbench_top::cov_trans 
+
+
+
+-------------------------------------------------------------------------------
+
+Summary for Group Instance   m_trans_cg
+
+
+
+CATEGORY  EXPECTED UNCOVERED COVERED PERCENT 
+Variables 24       9         15      81.25   
+Crosses   128      120       8       6.25    
+
+
+Variables for Group Instance  m_trans_cg
+
+
+VARIABLE         EXPECTED UNCOVERED COVERED PERCENT GOAL WEIGHT AT LEAST AUTO BIN MAX COMMENT 
+trans_addr       16       8         8       50.00   100  1      1        16                   
+trans_dir        2        0         2       100.00  100  1      1        0                    
+trans_size       4        1         3       75.00   100  1      1        0                    
+trans_wait_state 2        0         2       100.00  100  1      1        0                    
+
+
+Crosses for Group Instance  m_trans_cg
+
+
+CROSS              EXPECTED UNCOVERED COVERED PERCENT GOAL WEIGHT AT LEAST PRINT MISSING COMMENT 
+trans_addrDirXSize 128      120       8       6.25    100  1      1        0                     
+
+
+-------------------------------------------------------------------------------
+
+Summary for Variable trans_addr
+
+
+CATEGORY                     EXPECTED UNCOVERED COVERED PERCENT 
+Automatically Generated Bins 16       8         8       50.00   
+
+
+Decompressed uncovered bins for trans_addr
+
+NAME              COUNT AT LEAST 
+auto[4096:8191]   0     1        
+auto[8192:12287]  0     1        
+auto[16384:20479] 0     1        
+auto[20480:24575] 0     1        
+auto[32768:36863] 0     1        
+auto[45056:49151] 0     1        
+auto[49152:53247] 0     1        
+auto[53248:57343] 0     1        
+
+
+-------------------------------------------------------------------------------
+
+Summary for Variable trans_dir
+
+
+CATEGORY          EXPECTED UNCOVERED COVERED PERCENT 
+User Defined Bins 2        0         2       100.00  
+
+
+-------------------------------------------------------------------------------
+
+Summary for Variable trans_size
+
+
+CATEGORY          EXPECTED UNCOVERED COVERED PERCENT 
+User Defined Bins 4        1         3       75.00   
+
+
+Decompressed uncovered bins for trans_size
+
+NAME    COUNT AT LEAST 
+sizes_8 0     1        
+
+
+-------------------------------------------------------------------------------
+
+Summary for Variable trans_wait_state
+
+
+CATEGORY          EXPECTED UNCOVERED COVERED PERCENT 
+User Defined Bins 2        0         2       100.00  
+
+
+-------------------------------------------------------------------------------
+
+Summary for Cross trans_addrDirXSize
+
+
+Samples crossed: trans_addr trans_dir trans_size
+CATEGORY                           EXPECTED UNCOVERED COVERED PERCENT MISSING 
+Automatically Generated Cross Bins 128      120       8       6.25    120     
+
+
+Decompressed uncovered bins for trans_addrDirXSize
+
+trans_addr        trans_dir trans_size COUNT AT LEAST 
+auto[0:4095]      WRITE     sizes_1    0     1        
+auto[0:4095]      WRITE     sizes_2    0     1        
+auto[0:4095]      WRITE     sizes_4    0     1        
+auto[0:4095]      WRITE     sizes_8    0     1        
+auto[0:4095]      READ      sizes_1    0     1        
+auto[0:4095]      READ      sizes_2    0     1        
+auto[0:4095]      READ      sizes_8    0     1        
+auto[4096:8191]   WRITE     sizes_1    0     1        
+auto[4096:8191]   WRITE     sizes_2    0     1        
+auto[4096:8191]   WRITE     sizes_4    0     1        
+auto[4096:8191]   WRITE     sizes_8    0     1        
+auto[4096:8191]   READ      sizes_1    0     1        
+auto[4096:8191]   READ      sizes_2    0     1        
+auto[4096:8191]   READ      sizes_4    0     1        
+auto[4096:8191]   READ      sizes_8    0     1        
+auto[8192:12287]  WRITE     sizes_1    0     1        
+auto[8192:12287]  WRITE     sizes_2    0     1        
+auto[8192:12287]  WRITE     sizes_4    0     1        
+auto[8192:12287]  WRITE     sizes_8    0     1        
+auto[8192:12287]  READ      sizes_1    0     1        
+auto[8192:12287]  READ      sizes_2    0     1        
+auto[8192:12287]  READ      sizes_4    0     1        
+auto[8192:12287]  READ      sizes_8    0     1        
+auto[12288:16383] WRITE     sizes_1    0     1        
+auto[12288:16383] WRITE     sizes_2    0     1        
+auto[12288:16383] WRITE     sizes_4    0     1        
+auto[12288:16383] WRITE     sizes_8    0     1        
+auto[12288:16383] READ      sizes_2    0     1        
+auto[12288:16383] READ      sizes_4    0     1        
+auto[12288:16383] READ      sizes_8    0     1        
+auto[16384:20479] WRITE     sizes_1    0     1        
+auto[16384:20479] WRITE     sizes_2    0     1        
+auto[16384:20479] WRITE     sizes_4    0     1        
+auto[16384:20479] WRITE     sizes_8    0     1        
+auto[16384:20479] READ      sizes_1    0     1        
+auto[16384:20479] READ      sizes_2    0     1        
+auto[16384:20479] READ      sizes_4    0     1        
+auto[16384:20479] READ      sizes_8    0     1        
+auto[20480:24575] WRITE     sizes_1    0     1        
+auto[20480:24575] WRITE     sizes_2    0     1        
+auto[20480:24575] WRITE     sizes_4    0     1        
+auto[20480:24575] WRITE     sizes_8    0     1        
+auto[20480:24575] READ      sizes_1    0     1        
+auto[20480:24575] READ      sizes_2    0     1        
+auto[20480:24575] READ      sizes_4    0     1        
+auto[20480:24575] READ      sizes_8    0     1        
+auto[24576:28671] WRITE     sizes_1    0     1        
+auto[24576:28671] WRITE     sizes_2    0     1        
+auto[24576:28671] WRITE     sizes_4    0     1        
+auto[24576:28671] WRITE     sizes_8    0     1        
+auto[24576:28671] READ      sizes_1    0     1        
+auto[24576:28671] READ      sizes_4    0     1        
+auto[24576:28671] READ      sizes_8    0     1        
+auto[28672:32767] WRITE     sizes_1    0     1        
+auto[28672:32767] WRITE     sizes_2    0     1        
+auto[28672:32767] WRITE     sizes_4    0     1        
+auto[28672:32767] WRITE     sizes_8    0     1        
+auto[28672:32767] READ      sizes_2    0     1        
+auto[28672:32767] READ      sizes_4    0     1        
+auto[28672:32767] READ      sizes_8    0     1        
+auto[32768:36863] WRITE     sizes_1    0     1        
+auto[32768:36863] WRITE     sizes_2    0     1        
+auto[32768:36863] WRITE     sizes_4    0     1        
+auto[32768:36863] WRITE     sizes_8    0     1        
+auto[32768:36863] READ      sizes_1    0     1        
+auto[32768:36863] READ      sizes_2    0     1        
+auto[32768:36863] READ      sizes_4    0     1        
+auto[32768:36863] READ      sizes_8    0     1        
+auto[36864:40959] WRITE     sizes_2    0     1        
+auto[36864:40959] WRITE     sizes_4    0     1        
+auto[36864:40959] WRITE     sizes_8    0     1        
+auto[36864:40959] READ      sizes_1    0     1        
+auto[36864:40959] READ      sizes_2    0     1        
+auto[36864:40959] READ      sizes_4    0     1        
+auto[36864:40959] READ      sizes_8    0     1        
+auto[40960:45055] WRITE     sizes_1    0     1        
+auto[40960:45055] WRITE     sizes_2    0     1        
+auto[40960:45055] WRITE     sizes_8    0     1        
+auto[40960:45055] READ      sizes_1    0     1        
+auto[40960:45055] READ      sizes_2    0     1        
+auto[40960:45055] READ      sizes_4    0     1        
+auto[40960:45055] READ      sizes_8    0     1        
+auto[45056:49151] WRITE     sizes_1    0     1        
+auto[45056:49151] WRITE     sizes_2    0     1        
+auto[45056:49151] WRITE     sizes_4    0     1        
+auto[45056:49151] WRITE     sizes_8    0     1        
+auto[45056:49151] READ      sizes_1    0     1        
+auto[45056:49151] READ      sizes_2    0     1        
+auto[45056:49151] READ      sizes_4    0     1        
+auto[45056:49151] READ      sizes_8    0     1        
+auto[49152:53247] WRITE     sizes_1    0     1        
+auto[49152:53247] WRITE     sizes_2    0     1        
+auto[49152:53247] WRITE     sizes_4    0     1        
+auto[49152:53247] WRITE     sizes_8    0     1        
+auto[49152:53247] READ      sizes_1    0     1        
+auto[49152:53247] READ      sizes_2    0     1        
+auto[49152:53247] READ      sizes_4    0     1        
+auto[49152:53247] READ      sizes_8    0     1        
+auto[53248:57343] WRITE     sizes_1    0     1        
+auto[53248:57343] WRITE     sizes_2    0     1        
+auto[53248:57343] WRITE     sizes_4    0     1        
+auto[53248:57343] WRITE     sizes_8    0     1        
+auto[53248:57343] READ      sizes_1    0     1        
+auto[53248:57343] READ      sizes_2    0     1        
+auto[53248:57343] READ      sizes_4    0     1        
+auto[53248:57343] READ      sizes_8    0     1        
+auto[57344:61439] WRITE     sizes_2    0     1        
+auto[57344:61439] WRITE     sizes_4    0     1        
+auto[57344:61439] WRITE     sizes_8    0     1        
+auto[57344:61439] READ      sizes_1    0     1        
+auto[57344:61439] READ      sizes_2    0     1        
+auto[57344:61439] READ      sizes_4    0     1        
+auto[57344:61439] READ      sizes_8    0     1        
+auto[61440:65535] WRITE     sizes_1    0     1        
+auto[61440:65535] WRITE     sizes_2    0     1        
+auto[61440:65535] WRITE     sizes_8    0     1        
+auto[61440:65535] READ      sizes_1    0     1        
+auto[61440:65535] READ      sizes_2    0     1        
+auto[61440:65535] READ      sizes_4    0     1        
+auto[61440:65535] READ      sizes_8    0     1        
+
+

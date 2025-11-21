@@ -23,9 +23,6 @@ class master_driver extends uvm_driver #(packet);
 		forever begin
 			seq_item_port.get_next_item(tr);
 			drive_transfer(tr);
-			//`uvm_info("DRIVER",$sformatf("Driving new transaction : %s" , tr.sprint()) , UVM_LOW)
-			//`uvm_info("DRIVER", $sformatf("addr=%-1h read=%0b write=%0b size=%0d data=%0p wait=%p error=%0b", tr.addr, tr.read, tr.write, tr.size, tr.data, tr.wait_state, tr.error), UVM_LOW);
-
 			seq_item_port.item_done(tr);
 		end
 	endtask
@@ -43,66 +40,70 @@ class master_driver extends uvm_driver #(packet);
 					(tr.size ==8) ? 2'b11:2'b00;
 			vif.ubus_bip <= 0;
 	
-			if(tr.write) begin
 
+
+
+
+
+			if(tr.write) begin
+			@(posedge vif.ubus_clock);				
+				vif.ubus_size <= 'z;
+				vif.ubus_read <= 'z;
+				vif.ubus_write <= 'z;	
+				vif.ubus_data <= tr.data[0];
+				vif.ubus_bip <= 0;
+				vif.ubus_addr <= 'z;
+
+			wait(vif.ubus_wait==0);
 				for (int i =0; i<tr.size; i++) begin
-					//do @(posedge vif.ubus_clock); while(vif.ubus_wait==1'bx ||vif.ubus_wait ==1);
-					//vif.ubus_bip <= 1;
-					@(posedge vif.ubus_clock);
+
+
 					vif.ubus_size <= 'z;
 					vif.ubus_read <= 'z;
 					vif.ubus_write <= 'z;	
 					vif.ubus_data <= tr.data[i];
 					vif.ubus_bip <= 1;
 					vif.ubus_addr <= 'z;
-					`uvm_info("Master_DRIVER_write",$sformatf("data=%h,addr=%h, read=%0b, write=%0b, size=%0d",tr.data[i], tr.addr, tr.read, tr.write , tr.size),UVM_LOW)
+
 					
 					if (i==tr.size-1) vif.ubus_bip <=0;	
-					//`uvm_info("Master_DRIVER_write",$sformatf("data=%h,addr=%h, read=%0b, write=%0b, size=%0d",tr.data[i], tr.addr+i, tr.read, tr.write , tr.size),UVM_LOW)	
-					//@(posedge vif.ubus_clock);		
-					end
 					@(posedge vif.ubus_clock);
-			//`uvm_info("Master_DRIVER_write",$sformatf("data=%0h,addr=%h, read=%0b, write=%0b, size=%0d",vif.ubus_data, vif.ubus_addr, vif.ubus_read, vif.ubus_write , vif.ubus_size),UVM_LOW)
+					end
+					`uvm_info("MSTR_DRV_write",$sformatf("data=%p,addr=%h, read=%0b, write=%0b, size=%0d",tr.data, tr.addr, tr.read, tr.write , tr.size),UVM_LOW)
+					
+
+
+
 				vif.ubus_size <= 'z;
 				vif.ubus_addr <= 'z;
 				vif.ubus_data <= 'z;
 				vif.ubus_write <= 'z;
 				vif.ubus_read <= 'z;
 				vif.ubus_bip <= 0;
-			end else if (tr.read) begin
-				//for (int i =0; i<tr.size; i++) begin
-				@(posedge vif.ubus_clock)
-					vif.ubus_addr <= 'z;
-					vif.ubus_write <= 'z;
-					vif.ubus_read <= 'z;
-					vif.ubus_size <= 'z;
+				@(posedge vif.ubus_clock);
 
-				for (int i=0; i<tr.size; i++) begin
-					@(posedge vif.ubus_clock);
-						tr.data[i] = vif.ubus_data;
-						vif.ubus_bip <= (i == tr.size - 1 ) ? 0 : 1;
-				end
+			end else if (tr.read) begin
+				vif.ubus_data <= 'z;
+			@(posedge vif.ubus_clock);				
+				vif.ubus_size <= 'z;
+				vif.ubus_read <= 'z;
+				vif.ubus_write <= 'z;	
+
 				vif.ubus_bip <= 0;
+				vif.ubus_addr <= 'z;
+
+			wait(vif.ubus_wait==0);
+				for (int i=0; i<tr.size; i++) begin
+
+						tr.data[i] <= vif.ubus_data;
+						vif.ubus_bip <= (i == tr.size - 1 ) ? 0 : 1;
+						@(posedge vif.ubus_clock);
+				end
 				end
 
 			
-		//do @(posedge vif.ubus_clock); while(vif.ubus_wait==1);
-				//	@(posedge vif.ubus_clock);
-		/*if(tr.write) begin
-			for (int i =0; i<tr.size; i++) begin
-				vif.ubus_data <= tr.data[i];
-				@(posedge vif.ubus_clock);	
-				`uvm_info("DRIVER_write",$sformatf("data=%0h ",vif.ubus_data),UVM_LOW)			
-			end
-		end else if (tr.read) begin
-			for (int i =0; i<tr.size; i++) begin
-				@(posedge vif.ubus_clock);
-				tr.data[i] = vif.ubus_data;
-				`uvm_info("DRIVER_read",$sformatf("data=%0h ",tr.data[i]),UVM_LOW)
-			end
-		end*/
+
 	endtask
 
-			//vif.ubus_wait <= tr.wait_state[0];
 		
 endclass

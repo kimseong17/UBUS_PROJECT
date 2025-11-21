@@ -1,0 +1,134 @@
+verdiSetActWin -dock widgetDock_<Message>
+simSetSimulator "-vcssv" -exec \
+           "/DATA/home/edu010/UVM/UVM_test/UVM_TB/missions/mission_4/sim/simv" \
+           -args
+debImport "-dbdir" \
+          "/DATA/home/edu010/UVM/UVM_test/UVM_TB/missions/mission_4/sim/simv.daidir"
+debLoadSimResult \
+           /DATA/home/edu010/UVM/UVM_test/UVM_TB/missions/mission_4/sim/sim.fsdb
+wvCreateWindow
+verdiWindowResize -win $_Verdi_1 "510" "190" "900" "700"
+verdiSetActWin -dock widgetDock_MTB_SOURCE_TAB_1
+wvGetSignalOpen -win $_nWave2
+wvGetSignalSetScope -win $_nWave2 "/tb_top"
+verdiSetActWin -win $_nWave2
+wvSetPosition -win $_nWave2 {("G1" 2)}
+wvSetPosition -win $_nWave2 {("G1" 2)}
+wvAddSignal -win $_nWave2 -clear
+wvAddSignal -win $_nWave2 -group {"G1" \
+{/tb_top/pclk} \
+{/tb_top/presetn} \
+}
+wvAddSignal -win $_nWave2 -group {"G2" \
+}
+wvSelectSignal -win $_nWave2 {( "G1" 1 2 )} 
+wvSetPosition -win $_nWave2 {("G1" 2)}
+wvGetSignalSetScope -win $_nWave2 "/tb_top/apb_if"
+wvSetPosition -win $_nWave2 {("G2" 4)}
+wvSetPosition -win $_nWave2 {("G2" 4)}
+wvAddSignal -win $_nWave2 -clear
+wvAddSignal -win $_nWave2 -group {"G1" \
+{/tb_top/pclk} \
+{/tb_top/presetn} \
+}
+wvAddSignal -win $_nWave2 -group {"G2" \
+{/tb_top/apb_if/paddr\[7:0\]} \
+{/tb_top/apb_if/penable} \
+{/tb_top/apb_if/pselx} \
+{/tb_top/apb_if/pwrite} \
+}
+wvAddSignal -win $_nWave2 -group {"G3" \
+}
+wvSelectSignal -win $_nWave2 {( "G2" 1 2 3 4 )} 
+wvSetPosition -win $_nWave2 {("G2" 4)}
+wvSetPosition -win $_nWave2 {("G3" 3)}
+wvSetPosition -win $_nWave2 {("G3" 3)}
+wvAddSignal -win $_nWave2 -clear
+wvAddSignal -win $_nWave2 -group {"G1" \
+{/tb_top/pclk} \
+{/tb_top/presetn} \
+}
+wvAddSignal -win $_nWave2 -group {"G2" \
+{/tb_top/apb_if/pselx} \
+{/tb_top/apb_if/penable} \
+{/tb_top/apb_if/paddr\[7:0\]} \
+{/tb_top/apb_if/pwrite} \
+}
+wvAddSignal -win $_nWave2 -group {"G3" \
+{/tb_top/apb_if/prdata\[31:0\]} \
+{/tb_top/apb_if/pready} \
+{/tb_top/apb_if/pslverr} \
+}
+wvAddSignal -win $_nWave2 -group {"G4" \
+}
+wvSelectSignal -win $_nWave2 {( "G3" 1 2 3 )} 
+wvSetPosition -win $_nWave2 {("G3" 3)}
+wvSetPosition -win $_nWave2 {("G2" 5)}
+wvSetPosition -win $_nWave2 {("G2" 5)}
+wvAddSignal -win $_nWave2 -clear
+wvAddSignal -win $_nWave2 -group {"G1" \
+{/tb_top/pclk} \
+{/tb_top/presetn} \
+}
+wvAddSignal -win $_nWave2 -group {"G2" \
+{/tb_top/apb_if/pselx} \
+{/tb_top/apb_if/penable} \
+{/tb_top/apb_if/paddr\[7:0\]} \
+{/tb_top/apb_if/pwrite} \
+{/tb_top/apb_if/pwdata\[31:0\]} \
+}
+wvAddSignal -win $_nWave2 -group {"G3" \
+{/tb_top/apb_if/prdata\[31:0\]} \
+{/tb_top/apb_if/pready} \
+{/tb_top/apb_if/pslverr} \
+}
+wvAddSignal -win $_nWave2 -group {"G4" \
+}
+wvSelectSignal -win $_nWave2 {( "G2" 5 )} 
+wvSetPosition -win $_nWave2 {("G2" 5)}
+wvSetPosition -win $_nWave2 {("G2" 5)}
+wvSetPosition -win $_nWave2 {("G2" 5)}
+wvAddSignal -win $_nWave2 -clear
+wvAddSignal -win $_nWave2 -group {"G1" \
+{/tb_top/pclk} \
+{/tb_top/presetn} \
+}
+wvAddSignal -win $_nWave2 -group {"G2" \
+{/tb_top/apb_if/pselx} \
+{/tb_top/apb_if/penable} \
+{/tb_top/apb_if/paddr\[7:0\]} \
+{/tb_top/apb_if/pwrite} \
+{/tb_top/apb_if/pwdata\[31:0\]} \
+}
+wvAddSignal -win $_nWave2 -group {"G3" \
+{/tb_top/apb_if/prdata\[31:0\]} \
+{/tb_top/apb_if/pready} \
+{/tb_top/apb_if/pslverr} \
+}
+wvAddSignal -win $_nWave2 -group {"G4" \
+}
+wvSelectSignal -win $_nWave2 {( "G2" 5 )} 
+wvSetPosition -win $_nWave2 {("G2" 5)}
+wvGetSignalClose -win $_nWave2
+wvSetCursor -win $_nWave2 154195.550440 -snap {("G4" 0)}
+wvZoomOut -win $_nWave2
+wvZoomOut -win $_nWave2
+wvSelectSignal -win $_nWave2 {( "G2" 4 )} 
+wvSelectSignal -win $_nWave2 {( "G2" 2 )} 
+wvSetPosition -win $_nWave2 {("G2" 2)}
+wvSetPosition -win $_nWave2 {("G2" 3)}
+wvSetPosition -win $_nWave2 {("G2" 2)}
+wvMoveSelected -win $_nWave2
+wvSetPosition -win $_nWave2 {("G2" 2)}
+wvSelectSignal -win $_nWave2 {( "G3" 2 )} 
+wvZoom -win $_nWave2 343296.511365 672918.738211
+wvSelectSignal -win $_nWave2 {( "G1" 1 )} 
+wvSetCursor -win $_nWave2 450089.392736
+wvSetCursor -win $_nWave2 460316.335335
+wvSetCursor -win $_nWave2 469559.918069
+wvSetCursor -win $_nWave2 459726.319416
+wvSetCursor -win $_nWave2 450679.408655
+wvSelectSignal -win $_nWave2 {( "G2" 1 )} 
+wvSelectSignal -win $_nWave2 {( "G2" 2 )} 
+wvSelectSignal -win $_nWave2 {( "G3" 2 )} 
+wvSetCursor -win $_nWave2 451466.096547 -snap {("G4" 0)}

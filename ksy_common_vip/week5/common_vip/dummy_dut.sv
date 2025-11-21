@@ -10,7 +10,9 @@ module dummy_dut(
   assign s_vif.ubus_addr  = m_vif.ubus_addr;
   assign s_vif.ubus_write = m_vif.ubus_write;
   assign s_vif.ubus_read  = m_vif.ubus_read;
-  assign s_vif.ubus_data  = m_vif.ubus_data;
+  assign s_vif.ubus_data  = m_vif.ubus_data; 
+  assign m_vif.ubus_data  =s_vif.ubus_data;
+
   assign s_vif.ubus_bip = m_vif.ubus_bip;
   assign s_vif.ubus_size = m_vif.ubus_size;
   assign s_vif.ubus_reset= m_vif.ubus_reset;

@@ -11,22 +11,15 @@ class packet extends uvm_sequence_item;
 
     function new(string name = "packet");
         super.new(name);
-      //  `uvm_info("TRACE",$sformatf("%m"), UVM_HIGH);  // 계층정보
     endfunction: new
 
-   /* function void post_randomize();
-    // size가 랜덤으로 결정된 이후 자동으로 호출됨
-                 wait_state = new[size];
-                 foreach (wait_state[i]) begin
-                          wait_state[i] = $urandom_range(0,1);
-                 end
-    endfunction */
-    constraint c_wait_state { wait_state.size() inside{[0:2]};}
-    //constraint c_data { data.size() inside{[0:8]};}
-    //constraint c_data { data.size() inside{8};}
+
+    constraint c_wait_state { wait_state.size() inside{0,1};}
+    constraint c_dir { (read ^ write) == 1; }
     constraint c_size { size inside{1,2,4,8};}
-    //constraint c_read { read == 0; }
-    //constraint c_write { write == 1; }
+    constraint c_data_size { data.size() == size; }
+
+
     // 메크로 세트 , UVM 클래스 등록 + 자동화
     `uvm_object_utils_begin(packet)  // UVM Factory에 class 등록 + 필드 자동화 (동적)
         `uvm_field_int(addr, UVM_DEFAULT) // 맴버를 UVM 시스템에 등록 => 자동화 , copy compare print etc 가능하게 해줌

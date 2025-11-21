@@ -21,7 +21,8 @@ LOG = simv.log
 # ============================
 
 VCS_FLAGS = -full64 -sverilog -lca -debug_access+all+reverse \
-            -kdb -l comp.log -ntb_opts $(UVM_VER)
+            -kdb -l comp.log -ntb_opts $(UVM_VER) \
+			-cm line+cond+fsm+tgl+branch+assert
 
 # ============================
 # Default Target
@@ -34,7 +35,7 @@ all: simv run
 # ============================
 
 simv:
-	vcs $(VCS_FLAGS) $(IF) $(TOP) $(DUT)
+	vcs $(VCS_FLAGS) $(IF) $(TOP) $(DUT) -o simv
 
 # ============================
 # Run Simulation
@@ -43,7 +44,16 @@ simv:
 run: simv
 	./simv +UVM_TESTNAME=$(TEST_NAME) +N_REPEAT=$(N_REPEAT) \
 	       +UVM_TR_RECORD +UVM_LOG_RECORD +UVM_VERDI_TRACE \
-	       -l $(LOG)
+		   -cm_dir ubus_cov.vdb \
+	       -l $(LOG) 
+
+	/tools/synopsys/vcs/V-2023.12-SP2-8/bin/urg -dir ubus_cov.vdb \
+	    -report urg_report_dir \
+	    -format text \
+	    -metric group \
+	    -group expand_bins \
+	    -show brief group \
+	    > ubus_coverage_report.txt 2>&1
 
 # ============================
 # Random seed run
@@ -57,19 +67,26 @@ else
 RANDOM_OPT = +ntb_random_seed=$(SEED)
 endif
 
-random:
+random: simv
 	./simv +UVM_TESTNAME=$(TEST_NAME) +N_REPEAT=$(N_REPEAT) \
 	       $(RANDOM_OPT) +ntb_random_seed_verbose \
 	       +UVM_TR_RECORD +UVM_LOG_RECORD +UVM_VERDI_TRACE \
+		   -cm_dir ubus_cov.vdb \
 	       -l $(LOG)
 
-
-# ============================
-# Cleanup
-# ============================
+	/tools/synopsys/vcs/V-2023.12-SP2-8/bin/urg -dir ubus_cov.vdb \
+	    -report urg_report_dir \
+	    -format text \
+	    -metric group \
+	    -group expand_bins \
+	    -show brief group \
+	    > ubus_coverage_report.txt 2>&1
+#           ^^^^^^^^^^^^^^^^^^^^^^^ 이 부분이 핵심입니다. 
+#           > ubus_coverage_report.txt: STDOUT을 파일로
+#           2>&1: STDERR(2)을 STDOUT(1)으로 리다이렉션합니다.
 
 clean:
-	rm -rf simv simv.daidir csrc *.log *.vpd *.key DVE* verdi* *.fsdb *.hvp .vcs* vc* novas* fsdbData.db
+	rm -rf simv simv.daidir csrc *.log *.vpd *.key DVE* verdi* *.fsdb *.hvp .vcs* vc* novas* fsdbData.db *.vdb *dir *txt
 
 verdi:
 	verdi -ssf wave.fsdb -simv simv

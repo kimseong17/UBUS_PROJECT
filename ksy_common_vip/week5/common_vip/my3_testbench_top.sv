@@ -2,8 +2,10 @@ module my3_testbench_top;
     //`include "uvm_macros.svh" 
     import uvm_pkg::*;
     `include "../common_vip/packet.sv"
-    `include "../common_vip/ubus_scoreboard.sv"
-   
+    `include "../common_vip/ubus_scoreboard.sv"   
+    `include "../common_vip/slave_analysis_imp.sv"
+    `include "../common_vip/master_analysis_imp.sv"
+ 
     `include "../master_vip/master_monitor.sv"
     `include "../master_vip/master_driver.sv"
     `include "../master_vip/master_sequencer.sv"
@@ -17,16 +19,20 @@ module my3_testbench_top;
 
 
     `include "../common_vip/ubus_virtual_sequencer.sv"
+    `include "../common_vip/ubus_coverage.sv"
 
     
     `include "../common_vip/master_sequence.sv"
     `include "../common_vip/slave_sequence.sv"
     `include "../common_vip/ubus_master_write_word_seq.sv"
     `include "../common_vip/ubus_master_read_word_seq.sv"
+    `include "../common_vip/ubus_master_write_random_size_seq.sv"
+    `include "../common_vip/ubus_master_read_random_size_seq.sv"
+    `include "../common_vip/pkg/sequence_pkg.sv"
     `include "../common_vip/ubus_virtual_sequence.sv"
 
     `include "../common_vip/my3_vip_environment.sv"
-    
+
     `include "../common_vip/ubus_read_test.sv"
     `include "../common_vip/ubus_write_test.sv"
     `include "../common_vip/ubus_virtual_sequence_test.sv"
