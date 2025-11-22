@@ -8,7 +8,7 @@
 
 
 <pre>
-3TEAM_vip/
+FINAL/
 ├── common_vip/</span>
 │ ├── my3_testbench_top.sv
 │ ├── my3_vip_environment.sv
@@ -68,7 +68,15 @@
 cd common_sim/
 
 # 2. make 명령어 실행
-make
+
+# 랜덤 시뮬레이션 실행
+make random N_REPEAT=100 RANDOM_SEED=127   # N_REPEAT: read/write 반복 횟수, RANDOM_SEED: 시드 값 지정
+
+# 생성된 파일 정리
+make clean                                 # Makefile을 제외한 모든 생성 파일 삭제
+
+# Verdi 실행 (fsdb 자동 로드)
+make verdi                                 # wave.fsdb 자동 로드 후 Verdi 실행
 ```
 
 ## 4. 주차별 프로젝트 진행도
@@ -81,10 +89,7 @@ make
 | 5주차 | Driving the System Environment with Virtual Sequence  |
 | 6주차 | Functional Coverage                                   |
 
-## 5. Test Collection
+## 5. Sequence List
 
 
-## 6. Sequence List
-
-
-## 7. Coverage
+## 6. Coverage
