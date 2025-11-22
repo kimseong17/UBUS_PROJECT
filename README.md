@@ -7,7 +7,7 @@
 ## 2. 디렉토리 구조
 
 
-<pre>
+```text
 FINAL/
 ├── common_vip/</span>
 │ ├── my3_testbench_top.sv
@@ -49,7 +49,7 @@ FINAL/
 │ └── Makefile
 │
 └── README.md
-</pre>
+```
 
 
   
