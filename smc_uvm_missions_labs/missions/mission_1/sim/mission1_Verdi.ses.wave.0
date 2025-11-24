@@ -1,0 +1,76 @@
+Magic 271485
+Revision Verdi_V-2023.12-SP2-8
+
+; Window Layout <x> <y> <width> <height> <signalwidth> <valuewidth>
+viewPort 0 25 1176 358 100 65
+
+; File list:
+; openDirFile [-d delimiter] [-s time_offset] [-rf auto_bus_rule_file] path_name file_name
+openDirFile -d / "" "/DATA/home/edu028/UVM_TB/missions/mission_1/sim/verilog_sim.fsdb"
+
+; file time scale:
+; fileTimeScale ### s|ms|us|ns|ps
+
+individualSetFormt -File /DATA/home/edu028/UVM_TB/missions/mission_1/sim/verilog_sim.fsdb -UDEC /tb_verilog/pwdata[31:0]
+
+; signal spacing:
+signalSpacing 5
+
+; windowTimeUnit is used for zoom, cursor & marker
+; waveform viewport range
+zoom 0.000000 605000.000000
+cursor 110000.000000
+marker 0.000000
+
+; user define markers
+; userMarker time_pos marker_name color linestyle
+; visible top row signal index
+top 0
+; marker line index
+markerPos 7
+
+; event list
+; addEvent event_name event_expression
+; curEvent event_name
+
+
+
+COMPLEX_EVENT_BEGIN
+
+
+COMPLEX_EVENT_END
+
+
+
+; toolbar current search type
+; curSTATUS search_type
+curSTATUS ByChange
+
+
+addGroup "G1"
+activeDirFile "" "/DATA/home/edu028/UVM_TB/missions/mission_1/sim/verilog_sim.fsdb"
+addSignal -h 15 -UNSIGNED -HEX /tb_verilog/paddr[7:0]
+addSignal -h 15 -holdScope pclk
+addSignal -h 15 -holdScope pready
+addSignal -h 15 -holdScope presetn
+addSignal -h 15 -holdScope pselx
+addSignal -h 15 -UNSIGNED -UDEC -holdScope pwdata[31:0]
+addSignal -h 15 -holdScope pwrite
+addGroup "G2"
+
+; getSignalForm Scope Hierarchy Status
+; active file of getSignalForm
+activeDirFile "" "/DATA/home/edu028/UVM_TB/missions/mission_1/sim/verilog_sim.fsdb"
+
+GETSIGNALFORM_SCOPE_HIERARCHY_BEGIN
+getSignalForm close
+
+"/tb_verilog"
+
+SCOPE_LIST_BEGIN
+"/tb_verilog"
+SCOPE_LIST_END
+
+GETSIGNALFORM_SCOPE_HIERARCHY_END
+
+

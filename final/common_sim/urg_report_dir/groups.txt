@@ -1,6 +1,7 @@
 Testbench Group List
 
 Total Groups Coverage Summary 
+
 SCORE  WEIGHT 
 --     1      
 

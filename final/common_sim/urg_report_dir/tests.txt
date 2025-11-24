@@ -2,7 +2,10 @@ Tests
 
 Total Coverage Summary 
 SCORE  GROUP  
+
 100.00 100.00 
+=======
+
 
 
 Total tests in report: 1
