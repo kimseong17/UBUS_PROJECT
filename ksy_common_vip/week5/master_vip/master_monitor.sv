@@ -9,6 +9,7 @@ class master_monitor extends uvm_monitor;
 	typedef enum {IDLE, ADDR_PHASE, DATA_PHASE, COMPLETE} monitor_state_e;
 	monitor_state_e current_state = IDLE;
 	int data_beat_count = 0;
+	int wait_count = 0;
 	
 	
 	
@@ -33,6 +34,8 @@ class master_monitor extends uvm_monitor;
 		@(posedge vif.ubus_clock); 
 
 			if (vif.ubus_read) begin
+				data_beat_count=0;
+				wait_count=0;
 				req = packet::type_id::create("req");
 				case (vif.ubus_size)
 					2'b00: req.size =1;
@@ -43,10 +46,15 @@ class master_monitor extends uvm_monitor;
 				req.addr=vif.ubus_addr;
 				req.read=vif.ubus_read;
 				req.write=vif.ubus_write;
-				req.data=new[4];
+				req.data=new[req.size];
 				
-				wait(vif.ubus_wait == 0);
-											
+			while (vif.ubus_wait == 1) begin
+				@(posedge vif.ubus_clock);
+					wait_count++;
+    			end
+
+			wait(vif.ubus_wait==0);
+					req.wait_state = wait_count;						
 					for(int i=0; i<req.size; i++) begin
 						@(posedge vif.ubus_clock);
 							req.data[i] = vif.ubus_data;
@@ -57,12 +65,13 @@ class master_monitor extends uvm_monitor;
 					`uvm_info("MST_MON", $sformatf("data_beat_count= %0d, data = %p, addr = 0x%0h , read =%h, write=%h , size=%h" , data_beat_count, req.data, req.addr, req.read, req.write, req.size) , UVM_LOW)
 
 					item_collected_port.write(req);
-					data_beat_count=0;
+
 
 			end
 					
 			if (vif.ubus_write) begin
-
+				data_beat_count=0;
+				wait_count=0;
 				req = packet::type_id::create("req");
 				req.addr = vif.ubus_addr;
 				req.size = vif.ubus_size;
@@ -73,12 +82,21 @@ class master_monitor extends uvm_monitor;
 					2'b11: req.size =8;
 				endcase
 
+
+
+
 				
 				req.write = vif.ubus_write;
 				req.read =vif.ubus_read;
 				req.data = new[req.size];
 
-				wait(vif.ubus_wait == 0);
+				while (vif.ubus_wait == 1) begin
+					@(posedge vif.ubus_clock);
+						wait_count++;
+    				end
+
+				wait(vif.ubus_wait==0);
+				req.wait_state = wait_count;
 				for (int i=0; i<req.size; i++) begin
 				@(posedge vif.ubus_clock);
 

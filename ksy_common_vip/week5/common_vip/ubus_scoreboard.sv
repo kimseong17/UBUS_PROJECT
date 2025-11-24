@@ -4,8 +4,8 @@ class ubus_scoreboard extends uvm_scoreboard;
     `uvm_field_int(num_reads,  UVM_DEFAULT|UVM_DEC)
     `uvm_component_utils_end
 
-    uvm_analysis_port #(packet) item_collected_export;
-    uvm_analysis_port #(packet) item_collected_export2;
+    //uvm_analysis_port #(packet) item_collected_export;
+    //uvm_analysis_port #(packet) item_collected_export2;
 
     protected int num_writes = 0;
     protected int num_reads  = 0;
@@ -19,8 +19,8 @@ class ubus_scoreboard extends uvm_scoreboard;
 
     function void build_phase(uvm_phase phase);
 
-	item_collected_export = new("item_collected_export", this);
-    	item_collected_export2 = new("item_collected_export2", this);
+	//item_collected_export = new("item_collected_export", this);
+    //item_collected_export2 = new("item_collected_export2", this);
     endfunction
 
    function void write(packet trans);
@@ -39,9 +39,9 @@ class ubus_scoreboard extends uvm_scoreboard;
                 `uvm_info("SCOREBOARD", $sformatf("Master write: addr=0x%0h, data=0x%0h", addr, data), UVM_LOW)
             end
 
-	    if (trans.read) begin
-		`uvm_info("SCOREBOARD", $sformatf("Master read: addr=0x%0h, data=0x%0h", addr, data), UVM_LOW)
-	    end
+	        if (trans.read) begin
+		        `uvm_info("SCOREBOARD", $sformatf("Master read: addr=0x%0h, data=0x%0h", addr, data), UVM_LOW)
+	        end
         end
     endfunction
 
@@ -49,11 +49,11 @@ class ubus_scoreboard extends uvm_scoreboard;
         for (int i=0; i<trans.size; i++) begin
             int unsigned addr = trans.addr + i;
             int unsigned data = trans.data[i];
-	    if (trans.write) begin
+	        if (trans.write) begin
 
-		`uvm_info("SCOREBOARD", $sformatf("Slave write: addr=0x%0h, data=0x%0h", addr, data), UVM_LOW)
+		    `uvm_info("SCOREBOARD", $sformatf("Slave write: addr=0x%0h, data=0x%0h", addr, data), UVM_LOW)
 
-	    end
+	         end
 
             if (trans.read) begin
                 num_reads++;

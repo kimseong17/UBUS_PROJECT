@@ -1,6 +1,6 @@
-<session version="1.1" release="V-2023.12-SP2-8" timestp="2025-11-20 10:17:42 GMT">
+<session version="1.1" release="V-2023.12-SP2-8" timestp="2025-11-24 02:12:44 GMT">
   <info>
-    <attr name="datetime" value="Thu Nov 20 19:17:42 2025
+    <attr name="datetime" value="Mon Nov 24 11:12:44 2025
 "/>
     <attr name="command" value="urg -dir ubus_cov.vdb -report urg_report_dir -format text -metric group -group expand_bins -show brief group"/>
   </info>
@@ -11,13 +11,13 @@
   </hvp>
   <old_coverage>
   <scope type="top" name="top">
-    <metric name="Group" value="66.25%" />
+    <metric name="Group" value="100%" />
   </scope>
   <scope type="instance" name="top">
   </scope>
   <scope type="group" name="top">
     <scope type="group" name="my3_testbench_top::cov_trans">
-      <metric name="Group" value="66.25%" />
+      <metric name="Group" value="100%" />
     </scope>
   </scope>
   <scope type="assert" name="Statistics">

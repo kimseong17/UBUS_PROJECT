@@ -21,7 +21,7 @@ class ubus_master_read_high_seq extends uvm_sequence #(packet);
 
 
 
-			if (!req.randomize() with {req.read==1; req.size inside {1,2,4,8}; req.addr inside {['h8000 : 'hFFFF]};}) begin
+			if (!req.randomize() with {req.read==1; req.size inside {1,2,4,8}; req.addr inside {[40960:$]};}) begin
 				`uvm_fatal(get_full_name(), "Failed to randomize High Read packet")
 			end
 

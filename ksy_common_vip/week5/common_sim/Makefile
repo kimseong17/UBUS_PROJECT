@@ -8,13 +8,13 @@ SEED ?=
 
 UVM_VER = uvm-1.2
 
-SRC_PATH = /DATA/home/edu010/3team/ksy_common_vip/week5/common_vip
+SRC_PATH = ../common_vip
 TOP      = $(SRC_PATH)/my3_testbench_top.sv
-IF       = $(SRC_PATH)/ubus_m_if.sv $(SRC_PATH)/ubus_s_if.sv
+IF       = $(SRC_PATH)/ubus_if/ubus_m_if.sv $(SRC_PATH)/ubus_if/ubus_s_if.sv
 
 DUT = $(SRC_PATH)/dummy_dut.sv
 
-LOG = simv.log
+LOG = simv.log | tee simv.log
 
 # ============================
 # Compile options
@@ -43,6 +43,7 @@ simv:
 
 run: simv
 	./simv +UVM_TESTNAME=$(TEST_NAME) +N_REPEAT=$(N_REPEAT) \
+		   +ntb_random_seed_verbose \
 	       +UVM_TR_RECORD +UVM_LOG_RECORD +UVM_VERDI_TRACE \
 		   -cm_dir ubus_cov.vdb \
 	       -l $(LOG) 

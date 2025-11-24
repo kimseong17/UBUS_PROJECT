@@ -9,7 +9,7 @@
 
 ```text
 FINAL/
-├── common_vip/</span>
+├── common_vip/
 │ ├── my3_testbench_top.sv
 │ ├── my3_vip_environment.sv
 │ ├── packet.sv

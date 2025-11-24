@@ -13,3 +13,4 @@
 `include "../common_vip/coverage_seq/ubus_master_read_low_seq.sv"
 `include "../common_vip/coverage_seq/ubus_master_read_mid_seq.sv"
 `include "../common_vip/coverage_seq/ubus_master_read_high_seq.sv"
+

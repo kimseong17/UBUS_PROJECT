@@ -5,8 +5,7 @@ class packet extends uvm_sequence_item;
     rand bit write;
     rand bit [3:0] size;
     rand bit [7:0] data[];
-    rand bit wait_state[];
-    //rand bit wait_state;
+    rand int wait_state;
     rand bit error;
 
     function new(string name = "packet");
@@ -14,10 +13,13 @@ class packet extends uvm_sequence_item;
     endfunction: new
 
 
-    constraint c_wait_state { wait_state.size() inside{0,1};}
     constraint c_dir { (read ^ write) == 1; }
     constraint c_size { size inside{1,2,4,8};}
     constraint c_data_size { data.size() == size; }
+    constraint global_legality { 
+
+        !(addr inside {[16384:20479]} && size == 8);
+    }
 
 
     // 메크로 세트 , UVM 클래스 등록 + 자동화
@@ -28,8 +30,7 @@ class packet extends uvm_sequence_item;
         `uvm_field_int(size, UVM_DEFAULT)
         `uvm_field_array_int(data, UVM_DEFAULT)
         `uvm_field_int(error, UVM_DEFAULT)
-        `uvm_field_array_int(wait_state, UVM_DEFAULT)
-        //`uvm_field_int(wait_state, UVM_DEFAULT)
+        `uvm_field_int(wait_state, UVM_DEFAULT)
     `uvm_object_utils_end
 
 

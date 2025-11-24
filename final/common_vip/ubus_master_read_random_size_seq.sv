@@ -39,13 +39,6 @@ class ubus_master_read_random_size_seq extends uvm_sequence #(packet);
 
 	endtask
 
-	virtual task post_body(); // body 태스크 실행 직후에 호출
-        // body가 완료되면 objection을 내려 시뮬레이션이 종료될 수 있도록 합니다.
-        	uvm_phase starting_phase = get_starting_phase();
-       		if (starting_phase != null) begin
-            		starting_phase.drop_objection(this);
-        	end
-    	endtask
 
 	
 

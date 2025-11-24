@@ -38,9 +38,9 @@ class slave_driver extends uvm_driver #(packet);
 	endtask
 
 	virtual protected task drive_read_response(packet tr);
-	for (int i=0; i<tr.wait_state.size-tr.size; i++) begin
+	for (int i=0; i<tr.wait_state; i++) begin
 
-			vif.ubus_wait<=tr.wait_state[i];
+			vif.ubus_wait<=1;
 			vif.ubus_data <= tr.data[0];
 			@(posedge vif.ubus_clock);	
 			end
@@ -49,14 +49,15 @@ class slave_driver extends uvm_driver #(packet);
 		`uvm_info("SLV_DRV",$sformatf("data=%p",tr.data),UVM_LOW)
 
 			for (int i = 0; i< tr.size; i++) begin
-			vif.ubus_wait <= tr.wait_state[i+tr.wait_state.size-tr.size];
+			vif.ubus_wait <= 0;
 			vif.ubus_data <= tr.data[i];
 			@(posedge vif.ubus_clock);
 			end
 
 
-			vif.ubus_wait <= '1;
+			vif.ubus_wait <=1;
 			vif.ubus_data <= 'z;
+			@(posedge vif.ubus_clock);
 	
 		
 	endtask
@@ -64,30 +65,19 @@ class slave_driver extends uvm_driver #(packet);
 	virtual protected task drive_write_response(packet tr);
 
 
-			for (int i=0; i<tr.wait_state.size; i++) begin
-			vif.ubus_wait<=tr.wait_state[i];			
+			for (int i=0; i<tr.wait_state; i++) begin
+			vif.ubus_wait<=1;			
 			@(posedge vif.ubus_clock);	
 			end
 
 
 			
 
+			vif.ubus_wait<=0;
+			repeat(tr.size)	@(posedge vif.ubus_clock);
+
 			vif.ubus_wait<=1;
-			@(posedge vif.ubus_clock);
-
-
-
-
-		
-
-
-
-								
-
-
-
-								
-
+							
 								
 			
  	endtask

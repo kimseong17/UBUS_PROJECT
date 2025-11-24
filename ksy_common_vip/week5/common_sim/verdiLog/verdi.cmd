@@ -2,12 +2,13 @@ verdiSetActWin -dock widgetDock_<Message>
 simSetSimulator "-vcssv" -exec \
            "/DATA/home/edu010/3team/ksy_common_vip/week5/common_sim/simv" \
            -args \
-           "+UVM_TESTNAME=ubus_virtual_sequence_test +N_REPEAT=4 +UVM_TR_RECORD +UVM_LOG_RECORD +UVM_VERDI_TRACE -cm_dir ubus_cov.vdb"
+           "+UVM_TESTNAME=ubus_virtual_sequence_test +N_REPEAT=4 +ntb_random_seed_verbose +UVM_TR_RECORD +UVM_LOG_RECORD +UVM_VERDI_TRACE -cm_dir ubus_cov.vdb"
 debImport "-simv" "simv" "-dbdir" \
           "/DATA/home/edu010/3team/ksy_common_vip/week5/common_sim/simv.daidir"
 debLoadSimResult \
            /DATA/home/edu010/3team/ksy_common_vip/week5/common_sim/wave.fsdb
 wvCreateWindow
+verdiWindowResize -win $_Verdi_1 "510" "190" "900" "700"
 verdiSetActWin -dock widgetDock_MTB_SOURCE_TAB_1
 wvGetSignalOpen -win $_nWave2
 wvGetSignalSetScope -win $_nWave2 "/my3_testbench_top"
@@ -52,21 +53,8 @@ wvAddSignal -win $_nWave2 -group {"G2" \
 wvSelectSignal -win $_nWave2 {( "G1" 1 2 3 4 5 6 7 8 9 10 )} 
 wvSetPosition -win $_nWave2 {("G1" 10)}
 wvGetSignalClose -win $_nWave2
-wvZoomOut -win $_nWave2
-wvZoomOut -win $_nWave2
-wvSetCursor -win $_nWave2 26.145267 -snap {("G1" 8)}
-wvZoomOut -win $_nWave2
-wvZoomOut -win $_nWave2
-wvSetCursor -win $_nWave2 364.808176 -snap {("G1" 9)}
-wvSetCursor -win $_nWave2 374.612651 -snap {("G1" 9)}
-wvSetCursor -win $_nWave2 367.667814 -snap {("G1" 9)}
-wvSetCursor -win $_nWave2 284.738296 -snap {("G1" 9)}
-wvSetCursor -win $_nWave2 292.908692 -snap {("G1" 9)}
-wvSetCursor -win $_nWave2 366.442255 -snap {("G1" 9)}
-wvSetCursor -win $_nWave2 370.527453 -snap {("G1" 9)}
-wvSetCursor -win $_nWave2 450.597332 -snap {("G1" 9)}
-wvSetCursor -win $_nWave2 482.461876 -snap {("G1" 9)}
-wvSetCursor -win $_nWave2 576.829948 -snap {("G1" 9)}
-wvSetCursor -win $_nWave2 615.639329 -snap {("G1" 9)}
-wvZoomOut -win $_nWave2
+wvZoomIn -win $_nWave2
+wvSetCursor -win $_nWave2 103.750135 -snap {("G1" 9)}
+wvSetCursor -win $_nWave2 221.666956 -snap {("G1" 8)}
+wvSetCursor -win $_nWave2 324.583757 -snap {("G1" 9)}
 debExit

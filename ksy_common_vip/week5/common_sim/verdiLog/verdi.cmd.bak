@@ -1,8 +1,0 @@
-verdiSetActWin -dock widgetDock_<Message>
-debImport "-simv" "simv"
-wvCreateWindow
-wvOpenFile -win $_nWave2 \
-           {/DATA/home/edu010/3team/ksy_common_vip/week5/common_sim/wave.fsdb}
-verdiWindowResize -win $_Verdi_1 "0" "23" "1920" "1009"
-verdiSetActWin -dock widgetDock_MTB_SOURCE_TAB_1
-debExit

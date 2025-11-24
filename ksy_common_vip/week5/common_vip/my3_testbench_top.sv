@@ -3,8 +3,8 @@ module my3_testbench_top;
     import uvm_pkg::*;
     `include "../common_vip/packet.sv"
     `include "../common_vip/ubus_scoreboard.sv"   
-    `include "../common_vip/slave_analysis_imp.sv"
-    `include "../common_vip/master_analysis_imp.sv"
+    `include "../common_vip/analysis_imp/slave_analysis_imp.sv"
+    `include "../common_vip/analysis_imp/master_analysis_imp.sv"
  
     `include "../master_vip/master_monitor.sv"
     `include "../master_vip/master_driver.sv"
@@ -17,24 +17,32 @@ module my3_testbench_top;
     `include "../slave_vip/slave_sequencer.sv"
     `include "../slave_vip/slave_agent.sv"
 
-
-    `include "../common_vip/ubus_virtual_sequencer.sv"
     `include "../common_vip/ubus_coverage.sv"
+    `include "../common_vip/ubus_virtual_sequencer.sv"
+    
 
     
-    `include "../common_vip/master_sequence.sv"
-    `include "../common_vip/slave_sequence.sv"
-    `include "../common_vip/ubus_master_write_word_seq.sv"
-    `include "../common_vip/ubus_master_read_word_seq.sv"
-    `include "../common_vip/ubus_master_write_random_size_seq.sv"
-    `include "../common_vip/ubus_master_read_random_size_seq.sv"
+
+    `include "../slave_vip/slave_sequence.sv"
+    `include "../master_vip/master_seq/ubus_master_write_word_seq.sv"
+    `include "../master_vip/master_seq/ubus_master_read_word_seq.sv"
+    `include "../master_vip/master_seq/ubus_master_write_random_size_seq.sv"
+    `include "../master_vip/master_seq/ubus_master_read_random_size_seq.sv"
+
+    `include "../common_vip/coverage_seq/ubus_target_addr_dir_seq.sv"
+    `include "../common_vip/coverage_seq/ubus_target_addr_dir_seq_1.sv"
+    `include "../common_vip/coverage_seq/ubus_target_addr_dir_seq_2.sv"
+    `include "../common_vip/coverage_seq/ubus_target_addr_dir_seq_3.sv"
+    `include "../common_vip/coverage_seq/ubus_target_addr_dir_seq_4.sv"
+    `include "../common_vip/coverage_seq/ubus_target_addr_dir_seq_5.sv"
+    `include "../common_vip/coverage_seq/ubus_target_addr_dir_seq_6.sv"
+    `include "../common_vip/coverage_seq/ubus_target_addr_dir_seqf.sv"
+
     `include "../common_vip/pkg/sequence_pkg.sv"
     `include "../common_vip/ubus_virtual_sequence.sv"
 
     `include "../common_vip/my3_vip_environment.sv"
 
-    `include "../common_vip/ubus_read_test.sv"
-    `include "../common_vip/ubus_write_test.sv"
     `include "../common_vip/ubus_virtual_sequence_test.sv"
 
     // Interface Instance

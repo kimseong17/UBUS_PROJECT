@@ -1,6 +1,6 @@
 Dashboard
 
-Date: Thu Nov 20 19:17:42 2025
+Date: Mon Nov 24 11:12:44 2025
 
 User: edu010
 
@@ -12,11 +12,11 @@ Number of tests: 1
 -------------------------------------------------------------------------------
 Total Coverage Summary 
 SCORE  GROUP  
- 66.25  66.25 
+100.00 100.00 
 
 
 -------------------------------------------------------------------------------
 Total Groups Coverage Summary 
-SCORE  INST SCORE WEIGHT 
- 66.25  66.25     1      
+SCORE  WEIGHT 
+--     1      
 
