@@ -1,0 +1,79 @@
+verdiSetActWin -dock widgetDock_<Decl._Tree>
+simSetSimulator "-vcssv" -exec "simv" -args "-1 sim.log"
+debImport "-dbdir" "simv.daidir"
+debLoadSimResult /DATA/home/edu028/UVM_TB/missions/mission_1/sim/verilog_sim.fsdb
+wvCreateWindow
+verdiWindowResize -win $_Verdi_1 "138" "31" "900" "700"
+verdiSetActWin -dock widgetDock_MTB_SOURCE_TAB_1
+wvGetSignalOpen -win $_nWave2
+wvGetSignalSetScope -win $_nWave2 "/tb_verilog"
+verdiSetActWin -win $_nWave2
+wvSetPosition -win $_nWave2 {("G1" 7)}
+wvSetPosition -win $_nWave2 {("G1" 7)}
+wvAddSignal -win $_nWave2 -clear
+wvAddSignal -win $_nWave2 -group {"G1" \
+{/tb_verilog/paddr\[7:0\]} \
+{/tb_verilog/pclk} \
+{/tb_verilog/pready} \
+{/tb_verilog/presetn} \
+{/tb_verilog/pselx} \
+{/tb_verilog/pwdata\[31:0\]} \
+{/tb_verilog/pwrite} \
+}
+wvAddSignal -win $_nWave2 -group {"G2" \
+}
+wvSelectSignal -win $_nWave2 {( "G1" 1 2 3 4 5 6 7 )} 
+wvSetPosition -win $_nWave2 {("G1" 7)}
+wvSetPosition -win $_nWave2 {("G1" 7)}
+wvSetPosition -win $_nWave2 {("G1" 7)}
+wvAddSignal -win $_nWave2 -clear
+wvAddSignal -win $_nWave2 -group {"G1" \
+{/tb_verilog/paddr\[7:0\]} \
+{/tb_verilog/pclk} \
+{/tb_verilog/pready} \
+{/tb_verilog/presetn} \
+{/tb_verilog/pselx} \
+{/tb_verilog/pwdata\[31:0\]} \
+{/tb_verilog/pwrite} \
+}
+wvAddSignal -win $_nWave2 -group {"G2" \
+}
+wvSelectSignal -win $_nWave2 {( "G1" 1 2 3 4 5 6 7 )} 
+wvSetPosition -win $_nWave2 {("G1" 7)}
+wvGetSignalClose -win $_nWave2
+wvZoomOut -win $_nWave2
+wvScrollDown -win $_nWave2 0
+wvZoomIn -win $_nWave2
+wvZoomIn -win $_nWave2
+wvZoomIn -win $_nWave2
+wvZoomOut -win $_nWave2
+wvZoomOut -win $_nWave2
+wvZoomOut -win $_nWave2
+wvZoomOut -win $_nWave2
+wvZoomOut -win $_nWave2
+wvZoomIn -win $_nWave2
+wvZoomIn -win $_nWave2
+wvZoomOut -win $_nWave2
+wvResizeWindow -win $_nWave2 2 27 1172 354
+wvResizeWindow -win $_nWave2 2 27 1172 354
+wvResizeWindow -win $_nWave2 2 27 1172 354
+wvResizeWindow -win $_nWave2 2 27 1172 354
+verdiWindowBeWindow -win $_nWave2
+verdiWindowBeDocked -win $_nWave2
+srcDeselectAll -win $_nTrace1
+srcDeselectAll -win $_nTrace1
+verdiSetActWin -dock widgetDock_MTB_SOURCE_TAB_1
+wvSetCursor -win $_nWave2 112037.037037 -snap {("G1" 6)}
+verdiSetActWin -win $_nWave2
+wvSetCursor -win $_nWave2 56321.321321 -snap {("G2" 0)}
+wvSelectSignal -win $_nWave2 {( "G1" 6 )} 
+wvSelectSignal -win $_nWave2 {( "G1" 6 )} 
+wvSetRadix -win $_nWave2 -format UDec
+debSaveSession /DATA/home/edu028/UVM_TB/missions/mission_1/sim/mission1_Verdi.ses \
+           -keynote \
+           {invoke directory: /DATA/home/edu028/UVM_TB/missions/mission_1/sim
+command line: -elab simv.daidir/kdb.elab++ -ba 
+current trace scope: tb_verilog
+memo:} \
+           -saveDB on
+debExit

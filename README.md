@@ -40,8 +40,7 @@
 │ ├── slave_monitor.sv
 │ ├── slave_sequence.sv (in the common_vip)
 │ ├── slave_sequencer.sv
-│ ├── slave_env.sv (not in the final directory)
-│ └── (slave related seqeunces)
+│ └── slave_env.sv (not in the final directory)
 ├── common_sim/
 │ ├── Makefile
 │ ├── simv.log
@@ -66,7 +65,12 @@
 cd common_sim/
 
 # 2. make 명령어 실행
-make
+make            : 기본적인 시뮬레이션 실행
+make random     : 랜덤 시뮬레이션 실행
+make N_REPEAT   : N_REPEAT번의 시뮬레이션 실행
+make clean      : 컴파일 및 시뮬레이션 결과 파일 삭제
+make verdi      : verdi를 사용하여 시뮬레이션 결과 확인
+
 ```
 
 ## 4. 주차별 프로젝트 진행도
