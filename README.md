@@ -6,48 +6,51 @@
 
 ## 2. 디렉토리 구조
 
-```bash
-3TEAM_vip/
-├── common_vip/
+
+```text
+FINAL/
+├── common_vip/</span>
 │ ├── my3_testbench_top.sv
 │ ├── my3_vip_environment.sv
 │ ├── packet.sv
-│ ├── ubus_if.sv
-│ ├── ubus_m_if.sv
-│ ├── ubus_s_if.sv
+│ ├── ananlysis_imp
+│ │ ├── master_analysis_imp.sv
+│ │ └── slave_analysis_imp.sv
+│ ├── covereage_seq
+│ ├── ubus_if/
+│ │ ├── ubus_m_if.sv
+│ │ └── ubus_s_if.sv
 │ ├── dummy_dut.sv
 │ ├── ubus_scoreboard.sv
 │ ├── ubus_virtual_sequence.sv
 │ ├── ubus_virtual_sequencer.sv
 │ ├── ubus_coverage.sv
-│ ├── ubus_test_collection.sv
-│ ├── ubus_write_test.sv
-│ ├── ubus_read_test.sv
-│ ├── my3_vip_slave_test.sv
-│ ├── ubus_virtual_seqeunce_test.sv
-│ └──
+│ └── ubus_virtual_sequence_test.sv
+│
 ├── master_vip/
 │ ├── master_agent.sv
 │ ├── master_driver.sv
 │ ├── master_monitor.sv
-│ ├── master_sequence.sv
 │ ├── master_sequencer.sv
-│ ├── master_env.sv (not in the final directory)
-│ └── (master related seqeunces)
+│ └── master_seq/
+│   ├── ubus_master_write_word_seq.sv
+│   ├── ubus_master_read_word_seq.sv
+│   ├── ubus_master_write_random_size_seq.sv
+│   └── ubus_master_read_random_size_seq.sv
+│ 
 ├── slave_vip/
 │ ├── slave_agent.sv
 │ ├── slave_driver.sv
 │ ├── slave_monitor.sv
-│ ├── slave_sequence.sv (in the common_vip)
-│ ├── slave_sequencer.sv
-│ └── slave_env.sv (not in the final directory)
+│ ├── slave_sequencer.sv 
+│ └── slave_sequence.sv
+│
 ├── common_sim/
-│ ├── Makefile
-│ ├── simv.log
-│ ├── ubus_coverage_report.txt
-│ └── wave.fsdb
+│ └── Makefile
+│
 └── README.md
 ```
+
 
   
 
@@ -65,12 +68,15 @@
 cd common_sim/
 
 # 2. make 명령어 실행
-make            : 기본적인 시뮬레이션 실행
-make random     : 랜덤 시뮬레이션 실행
-make N_REPEAT   : N_REPEAT번의 시뮬레이션 실행
-make clean      : 컴파일 및 시뮬레이션 결과 파일 삭제
-make verdi      : verdi를 사용하여 시뮬레이션 결과 확인
 
+# 랜덤 시뮬레이션 실행
+make random N_REPEAT=100 RANDOM_SEED=127   # N_REPEAT: read/write 반복 횟수, RANDOM_SEED: 시드 값 지정
+
+# 생성된 파일 정리
+make clean                                 # Makefile을 제외한 모든 생성 파일 삭제
+
+# Verdi 실행 (fsdb 자동 로드)
+make verdi                                 # wave.fsdb 자동 로드 후 Verdi 실행
 ```
 
 ## 4. 주차별 프로젝트 진행도
@@ -83,10 +89,7 @@ make verdi      : verdi를 사용하여 시뮬레이션 결과 확인
 | 5주차 | Driving the System Environment with Virtual Sequence  |
 | 6주차 | Functional Coverage                                   |
 
-## 5. Test Collection
+## 5. Sequence List
 
 
-## 6. Sequence List
-
-
-## 7. Coverage
+## 6. Coverage
