@@ -8,7 +8,7 @@ SEED ?=
 
 UVM_VER = uvm-1.2
 
-SRC_PATH = /DATA/home/edu010/3team/ksy_common_vip/week5/common_vip
+SRC_PATH = ../common_vip
 TOP      = $(SRC_PATH)/my3_testbench_top.sv
 IF       = $(SRC_PATH)/ubus_m_if.sv $(SRC_PATH)/ubus_s_if.sv
 
