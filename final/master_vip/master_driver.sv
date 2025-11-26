@@ -4,9 +4,6 @@ class master_driver extends uvm_driver #(packet);
 
 	virtual ubus_m_if vif;
 
-	int wait_count = 0;
-    int max_wait = 1000; // 안전 장치: 무한 루프 방지
-
 	function new(string name = "master_driver", uvm_component parent=null);
 		
 		super.new(name,parent);
@@ -34,8 +31,6 @@ class master_driver extends uvm_driver #(packet);
 
 		@(posedge vif.ubus_clock);
 
-			wait_count=0;
-
 			vif.ubus_addr <= tr.addr;
 			vif.ubus_write <= tr.write;
 			vif.ubus_read <= tr.read;
@@ -50,8 +45,8 @@ class master_driver extends uvm_driver #(packet);
 			if(tr.write) begin
 				@(posedge vif.ubus_clock);				
 				vif.ubus_size <= 'z;
-				vif.ubus_read <= 'z;
-				vif.ubus_write <= 'z;	
+				vif.ubus_read <= '0;
+				vif.ubus_write <= '0;	
 				vif.ubus_data <= tr.data[0];
 				vif.ubus_bip <= 0;
 				vif.ubus_addr <= 'z;
@@ -62,8 +57,8 @@ class master_driver extends uvm_driver #(packet);
 
 
 					vif.ubus_size <= 'z;
-					vif.ubus_read <= 'z;
-					vif.ubus_write <= 'z;	
+					vif.ubus_read <= '0;
+					vif.ubus_write <= '0;	
 					vif.ubus_data <= tr.data[i];
 					vif.ubus_bip <= 1;
 					vif.ubus_addr <= 'z;
@@ -78,8 +73,8 @@ class master_driver extends uvm_driver #(packet);
 				vif.ubus_size <= 'z;
 				vif.ubus_addr <= 'z;
 				vif.ubus_data <= 'z;
-				vif.ubus_write <= 'z;
-				vif.ubus_read <= 'z;
+				vif.ubus_write <= '0;
+				vif.ubus_read <= '0;
 				vif.ubus_bip <= 0;
 				@(posedge vif.ubus_clock);
 
@@ -87,8 +82,8 @@ class master_driver extends uvm_driver #(packet);
 				vif.ubus_data <= 'z;
 			@(posedge vif.ubus_clock);				
 				vif.ubus_size <= 'z;
-				vif.ubus_read <= 'z;
-				vif.ubus_write <= 'z;	
+				vif.ubus_read <= '0;
+				vif.ubus_write <= '0;	
 				vif.ubus_bip <= 0;
 				vif.ubus_addr <= 'z;
 
@@ -96,7 +91,7 @@ class master_driver extends uvm_driver #(packet);
 			wait (vif.ubus_wait==0) ;
 
 				for (int i=0; i<tr.size; i++) begin
-
+						vif.ubus_read <= '0;
 						tr.data[i] <= vif.ubus_data;
 						vif.ubus_bip <= (i == tr.size - 1 ) ? 0 : 1;
 						@(posedge vif.ubus_clock);

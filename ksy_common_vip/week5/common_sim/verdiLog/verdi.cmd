@@ -54,7 +54,61 @@ wvSelectSignal -win $_nWave2 {( "G1" 1 2 3 4 5 6 7 8 9 10 )}
 wvSetPosition -win $_nWave2 {("G1" 10)}
 wvGetSignalClose -win $_nWave2
 wvZoomIn -win $_nWave2
-wvSetCursor -win $_nWave2 103.750135 -snap {("G1" 9)}
-wvSetCursor -win $_nWave2 221.666956 -snap {("G1" 8)}
-wvSetCursor -win $_nWave2 324.583757 -snap {("G1" 9)}
-debExit
+wvZoomIn -win $_nWave2
+wvSetPosition -win $_nWave2 {("G1" 6)}
+wvSetPosition -win $_nWave2 {("G1" 10)}
+wvSelectSignal -win $_nWave2 {( "G1" 2 )} 
+wvSelectGroup -win $_nWave2 {G1}
+wvGetSignalOpen -win $_nWave2
+wvGetSignalSetScope -win $_nWave2 "/my3_testbench_top"
+wvGetSignalSetScope -win $_nWave2 "/my3_testbench_top/m_vif"
+wvGetSignalClose -win $_nWave2
+wvSelectSignal -win $_nWave2 {( "G1" 8 )} 
+wvSelectSignal -win $_nWave2 {( "G1" 1 )} 
+wvSelectSignal -win $_nWave2 {( "G1" 1 2 3 4 5 6 7 8 9 10 )} 
+wvCut -win $_nWave2
+wvSetPosition -win $_nWave2 {("G1" 0)}
+wvGetSignalOpen -win $_nWave2
+wvGetSignalSetScope -win $_nWave2 "/my3_testbench_top"
+wvGetSignalSetScope -win $_nWave2 "/my3_testbench_top/m_vif"
+wvGetSignalSetScope -win $_nWave2 "/my3_testbench_top/m_vif"
+wvSetPosition -win $_nWave2 {("G1" 10)}
+wvSetPosition -win $_nWave2 {("G1" 10)}
+wvAddSignal -win $_nWave2 -clear
+wvAddSignal -win $_nWave2 -group {"G1" \
+{/my3_testbench_top/m_vif/ubus_addr\[15:0\]} \
+{/my3_testbench_top/m_vif/ubus_bip} \
+{/my3_testbench_top/m_vif/ubus_clock} \
+{/my3_testbench_top/m_vif/ubus_data\[7:0\]} \
+{/my3_testbench_top/m_vif/ubus_error} \
+{/my3_testbench_top/m_vif/ubus_read} \
+{/my3_testbench_top/m_vif/ubus_reset} \
+{/my3_testbench_top/m_vif/ubus_size\[2:0\]} \
+{/my3_testbench_top/m_vif/ubus_wait} \
+{/my3_testbench_top/m_vif/ubus_write} \
+}
+wvAddSignal -win $_nWave2 -group {"G2" \
+}
+wvSelectSignal -win $_nWave2 {( "G1" 1 2 3 4 5 6 7 8 9 10 )} 
+wvSetPosition -win $_nWave2 {("G1" 10)}
+wvSetPosition -win $_nWave2 {("G1" 10)}
+wvSetPosition -win $_nWave2 {("G1" 10)}
+wvAddSignal -win $_nWave2 -clear
+wvAddSignal -win $_nWave2 -group {"G1" \
+{/my3_testbench_top/m_vif/ubus_addr\[15:0\]} \
+{/my3_testbench_top/m_vif/ubus_bip} \
+{/my3_testbench_top/m_vif/ubus_clock} \
+{/my3_testbench_top/m_vif/ubus_data\[7:0\]} \
+{/my3_testbench_top/m_vif/ubus_error} \
+{/my3_testbench_top/m_vif/ubus_read} \
+{/my3_testbench_top/m_vif/ubus_reset} \
+{/my3_testbench_top/m_vif/ubus_size\[2:0\]} \
+{/my3_testbench_top/m_vif/ubus_wait} \
+{/my3_testbench_top/m_vif/ubus_write} \
+}
+wvAddSignal -win $_nWave2 -group {"G2" \
+}
+wvSelectSignal -win $_nWave2 {( "G1" 1 2 3 4 5 6 7 8 9 10 )} 
+wvSetPosition -win $_nWave2 {("G1" 10)}
+wvGetSignalClose -win $_nWave2
+wvSelectGroup -win $_nWave2 {G2}

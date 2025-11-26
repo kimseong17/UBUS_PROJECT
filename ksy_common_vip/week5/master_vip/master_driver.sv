@@ -50,8 +50,8 @@ class master_driver extends uvm_driver #(packet);
 			if(tr.write) begin
 				@(posedge vif.ubus_clock);				
 				vif.ubus_size <= 'z;
-				vif.ubus_read <= 'z;
-				vif.ubus_write <= 'z;	
+				vif.ubus_read <= '0;
+				vif.ubus_write <= '0;	
 				vif.ubus_data <= tr.data[0];
 				vif.ubus_bip <= 0;
 				vif.ubus_addr <= 'z;
@@ -62,8 +62,8 @@ class master_driver extends uvm_driver #(packet);
 
 
 					vif.ubus_size <= 'z;
-					vif.ubus_read <= 'z;
-					vif.ubus_write <= 'z;	
+					vif.ubus_read <= '0;
+					vif.ubus_write <= '0;	
 					vif.ubus_data <= tr.data[i];
 					vif.ubus_bip <= 1;
 					vif.ubus_addr <= 'z;
@@ -78,8 +78,8 @@ class master_driver extends uvm_driver #(packet);
 				vif.ubus_size <= 'z;
 				vif.ubus_addr <= 'z;
 				vif.ubus_data <= 'z;
-				vif.ubus_write <= 'z;
-				vif.ubus_read <= 'z;
+				vif.ubus_write <= '0;
+				vif.ubus_read <= '0;
 				vif.ubus_bip <= 0;
 				@(posedge vif.ubus_clock);
 
@@ -87,8 +87,8 @@ class master_driver extends uvm_driver #(packet);
 				vif.ubus_data <= 'z;
 			@(posedge vif.ubus_clock);				
 				vif.ubus_size <= 'z;
-				vif.ubus_read <= 'z;
-				vif.ubus_write <= 'z;	
+				vif.ubus_read <= '0;
+				vif.ubus_write <= '0;	
 				vif.ubus_bip <= 0;
 				vif.ubus_addr <= 'z;
 

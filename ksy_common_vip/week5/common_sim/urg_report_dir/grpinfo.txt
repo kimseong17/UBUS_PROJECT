@@ -1,0 +1,428 @@
+Group : my3_testbench_top::cov_trans
+
+===============================================================================
+Group : my3_testbench_top::cov_trans
+===============================================================================
+SCORE  INSTANCES WEIGHT GOAL   AT LEAST PER INSTANCE AUTO BIN MAX PRINT MISSING 
+ 94.78  47.39    1      100    1        1            64           64            
+
+
+Source File(s) : 
+
+/DATA/home/edu010/3team/ksy_common_vip/week5/common_sim/../common_vip/ubus_coverage.sv
+
+2 Instances:
+
+SCORE  WEIGHT GOAL   AT LEAST AUTO BIN MAX PRINT MISSING NAME           
+  0.00 1      100    1        64           64            m_trans_cg_(1) 
+ 94.78 1      100    1        64           64            m_trans_cg     
+
+
+
+
+-------------------------------------------------------------------------------
+
+Summary for Group   my3_testbench_top::cov_trans
+
+
+
+CATEGORY  EXPECTED UNCOVERED COVERED PERCENT 
+Variables 16       0         16      100.00  
+Crosses   46       12        34      73.91   
+
+
+Variables for Group  my3_testbench_top::cov_trans
+
+
+VARIABLE         EXPECTED UNCOVERED COVERED PERCENT GOAL WEIGHT AT LEAST AUTO BIN MAX COMMENT 
+trans_addr       6        0         6       100.00  100  1      1        0                    
+trans_dir        2        0         2       100.00  100  1      1        0                    
+trans_size       4        0         4       100.00  100  1      1        0                    
+trans_wait_state 4        0         4       100.00  100  1      1        0                    
+
+
+Crosses for Group  my3_testbench_top::cov_trans
+
+
+CROSS              EXPECTED UNCOVERED COVERED PERCENT GOAL WEIGHT AT LEAST PRINT MISSING COMMENT 
+trans_addrDirXSize 46       12        34      73.91   100  1      1        0                     
+
+
+-------------------------------------------------------------------------------
+
+Summary for Variable trans_addr
+
+
+CATEGORY          EXPECTED UNCOVERED COVERED PERCENT 
+User Defined Bins 6        0         6       100.00  
+
+
+-------------------------------------------------------------------------------
+
+Summary for Variable trans_dir
+
+
+CATEGORY          EXPECTED UNCOVERED COVERED PERCENT 
+User Defined Bins 2        0         2       100.00  
+
+
+-------------------------------------------------------------------------------
+
+Summary for Variable trans_size
+
+
+CATEGORY          EXPECTED UNCOVERED COVERED PERCENT 
+User Defined Bins 4        0         4       100.00  
+
+
+-------------------------------------------------------------------------------
+
+Summary for Variable trans_wait_state
+
+
+CATEGORY          EXPECTED UNCOVERED COVERED PERCENT 
+User Defined Bins 4        0         4       100.00  
+
+
+-------------------------------------------------------------------------------
+
+Summary for Cross trans_addrDirXSize
+
+
+Samples crossed: trans_addr trans_dir trans_size
+CATEGORY                           EXPECTED UNCOVERED COVERED PERCENT MISSING 
+TOTAL                              46       12        34      73.91   12      
+Automatically Generated Cross Bins 46       12        34      73.91   12      
+User Defined Cross Bins            0        0         0                       
+
+
+Decompressed uncovered bins for trans_addrDirXSize
+
+trans_addr          trans_dir trans_size COUNT AT LEAST 
+EXTERNAL_DATA_DDR   READ      sizes_1    0     1        
+EXTERNAL_DATA_DDR   READ      sizes_8    0     1        
+EXTERNAL_CODE_FLASH WRITE     sizes_2    0     1        
+EXTERNAL_CODE_FLASH READ      sizes_8    0     1        
+PERIPHERAL_REGS     WRITE     sizes_2    0     1        
+INTERNAL_SRAM_HIGH  WRITE     sizes_1    0     1        
+INTERNAL_SRAM_HIGH  READ      sizes_4    0     1        
+INTERNAL_SRAM_HIGH  READ      sizes_8    0     1        
+INTERNAL_SRAM_LOW   READ      sizes_8    0     1        
+CONFIG_REGS         WRITE     sizes_2    0     1        
+CONFIG_REGS         READ      sizes_4    0     1        
+CONFIG_REGS         READ      sizes_8    0     1        
+
+
+User Defined Cross Bins for trans_addrDirXSize
+
+
+Excluded/Illegal bins
+
+NAME           COUNT STATUS   
+IGN_SIZE8_ADDR 0     Excluded 
+
+
+-------------------------------------------------------------------------------
+===============================================================================
+Group Instance : m_trans_cg_(1)
+===============================================================================
+SCORE  WEIGHT GOAL   AT LEAST AUTO BIN MAX PRINT MISSING 
+  0.00 1      100    1        64           64            
+
+
+Group:
+
+SCORE  INSTANCES WEIGHT GOAL   AT LEAST PER INSTANCE AUTO BIN MAX PRINT MISSING COMMENT NAME                         
+ 94.78  47.39    1      100    1        1            64           64                    my3_testbench_top::cov_trans 
+
+
+
+-------------------------------------------------------------------------------
+
+Summary for Group Instance   m_trans_cg_(1)
+
+
+
+CATEGORY  EXPECTED UNCOVERED COVERED PERCENT 
+Variables 16       16        0       0.00    
+Crosses   46       46        0       0.00    
+
+
+Variables for Group Instance  m_trans_cg_(1)
+
+
+VARIABLE         EXPECTED UNCOVERED COVERED PERCENT GOAL WEIGHT AT LEAST AUTO BIN MAX COMMENT 
+trans_addr       6        6         0       0.00    100  1      1        0                    
+trans_dir        2        2         0       0.00    100  1      1        0                    
+trans_size       4        4         0       0.00    100  1      1        0                    
+trans_wait_state 4        4         0       0.00    100  1      1        0                    
+
+
+Crosses for Group Instance  m_trans_cg_(1)
+
+
+CROSS              EXPECTED UNCOVERED COVERED PERCENT GOAL WEIGHT AT LEAST PRINT MISSING COMMENT 
+trans_addrDirXSize 46       46        0       0.00    100  1      1        0                     
+
+
+-------------------------------------------------------------------------------
+
+Summary for Variable trans_addr
+
+
+CATEGORY          EXPECTED UNCOVERED COVERED PERCENT 
+User Defined Bins 6        6         0       0.00    
+
+
+Decompressed uncovered bins for trans_addr
+
+NAME                COUNT AT LEAST 
+EXTERNAL_DATA_DDR   0     1        
+EXTERNAL_CODE_FLASH 0     1        
+PERIPHERAL_REGS     0     1        
+INTERNAL_SRAM_HIGH  0     1        
+INTERNAL_SRAM_LOW   0     1        
+CONFIG_REGS         0     1        
+
+
+-------------------------------------------------------------------------------
+
+Summary for Variable trans_dir
+
+
+CATEGORY          EXPECTED UNCOVERED COVERED PERCENT 
+User Defined Bins 2        2         0       0.00    
+
+
+Decompressed uncovered bins for trans_dir
+
+NAME  COUNT AT LEAST 
+WRITE 0     1        
+READ  0     1        
+
+
+-------------------------------------------------------------------------------
+
+Summary for Variable trans_size
+
+
+CATEGORY          EXPECTED UNCOVERED COVERED PERCENT 
+User Defined Bins 4        4         0       0.00    
+
+
+Decompressed uncovered bins for trans_size
+
+NAME    COUNT AT LEAST 
+sizes_1 0     1        
+sizes_2 0     1        
+sizes_4 0     1        
+sizes_8 0     1        
+
+
+-------------------------------------------------------------------------------
+
+Summary for Variable trans_wait_state
+
+
+CATEGORY          EXPECTED UNCOVERED COVERED PERCENT 
+User Defined Bins 4        4         0       0.00    
+
+
+Decompressed uncovered bins for trans_wait_state
+
+NAME       COUNT AT LEAST 
+WITH_WAIT3 0     1        
+WITH_WAIT2 0     1        
+WITH_WAIT1 0     1        
+NO_WAIT    0     1        
+
+
+-------------------------------------------------------------------------------
+
+Summary for Cross trans_addrDirXSize
+
+
+Samples crossed: trans_addr trans_dir trans_size
+CATEGORY                           EXPECTED UNCOVERED COVERED PERCENT MISSING 
+TOTAL                              46       46        0       0.00    46      
+Automatically Generated Cross Bins 46       46        0       0.00    46      
+User Defined Cross Bins            0        0         0                       
+
+
+Decompressed uncovered bins for trans_addrDirXSize
+
+trans_addr          trans_dir trans_size COUNT AT LEAST 
+EXTERNAL_DATA_DDR   WRITE     sizes_1    0     1        
+EXTERNAL_DATA_DDR   WRITE     sizes_2    0     1        
+EXTERNAL_DATA_DDR   WRITE     sizes_4    0     1        
+EXTERNAL_DATA_DDR   WRITE     sizes_8    0     1        
+EXTERNAL_DATA_DDR   READ      sizes_1    0     1        
+EXTERNAL_DATA_DDR   READ      sizes_2    0     1        
+EXTERNAL_DATA_DDR   READ      sizes_4    0     1        
+EXTERNAL_DATA_DDR   READ      sizes_8    0     1        
+EXTERNAL_CODE_FLASH WRITE     sizes_1    0     1        
+EXTERNAL_CODE_FLASH WRITE     sizes_2    0     1        
+EXTERNAL_CODE_FLASH WRITE     sizes_4    0     1        
+EXTERNAL_CODE_FLASH WRITE     sizes_8    0     1        
+EXTERNAL_CODE_FLASH READ      sizes_1    0     1        
+EXTERNAL_CODE_FLASH READ      sizes_2    0     1        
+EXTERNAL_CODE_FLASH READ      sizes_4    0     1        
+EXTERNAL_CODE_FLASH READ      sizes_8    0     1        
+PERIPHERAL_REGS     WRITE     sizes_1    0     1        
+PERIPHERAL_REGS     WRITE     sizes_2    0     1        
+PERIPHERAL_REGS     WRITE     sizes_4    0     1        
+PERIPHERAL_REGS     READ      sizes_1    0     1        
+PERIPHERAL_REGS     READ      sizes_2    0     1        
+PERIPHERAL_REGS     READ      sizes_4    0     1        
+INTERNAL_SRAM_HIGH  WRITE     sizes_1    0     1        
+INTERNAL_SRAM_HIGH  WRITE     sizes_2    0     1        
+INTERNAL_SRAM_HIGH  WRITE     sizes_4    0     1        
+INTERNAL_SRAM_HIGH  WRITE     sizes_8    0     1        
+INTERNAL_SRAM_HIGH  READ      sizes_1    0     1        
+INTERNAL_SRAM_HIGH  READ      sizes_2    0     1        
+INTERNAL_SRAM_HIGH  READ      sizes_4    0     1        
+INTERNAL_SRAM_HIGH  READ      sizes_8    0     1        
+INTERNAL_SRAM_LOW   WRITE     sizes_1    0     1        
+INTERNAL_SRAM_LOW   WRITE     sizes_2    0     1        
+INTERNAL_SRAM_LOW   WRITE     sizes_4    0     1        
+INTERNAL_SRAM_LOW   WRITE     sizes_8    0     1        
+INTERNAL_SRAM_LOW   READ      sizes_1    0     1        
+INTERNAL_SRAM_LOW   READ      sizes_2    0     1        
+INTERNAL_SRAM_LOW   READ      sizes_4    0     1        
+INTERNAL_SRAM_LOW   READ      sizes_8    0     1        
+CONFIG_REGS         WRITE     sizes_1    0     1        
+CONFIG_REGS         WRITE     sizes_2    0     1        
+CONFIG_REGS         WRITE     sizes_4    0     1        
+CONFIG_REGS         WRITE     sizes_8    0     1        
+CONFIG_REGS         READ      sizes_1    0     1        
+CONFIG_REGS         READ      sizes_2    0     1        
+CONFIG_REGS         READ      sizes_4    0     1        
+CONFIG_REGS         READ      sizes_8    0     1        
+
+
+User Defined Cross Bins for trans_addrDirXSize
+
+
+Excluded/Illegal bins
+
+NAME           COUNT STATUS   
+IGN_SIZE8_ADDR 0     Excluded 
+
+
+-------------------------------------------------------------------------------
+===============================================================================
+Group Instance : m_trans_cg
+===============================================================================
+SCORE  WEIGHT GOAL   AT LEAST AUTO BIN MAX PRINT MISSING 
+ 94.78 1      100    1        64           64            
+
+
+Group:
+
+SCORE  INSTANCES WEIGHT GOAL   AT LEAST PER INSTANCE AUTO BIN MAX PRINT MISSING COMMENT NAME                         
+ 94.78  47.39    1      100    1        1            64           64                    my3_testbench_top::cov_trans 
+
+
+
+-------------------------------------------------------------------------------
+
+Summary for Group Instance   m_trans_cg
+
+
+
+CATEGORY  EXPECTED UNCOVERED COVERED PERCENT 
+Variables 16       0         16      100.00  
+Crosses   46       12        34      73.91   
+
+
+Variables for Group Instance  m_trans_cg
+
+
+VARIABLE         EXPECTED UNCOVERED COVERED PERCENT GOAL WEIGHT AT LEAST AUTO BIN MAX COMMENT 
+trans_addr       6        0         6       100.00  100  1      1        0                    
+trans_dir        2        0         2       100.00  100  1      1        0                    
+trans_size       4        0         4       100.00  100  1      1        0                    
+trans_wait_state 4        0         4       100.00  100  1      1        0                    
+
+
+Crosses for Group Instance  m_trans_cg
+
+
+CROSS              EXPECTED UNCOVERED COVERED PERCENT GOAL WEIGHT AT LEAST PRINT MISSING COMMENT 
+trans_addrDirXSize 46       12        34      73.91   100  1      1        0                     
+
+
+-------------------------------------------------------------------------------
+
+Summary for Variable trans_addr
+
+
+CATEGORY          EXPECTED UNCOVERED COVERED PERCENT 
+User Defined Bins 6        0         6       100.00  
+
+
+-------------------------------------------------------------------------------
+
+Summary for Variable trans_dir
+
+
+CATEGORY          EXPECTED UNCOVERED COVERED PERCENT 
+User Defined Bins 2        0         2       100.00  
+
+
+-------------------------------------------------------------------------------
+
+Summary for Variable trans_size
+
+
+CATEGORY          EXPECTED UNCOVERED COVERED PERCENT 
+User Defined Bins 4        0         4       100.00  
+
+
+-------------------------------------------------------------------------------
+
+Summary for Variable trans_wait_state
+
+
+CATEGORY          EXPECTED UNCOVERED COVERED PERCENT 
+User Defined Bins 4        0         4       100.00  
+
+
+-------------------------------------------------------------------------------
+
+Summary for Cross trans_addrDirXSize
+
+
+Samples crossed: trans_addr trans_dir trans_size
+CATEGORY                           EXPECTED UNCOVERED COVERED PERCENT MISSING 
+TOTAL                              46       12        34      73.91   12      
+Automatically Generated Cross Bins 46       12        34      73.91   12      
+User Defined Cross Bins            0        0         0                       
+
+
+Decompressed uncovered bins for trans_addrDirXSize
+
+trans_addr          trans_dir trans_size COUNT AT LEAST 
+EXTERNAL_DATA_DDR   READ      sizes_1    0     1        
+EXTERNAL_DATA_DDR   READ      sizes_8    0     1        
+EXTERNAL_CODE_FLASH WRITE     sizes_2    0     1        
+EXTERNAL_CODE_FLASH READ      sizes_8    0     1        
+PERIPHERAL_REGS     WRITE     sizes_2    0     1        
+INTERNAL_SRAM_HIGH  WRITE     sizes_1    0     1        
+INTERNAL_SRAM_HIGH  READ      sizes_4    0     1        
+INTERNAL_SRAM_HIGH  READ      sizes_8    0     1        
+INTERNAL_SRAM_LOW   READ      sizes_8    0     1        
+CONFIG_REGS         WRITE     sizes_2    0     1        
+CONFIG_REGS         READ      sizes_4    0     1        
+CONFIG_REGS         READ      sizes_8    0     1        
+
+
+User Defined Cross Bins for trans_addrDirXSize
+
+
+Excluded/Illegal bins
+
+NAME           COUNT STATUS   
+IGN_SIZE8_ADDR 0     Excluded 
+
+

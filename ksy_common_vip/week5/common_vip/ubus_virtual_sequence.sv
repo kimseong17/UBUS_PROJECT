@@ -44,34 +44,21 @@ class ubus_virtual_sequence extends uvm_sequence;
 	end
 	
 
-		/* `uvm_do_on(m_write_random_size_seq, p_sequencer.m_sequencer)
-		`uvm_do_on(m_read_random_size_seq, p_sequencer.m_sequencer) */
-
-		
-
-		/* `uvm_do_on(write_low_seq, p_sequencer.m_sequencer)
-		`uvm_do_on(read_low_seq, p_sequencer.m_sequencer)
-		`uvm_do_on(write_mid_seq, p_sequencer.m_sequencer)
-		`uvm_do_on(read_mid_seq, p_sequencer.m_sequencer)
-		`uvm_do_on(write_high_seq, p_sequencer.m_sequencer)
-		`uvm_do_on(read_high_seq, p_sequencer.m_sequencer) */
 
 
-
-
-        /* `uvm_do_on(target_addr_dir_seq_1, p_sequencer.m_sequencer)
+     /*   // `uvm_do_on(target_addr_dir_seq_1, p_sequencer.m_sequencer)
 		`uvm_do_on(target_addr_dir_seq_2, p_sequencer.m_sequencer)
 		`uvm_do_on(target_addr_dir_seq_3, p_sequencer.m_sequencer)
 		`uvm_do_on(target_addr_dir_seq_4, p_sequencer.m_sequencer)
 		`uvm_do_on(target_addr_dir_seq_5, p_sequencer.m_sequencer)
 		`uvm_do_on(target_addr_dir_seq_6, p_sequencer.m_sequencer) */
 
-		//`uvm_do_on(target_addr_dir_seq, p_sequencer.m_sequencer)
+		`uvm_do_on(target_addr_dir_seq, p_sequencer.m_sequencer)
 		//`uvm_do_on(target_addr_dir_seqf, p_sequencer.m_sequencer)
 
 
 
-    // 2) Coverage-driven 실행: p_sequencer에서 coverage handle을 얻어서
+    /* // 2) Coverage-driven 실행: p_sequencer에서 coverage handle을 얻어서
     //    아직 hit 안된 bin만 채우도록 ubus_target_addr_dir_seqf 인스턴스 생성 후 실행
 
 		// coverage handle 가져오기
@@ -86,7 +73,7 @@ class ubus_virtual_sequence extends uvm_sequence;
 		// 🌟 핵심: 하나의 시퀀스로 누락 bin 처리
 		cov_seq = ubus_target_addr_dir_seqf::type_id::create("cov_seq");
 		cov_seq.cov = cov_h;
-		cov_seq.start(p_sequencer.m_sequencer);
+		cov_seq.start(p_sequencer.m_sequencer); */
 
 
 

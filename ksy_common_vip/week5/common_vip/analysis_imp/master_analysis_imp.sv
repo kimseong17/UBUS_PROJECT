@@ -22,4 +22,3 @@ class master_analysis_imp extends uvm_analysis_imp#(packet, ubus_scoreboard);
 endclass
 
 
-
