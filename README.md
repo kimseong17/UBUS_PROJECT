@@ -54,9 +54,13 @@ FINAL/
 
   
 
-- **`common_vip/`**: UBUS Master/Slave VIP의 UVM 컴포넌트 소스 코드가 위치합니다.
+- **`common_vip/`**: Coverage용 sequence와 scoreboard, coverage , test , env , interface 등 대부분의 component로 구성되어 있습니다.
 
-- **`tb/`**: 테스트벤치 실행을 위한 스크립트 및 로그 파일이 위치합니다.
+- **`common_sim/`**: 테스트벤치 실행을 위한 스크립트 및 로그 파일이 위치합니다.
+
+- **`master_vip/`**: 기능검증용 sequence와 master_agent로 구성되어 있습니다.
+
+- `**`slave_vip/`**: slave sequence와 slave_agent로 구성되어 있습니다.
 
   
 
@@ -90,6 +94,25 @@ make verdi                                 # wave.fsdb 자동 로드 후 Verdi �
 | 6주차 | Functional Coverage                                   |
 
 ## 5. Sequence List
+Functional 검증 sequence # master와 slave에서 addr 증가폭 일정 #write 후 메모리 저장값과 read 후 값 비교
+- ubus_master_read_word_seq # burst write
+- ubus_master_write_word_seq # burst read
 
+Coverage용 sequence # 4가지 방법으로 Coverage 100% 달성 및 read/write 수 최소화
+- ubus_master_read_random_size_seq / ubus_master_write_random_size_seq # address size 전 범위에서 커버리지
+- ubus_target_addr_dir_seq1~6 # targeting한 addr에 따른 6가지 sequence
+- ubus_target_addr_dir_seq # targeting 6가지 sequence 1개로 통합
+- ubus_target_addr_dir_seqf # hit 영역은 반복안하는 sequence
 
 ## 6. Coverage
+[Covergroup 정의]
+
+<img width="751" height="339" alt="image" src="https://github.com/user-attachments/assets/6d85988f-6f7c-4df5-9e2d-63ed5aa4414d" />
+
+[개선 plan]
+
+<img width="793" height="303" alt="image" src="https://github.com/user-attachments/assets/0107d897-974c-479a-92b0-030000423975" />
+
+[결과]
+
+<img width="652" height="217" alt="image" src="https://github.com/user-attachments/assets/d83e6acf-54df-4a54-8ae8-acea0f844704" />
